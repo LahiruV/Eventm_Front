@@ -70,7 +70,7 @@ function UserLogin() {
         <div>
             <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
                 <center>
-                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Salon Service Hub In The Sri Lanka</small>
+                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Event Management Hub In The Sri Lanka</small>
                 </center>
             </div>
             <Navbar />
@@ -78,7 +78,7 @@ function UserLogin() {
                 <MDBCol sm='1'></MDBCol>
                 <MDBCol sm='6'>
                     <MDBCard className="border-0 shadow-0">
-                        <MDBCardImage style={{ width: '99%', marginTop: '15%' }} position='top' alt='...' src='https://images.unsplash.com/photo-1637308596839-9487d9894028?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1175&q=80' />
+                        <MDBCardImage style={{ width: '99%', marginTop: '15%' }} position='top' alt='...' src='https://images.pexels.com/photos/787961/pexels-photo-787961.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
                     </MDBCard>
                 </MDBCol>
                 <MDBCol sm='5'>

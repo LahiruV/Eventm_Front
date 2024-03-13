@@ -137,7 +137,7 @@ function User_registration() {
         <MDBCol sm='1'></MDBCol>
         <MDBCol sm='5'>
           <MDBCard className="border-0 shadow-0">
-            <MDBCardImage style={{ width: '200', height: '800px', marginTop: '10% ' }} position='top' alt='...' src='https://images.unsplash.com/photo-1562004760-aceed7bb0fe3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80' />
+            <MDBCardImage style={{  width: '110%', marginTop: '35%' }} position='top' alt='...' src='https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
           </MDBCard>
         </MDBCol>
         <MDBCol sm='6'>
