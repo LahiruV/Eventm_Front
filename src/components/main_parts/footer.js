@@ -126,7 +126,7 @@ function Footer() {
 
                 <div class="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
                     © 2023 Copyright:
-                    <a class="text-reset fw-bold" href="https://elearning.com">SalonNee</a>
+                    <a class="text-reset fw-bold" href="https://elearning.com">Divine Planner</a>
                 </div>
 
             </footer>
