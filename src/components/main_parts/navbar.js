@@ -9,23 +9,9 @@ import {
     MDBNavbarNav,
     MDBNavbarItem,
     MDBNavbarLink,
-    MDBBtn,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
-    MDBDropdownLink,
-    MDBCollapse,
-    MDBCardImage,
-    MDBCarouselInner,
-    MDBCarouselItem,
-    MDBCarouselElement,
-    MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol
+    MDBBtn,  
+    MDBCollapse, 
 } from 'mdb-react-ui-kit';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import Cookies from 'js-cookie';
-import { reactLocalStorage } from 'reactjs-localstorage';
 
 function NavBar() {
     const [showBasic, setShowBasic] = useState(false);
@@ -34,7 +20,7 @@ function NavBar() {
         <MDBNavbar expand='lg' className="sticky-top" light bgColor='dark'>
             <MDBContainer fluid>
                 <MDBNavbarBrand href='/' style={{ fontSize: '25px' }} className="pt-2 navbar-brand h1 fw-bold">
-                    <MDBIcon fas icon="cut" className="text-danger" size='2x' /> <span className="text-danger">&nbsp;Salon</span><span className="text-white">-Nee</span>
+                    <span className="text-success">&nbsp;Divine</span><span className="text-white">-Planner</span>
                 </MDBNavbarBrand>
                 <MDBNavbarToggler
                     aria-controls='navbarSupportedContent'
@@ -65,14 +51,14 @@ function NavBar() {
 
                             <MDBNavbarItem>
                                 <MDBNavbarLink href='UserLogin'>
-                                    <MDBBtn size="lg" outline className='mx-2 text-white' style={{ fontSize: '12px', letterSpacing: '2px' }} color='danger'>
+                                    <MDBBtn size="lg" outline className='mx-2 text-white' style={{ fontSize: '12px', letterSpacing: '2px' }} color='success'>
                                         Login
                                     </MDBBtn>
                                 </MDBNavbarLink>
                             </MDBNavbarItem>
                             <MDBNavbarItem>
                                 <MDBNavbarLink href='UserRegistration'  >
-                                    <MDBBtn size="lg" className='mx-2' color='danger' style={{ fontSize: '12px', letterSpacing: '2px' }} >
+                                    <MDBBtn size="lg" className='mx-2' color='success' style={{ fontSize: '12px', letterSpacing: '2px' }} >
                                         Registration
                                     </MDBBtn>
                                 </MDBNavbarLink>

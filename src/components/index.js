@@ -14,7 +14,7 @@ function Home() {
         <div>
             <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
                 <center>
-                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Salon Service Hub In The Sri Lanka</small>
+                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Event Management Hub In The Sri Lanka</small>
                 </center>
             </div>
             <Navbar />
@@ -41,8 +41,7 @@ function Home() {
                     </div>
                 </div>
             </header>
-            <section className="container mt-5 pt-5 pb-5 mb-5">
-                {/* <h2 className="text-uppercase text-center" style={{ color: '#19011C' }}>Our Products</h2> */}
+            <section className="container mt-5 pt-5 pb-5 mb-5">                
                 <hr />
                 <br />
                 <br />
@@ -59,15 +58,11 @@ function Home() {
                             </div>
                         </MDBCol>
                         <MDBCol >
-
                             <div >
                                 <MDBCardImage src='https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' alt='...' height="
                                 400" width="650" />
                             </div>
-
                         </MDBCol>
-
-
                     </MDBRow>
                 </div>
                 <hr />

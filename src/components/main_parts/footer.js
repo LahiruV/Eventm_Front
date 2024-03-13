@@ -61,7 +61,7 @@ function Footer() {
                         <div class="row mt-3">
                             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                                 <h4 class="text-uppercase fw-bold mb-4" style={{ letterSpacing: '3px' }}>
-                                    <MDBIcon fas icon="cut" className="text-danger" size='2x' /> <span className="text-danger">&nbsp;Salon</span><span className="text-white">-Nee</span>
+                                   <span className="text-success">&nbsp;Divine</span><span className="text-white">-Planner</span>
                                 </h4>
                                 <p>
                                     Salon-Nee is a leader in the beauty industry and has been a trusted supplier of high-quality hair care and beauty products since 2007. Our products are sourced from trusted suppliers from around the world and are carefully selected to meet the needs and expectations of our clients. We take pride in providing our clients with exceptional products that help them achieve their desired look and feel confident in their appearance                                  </p>
