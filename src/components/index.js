@@ -19,7 +19,7 @@ function Home() {
             </div>
             <Navbar />
 
-            <header class="py-5" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1589357708292-1f54adca149c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')", backgroundSize: "cover", backgroundPosition: "center" }}>
+            <header class="py-5" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')", backgroundSize: "cover", backgroundPosition: "center" }}>
                 <div class="container px-5">
                     <div class="row gx-5 align-items-center justify-content-center">
                         <div class="col-lg-8 col-xl-7 col-xxl-6">
@@ -59,7 +59,7 @@ function Home() {
                         </MDBCol>
                         <MDBCol >
                             <div >
-                                <MDBCardImage src='https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' alt='...' height="
+                                <MDBCardImage src='https://images.pexels.com/photos/2263435/pexels-photo-2263435.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='...' height="
                                 400" width="650" />
                             </div>
                         </MDBCol>

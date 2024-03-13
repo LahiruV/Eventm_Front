@@ -20,7 +20,7 @@ function NavBar() {
         <MDBNavbar expand='lg' className="sticky-top" light bgColor='dark'>
             <MDBContainer fluid>
                 <MDBNavbarBrand href='/' style={{ fontSize: '25px' }} className="pt-2 navbar-brand h1 fw-bold">
-                    <span className="text-success">&nbsp;Divine</span><span className="text-white">-Planner</span>
+                <span className="text-success">&nbsp;Event</span><span className="text-white">-By OSH</span>                   
                 </MDBNavbarBrand>
                 <MDBNavbarToggler
                     aria-controls='navbarSupportedContent'
