@@ -1,0 +1,1 @@
+global.APIUrl = 'https://salon-system-back.onrender.com';
