@@ -133,14 +133,14 @@ function User_registration() {
   return (
     <div>
       <Navbar />
-      <MDBRow style={{ marginTop: '1%', marginBottom: '10%', width: '99%' }}>
+      <MDBRow style={{ marginTop: '1%', width: '99%' }}>
         <MDBCol sm='1'></MDBCol>
-        <MDBCol sm='5'>
+        <MDBCol sm='6'>
           <MDBCard className="border-0 shadow-0">
-            <MDBCardImage style={{  width: '110%', marginTop: '35%' }} position='top' alt='...' src='https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
+            <MDBCardImage style={{  width: '100%', marginTop: '25%' }} position='top' alt='...' src='https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
           </MDBCard>
         </MDBCol>
-        <MDBCol sm='6'>
+        <MDBCol sm='5'>
           <MDBCard className="border-0 shadow-0 p-5">
             <MDBCardBody className="pt-5 mt-3 text-left">
               <div className="bg-light p-4">

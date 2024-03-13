@@ -74,7 +74,7 @@ function UserLogin() {
                 </center>
             </div>
             <Navbar />
-            <MDBRow style={{ marginTop: '10%', marginBottom: '10%', width: '99%' }}>
+            <MDBRow style={{ marginTop: '1%', marginBottom: '10%', width: '99%' }}>
                 <MDBCol sm='1'></MDBCol>
                 <MDBCol sm='6'>
                     <MDBCard className="border-0 shadow-0">
