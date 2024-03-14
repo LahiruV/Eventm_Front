@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { } from 'react';
 import {
     MDBCardImage,
     MDBRow, MDBCol
 } from 'mdb-react-ui-kit';
-import axios from 'axios';
-import Swal from 'sweetalert2';
 import Navbar from './main_parts/navbar.js';
 import Footer from './main_parts/footer.js';
 

@@ -1,36 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, {} from 'react';
 import {
     MDBCardImage,
     MDBRow, MDBCol
 } from 'mdb-react-ui-kit';
-import axios from 'axios';
-import Swal from 'sweetalert2';
 import Navbar from '../main_parts/navbar.user.log';
 import Footer from '../main_parts/footer.js';
 
 function UserAdminDashboard() {
 
-    function publishAdd() {
-
-        const tel = sessionStorage.getItem('user_name');
-
-        if (tel === null) {
-            Swal.fire({
-                title: "Error!",
-                text: "To access web site, First of all you must fill login form.",
-                icon: 'error',
-                confirmButtonText: "OK",
-                type: "success"
-            }).then(okay => {
-                if (okay) {
-                    window.location.href = "/UserLogin";
-                }
-            });
-        } else {
-            window.location.href = "/UserViewAdvertisement";
-        }
-
-    }
     return (
         <div>
             <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
@@ -39,8 +16,7 @@ function UserAdminDashboard() {
                 </center>
             </div>
             <Navbar />
-
-            <header class="py-5" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1589357708292-1f54adca149c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')", backgroundSize: "cover", backgroundPosition: "center" }}>
+            <header class="py-5" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')", backgroundSize: "cover", backgroundPosition: "center" }}>
                 <div class="container px-5">
                     <div class="row gx-5 align-items-center justify-content-center">
                         <div class="col-lg-8 col-xl-7 col-xxl-6">
@@ -48,13 +24,13 @@ function UserAdminDashboard() {
                                 <div className='col'>
                                     <div class="my-5 text-center text-xl-start">
                                         <h1 class="display-5 fw-bolder text-white mb-2 text-uppercase">
-                                            Visit Our Branches<br />
+                                            Our Services<br />
                                             <span
                                                 class="txt-rotate text-warning"
                                                 data-period="2000"
-                                                data-rotate='[ "COLOMBO", "KOLLUPITIYA", "NEGOMBO", "RAJAGIRIYA"]'></span>
+                                                data-rotate='[ "Festivals", "Musical Shows", "Weddings", "Charity Events"]'></span>
                                         </h1>
-                                        <p class="text-white" style={{ fontSize: '20px', fontWeight: 'bold', }}>Salon-Nee is a leader in the beauty industry and has been a trusted supplier of high-quality hair care and beauty products since 2007. Our products are sourced from trusted suppliers from around the world and are carefully selected to meet the needs and expectations of our clients. We take pride in providing our clients with exceptional products that help them achieve their desired look and feel confident in their appearance.</p>
+                                        <p class="text-white" style={{ fontSize: '20px', fontWeight: 'bold', }}>Welcome to Event by OSH (pvt) Ltd, where dreams become reality. As a premier private event planning company, we specialize in crafting unforgettable weddings, parties, and celebrity events. With meticulous attention to detail and a passion for perfection, we are dedicated to making your dream event come true. Let us turn your vision into an extraordinary experience that you and your guests will cherish forever.</p>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +39,6 @@ function UserAdminDashboard() {
                 </div>
             </header>
             <section className="container mt-5 pt-5 pb-5 mb-5">
-                {/* <h2 className="text-uppercase text-center" style={{ color: '#19011C' }}>Our Products</h2> */}
                 <hr />
                 <br />
                 <br />
@@ -72,23 +47,20 @@ function UserAdminDashboard() {
                         <MDBCol >
                             <div class="my-5 text-center text-xl-start">
                                 <h2 class=" fw-bolder text-black mb-2 text-uppercase">
-                                    Visit Our Branches
+                                    Visit Event by OSH
                                     <br />
                                     <br />
                                 </h2>
-                                <p class="text-black" style={{ fontSize: '18px', fontWeight: 'bold', }}>Salon-Nee is a leader in the beauty industry and has been a trusted supplier of high-quality hair care and beauty products since 2007. Our products are sourced from trusted suppliers from around the world and are carefully selected to meet the needs and expectations of our clients. We take pride in providing our clients with exceptional products that help them achieve their desired look and feel confident in their appearance</p>
+                                <p class="text-black" style={{ fontSize: '18px', fontWeight: 'bold', }}>
+                                    In the realm of Event by OSH (pvt) Ltd, dreams unfold into breathtaking realities. We are artisans of elegance, orchestrating extraordinary moments that transcend the ordinary. From intimate weddings to grand galas, our team infuses each event with creativity and precision, ensuring every detail is a masterpiece. With passion as our guide, we curate experiences that linger in the heart long after the final toast. At Event by OSH, we don't just plan events; we craft stories—stories of enchantment, elegance, and everlasting memories.</p>
                             </div>
                         </MDBCol>
                         <MDBCol >
-
                             <div >
-                                <MDBCardImage src='https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' alt='...' height="
+                                <MDBCardImage src='https://images.pexels.com/photos/2263435/pexels-photo-2263435.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='...' height="
                                 400" width="650" />
                             </div>
-
                         </MDBCol>
-
-
                     </MDBRow>
                 </div>
                 <hr />

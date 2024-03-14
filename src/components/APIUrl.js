@@ -1,1 +1,1 @@
-global.APIUrl = 'https://salon-system-back.onrender.com';
+global.APIUrl = 'http://localhost:5000';
