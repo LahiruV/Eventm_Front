@@ -40,7 +40,11 @@ function Admin_registration() {
     const [email, setEmail] = useState("");
     const [Registrationbtn, setRegistrationbtn] = useState(true);
     const [phone, setPhone] = useState("");
-    const [userType, setuserType] = useState("Staff");
+    const [userType, setUserType] = useState("");
+
+    const setUserTypeFunction = (event) => {
+        setUserType(event.target.value);
+    }
 
     const setPasswordFunction = (event) => {
         if (schema.validate(event) === false) {
@@ -177,9 +181,9 @@ function Admin_registration() {
 
     return (
         <div>
-             <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
+            <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
                 <center>
-                <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Event Management Hub In The Sri Lanka</small>
+                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Event Management Hub In The Sri Lanka</small>
                 </center>
             </div>
             <Navbar />
@@ -194,7 +198,7 @@ function Admin_registration() {
                     <MDBCard className="border-0 shadow-0 p-5">
                         <MDBCardBody className="pt-5 mt-3 text-left">
                             <div className="bg-light p-4">
-                                <center><h1 className="text-uppercase">Staff Registration </h1></center>
+                                <center><h1 className="text-uppercase">Admin Registration </h1></center>
                                 <hr />
 
                                 <div class="mb-3">
@@ -222,7 +226,14 @@ function Admin_registration() {
                                         setPhone(e.target.value);
                                     }} />
                                 </div>
-
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label" style={{ fontSize: "20px" }}><b>User Role</b></label>
+                                    <select class="form-control" style={{ fontSize: "18px" }} onChange={setUserTypeFunction} value={userType}>
+                                        <option value="">Select Admin Role</option>
+                                        <option value="Admin">Admin</option>
+                                         {/* Add more options as needed */}
+                                    </select>
+                                </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label" style={{ fontSize: "20px" }}><b>Password</b></label>
                                     <input class="form-control" type={passwordShown ? "text" : "password"} id="pass" style={{ fontSize: "18px" }} onChange={(e) => {

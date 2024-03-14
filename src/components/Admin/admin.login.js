@@ -89,7 +89,7 @@ function AdminLogin() {
                         <MDBCardBody className="pt-5 mt-3 text-left">
 
                             <div className="bg-light p-4">
-                                <center><h1 className="text-uppercase">Admin Sign In</h1></center>
+                                <center><h1 className="text-uppercase">Admin Log In</h1></center>
                                 <hr />
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label" style={{ fontSize: "20px" }}><b>Email</b></label>
