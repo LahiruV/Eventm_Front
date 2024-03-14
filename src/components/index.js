@@ -27,13 +27,13 @@ function Home() {
                                 <div className='col'>
                                     <div class="my-5 text-center text-xl-start">
                                         <h1 class="display-5 fw-bolder text-white mb-2 text-uppercase">
-                                            Visit Our Branches<br />
+                                            Our Services<br />
                                             <span
                                                 class="txt-rotate text-warning"
                                                 data-period="2000"
-                                                data-rotate='[ "COLOMBO", "KOLLUPITIYA", "NEGOMBO", "RAJAGIRIYA"]'></span>
+                                                data-rotate='[ "Festivals", "Musical Shows", "Weddings", "Charity Events"]'></span>
                                         </h1>
-                                        <p class="text-white" style={{ fontSize: '20px', fontWeight: 'bold', }}>Salon-Nee is a leader in the beauty industry and has been a trusted supplier of high-quality hair care and beauty products since 2007. Our products are sourced from trusted suppliers from around the world and are carefully selected to meet the needs and expectations of our clients. We take pride in providing our clients with exceptional products that help them achieve their desired look and feel confident in their appearance.</p>
+                                        <p class="text-white" style={{ fontSize: '20px', fontWeight: 'bold', }}>Welcome to Event by OSH (pvt) Ltd, where dreams become reality. As a premier private event planning company, we specialize in crafting unforgettable weddings, parties, and celebrity events. With meticulous attention to detail and a passion for perfection, we are dedicated to making your dream event come true. Let us turn your vision into an extraordinary experience that you and your guests will cherish forever.</p>
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@ function Home() {
                     </div>
                 </div>
             </header>
-            <section className="container mt-5 pt-5 pb-5 mb-5">                
+            <section className="container mt-5 pt-5 pb-5 mb-5">
                 <hr />
                 <br />
                 <br />
@@ -50,11 +50,12 @@ function Home() {
                         <MDBCol >
                             <div class="my-5 text-center text-xl-start">
                                 <h2 class=" fw-bolder text-black mb-2 text-uppercase">
-                                    Visit Our Branches
+                                    Visit Event by OSH
                                     <br />
                                     <br />
                                 </h2>
-                                <p class="text-black" style={{ fontSize: '18px', fontWeight: 'bold', }}>Salon-Nee is a leader in the beauty industry and has been a trusted supplier of high-quality hair care and beauty products since 2007. Our products are sourced from trusted suppliers from around the world and are carefully selected to meet the needs and expectations of our clients. We take pride in providing our clients with exceptional products that help them achieve their desired look and feel confident in their appearance</p>
+                                <p class="text-black" style={{ fontSize: '18px', fontWeight: 'bold', }}>
+                                    In the realm of Event by OSH (pvt) Ltd, dreams unfold into breathtaking realities. We are artisans of elegance, orchestrating extraordinary moments that transcend the ordinary. From intimate weddings to grand galas, our team infuses each event with creativity and precision, ensuring every detail is a masterpiece. With passion as our guide, we curate experiences that linger in the heart long after the final toast. At Event by OSH, we don't just plan events; we craft stories—stories of enchantment, elegance, and everlasting memories.</p>
                             </div>
                         </MDBCol>
                         <MDBCol >

@@ -64,7 +64,7 @@ function Footer() {
                                 <span className="text-success">&nbsp;Event</span><span className="text-white">-By OSH</span>
                                 </h4>
                                 <p>
-                                    Salon-Nee is a leader in the beauty industry and has been a trusted supplier of high-quality hair care and beauty products since 2007. Our products are sourced from trusted suppliers from around the world and are carefully selected to meet the needs and expectations of our clients. We take pride in providing our clients with exceptional products that help them achieve their desired look and feel confident in their appearance                                  </p>
+                                At Event by OSH (pvt) Ltd, we are architects of unforgettable moments. From intimate weddings to grand galas, our team crafts experiences that linger in the heart long after the final toast. With passion and precision, we transform dreams into breathtaking realities, ensuring every detail is a masterpiece. Welcome to a world where celebrations become timeless tales of enchantment.</p>
                             </div>
                             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
@@ -111,7 +111,7 @@ function Footer() {
                                 <p><i class="fas fa-home me-3"></i>SLIIT Malabe Campus, New Kandy Rd, Malabe 10115</p>
                                 <p>
                                     <i class="fas fa-envelope me-3"></i>
-                                    salonnee@gmail.com
+                                    event@gmail.com
                                 </p>
                                 <p><i class="fas fa-phone me-3"></i> + 94 11 90 2903</p>
                                 <p><i class="fas fa-print me-3"></i> + 94 33 78 9029</p>
@@ -125,8 +125,8 @@ function Footer() {
 
 
                 <div class="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-                    © 2023 Copyright:
-                    <a class="text-reset fw-bold" href="https://elearning.com">Divine Planner</a>
+                    © 2024 Copyright:
+                    <a class="text-reset fw-bold" href="https://elearning.com">Event-By OSH</a>
                 </div>
 
             </footer>
