@@ -25,7 +25,9 @@ class Navbar extends Component {
             <div>
                 <div class="dashboard-header">
                     <nav class="navbar navbar-expand-lg bgTopNav fixed-top">
-                        <a class="navbar-brand h1 fw-bold" style={{ fontSize: '25px' }} href="Admin"><MDBIcon fas icon="cut" className="text-danger" size='2x' /> <span className="text-danger">&nbsp;Salon</span><span className="text-dark">-Nee</span></a>
+                        <a class="navbar-brand h1 fw-bold" style={{ fontSize: '25px' }} href="Admin">
+                            <span className="text-success">&nbsp;Event</span><span className="text-dark">-By OSH</span>
+                        </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -33,7 +35,7 @@ class Navbar extends Component {
                             <ul class="navbar-nav ml-auto navbar-right-top">
                                 <li class="nav-item square border border-0">
                                     <MDBNavbarItem style={{ paddingRight: "30px", }}>
-                                        <MDBNavbarLink style={{ color: 'red', cursor: 'pointer', fontWeight: 'bold', }} active aria-current='page' onClick={logout}>
+                                        <MDBNavbarLink className="text-success" style={{cursor: 'pointer', fontWeight: 'bold', }} active aria-current='page' onClick={logout}>
                                             Logout
                                         </MDBNavbarLink>
                                     </MDBNavbarItem>
