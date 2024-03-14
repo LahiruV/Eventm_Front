@@ -116,7 +116,7 @@ function UserAdminDashboard() {
                     <div class="col-sm-1"></div>
                     <div class="col-sm-5">
                         <div class="card border-0 shadow-0 bg-light p-5">
-                            <h3 style={{ lineHeight: '0px' }} className="mb-0 pb-0 text-danger">Openning Time</h3>
+                            <h3 style={{ lineHeight: '0px' }} className="mb-0 pb-0 text-success">Openning Time</h3>
                             <div className="ms-3 pt-5">
                                 <div class="mb-3 row">
                                     <div class="col-sm-4">
