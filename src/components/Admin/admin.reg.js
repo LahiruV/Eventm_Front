@@ -167,7 +167,7 @@ function Admin_registration() {
     };
 
     const registerBtn = () => {
-        if ((userName !== '') && (phone !== '') && (email !== '') && (password !== '') && (CPassword !== '') && isValidCFpassword && isValidCFpassword2) {
+        if ((userName !== '') && (phone !== '') && (email !== '') && (userType !== '') && (password !== '') && (CPassword !== '') && isValidCFpassword && isValidCFpassword2) {
             setRegistrationbtn(false)
         }
         else {
@@ -177,7 +177,7 @@ function Admin_registration() {
 
     useEffect(() => {
         registerBtn()
-    }, [userName, phone, email, password, CPassword])
+    }, [userName, phone, userType, email, password, CPassword])
 
     return (
         <div>
@@ -231,7 +231,7 @@ function Admin_registration() {
                                     <select class="form-control" style={{ fontSize: "18px" }} onChange={setUserTypeFunction} value={userType}>
                                         <option value="">Select Admin Role</option>
                                         <option value="Admin">Admin</option>
-                                         {/* Add more options as needed */}
+                                        {/* Add more options as needed */}
                                     </select>
                                 </div>
                                 <div class="mb-3">
