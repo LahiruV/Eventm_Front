@@ -59,41 +59,6 @@ function Admin_registration() {
         setPassword(event);
     }
 
-    // function Registration(e) {
-
-    //     e.preventDefault();
-
-    //     const userReg = { userName, email, password, phone, userType }
-
-    //     axios.post(global.APIUrl + "/user/registerAdmin", userReg).then((response) => {
-
-    //         console.log(response.data.message);
-
-    //         Swal.fire({
-    //             title: "Success!",
-    //             text: "Registrtaion Success!",
-    //             icon: 'success',
-    //             confirmButtonText: "OK",
-    //             type: "success"
-    //         })
-    //             .then(okay => {
-    //                 if (okay) {
-    //                     window.location.href = "/AdminLogin";
-    //                 }
-    //             });
-    //     }).catch((err) => {
-
-    //         Swal.fire({
-    //             title: "Error!",
-    //             text: "Registrtaion Not Success",
-    //             icon: 'error',
-    //             confirmButtonText: "OK",
-    //             type: "success"
-    //         })
-    //         window.location.href = "/AdminReg";
-    //     })
-    // }
-
     async function Registration(e) {
         e.preventDefault();
 
