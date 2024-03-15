@@ -29,7 +29,7 @@ function UserDashboard() {
         e.preventDefault();
         const employee = { userName, phone, email, userType, password };
         try {
-            const response = await axios.put(global.APIUrl + "/user/updateemployee", employee);
+            const response = await axios.put(global.APIUrl + "/user/updateadmin", employee);
             console.log(response.data);
             Swal.fire({
                 title: "Success!",
@@ -66,7 +66,7 @@ function UserDashboard() {
     };
     const getByTypeAdmin = async () => {
         try {
-            const res = await axios.get(global.APIUrl + "/user/allemployee/" + search);
+            const res = await axios.get(global.APIUrl + "/user/viewSystemReg/" + search);
             setAdmin(res.data);
             console.log(res.data);
         } catch (error) {
@@ -75,13 +75,13 @@ function UserDashboard() {
     };
 
     function remove(email) {
-        axios.delete(global.APIUrl + "/user/deleteemployee/" + email).then(() => {
+        axios.delete(global.APIUrl + "/user/deleteadmin/" + email).then(() => {
             window.location.href = "/UserDashboard";
 
         }).catch((err) => {
             Swal.fire({
                 title: "Error!",
-                text: "Employee Not Delete",
+                text: "Not Delete",
                 icon: 'error',
                 confirmButtonText: "OK",
                 type: "success"
@@ -135,7 +135,7 @@ function UserDashboard() {
                                                 <input type="email" class="form-control" placeholder=""
                                                     onChange={(e) => {
                                                         setEmail(e.target.value);
-                                                    }} value={email} required />
+                                                    }} value={email} required disabled />
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label h6">Phone Number</label>
