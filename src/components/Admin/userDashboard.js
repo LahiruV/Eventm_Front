@@ -5,9 +5,8 @@ import Swal from 'sweetalert2';
 import Navbar from "./adminNav";
 import NumberFormat from 'react-number-format';
 
-function EmployeeDashboard() {
-
-    const [edits, setEdits] = useState(false);
+function UserDashboard() {
+    
     const [admin, setAdmin] = useState([]);
     const [submit, setSubmit] = useState(true);
     const [userName, setUserName] = useState("")
@@ -30,7 +29,7 @@ function EmployeeDashboard() {
         e.preventDefault();
         const employee = { userName, phone, email, userType, password };
         try {
-            const response = await axios.put(global.APIUrl + "/employee/updateemployee", employee);
+            const response = await axios.put(global.APIUrl + "/user/updateemployee", employee);
             console.log(response.data);
             Swal.fire({
                 title: "Success!",
@@ -40,7 +39,7 @@ function EmployeeDashboard() {
                 type: "success"
             });
             setTimeout(() => {
-                window.location.href = "/EmployeeDashboard";
+                window.location.href = "/UserDashboard";
             }, 1000);
 
         } catch (error) {
@@ -52,7 +51,7 @@ function EmployeeDashboard() {
                 confirmButtonText: "OK",
                 type: "success"
             })
-            window.location.href = "/EmployeeDashboard";
+            window.location.href = "/UserDashboard";
         }
     }
 
@@ -67,7 +66,7 @@ function EmployeeDashboard() {
     };
     const getByTypeAdmin = async () => {
         try {
-            const res = await axios.get(global.APIUrl + "/employee/allemployee/" + search);
+            const res = await axios.get(global.APIUrl + "/user/allemployee/" + search);
             setAdmin(res.data);
             console.log(res.data);
         } catch (error) {
@@ -75,9 +74,9 @@ function EmployeeDashboard() {
         }
     };
 
-    function remove(code) {
-        axios.delete(global.APIUrl + "/employee/deleteemployee/" + code).then(() => {
-            window.location.href = "/EmployeeDashboard";
+    function remove(email) {
+        axios.delete(global.APIUrl + "/user/deleteemployee/" + email).then(() => {
+            window.location.href = "/UserDashboard";
 
         }).catch((err) => {
             Swal.fire({
@@ -215,8 +214,8 @@ function EmployeeDashboard() {
                                                 </h6>
                                             </td>
                                             <td className="text-center">
-                                                <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(admin.code)}><MDBIcon fas icon="trash-alt" /></MDBBtn>{''}&nbsp;&nbsp;
-                                                <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(admin.code, admin.name, admin.phoneNo, admin.email, admin.type)}><MDBIcon fas icon="edit" /></button>{''}&nbsp;&nbsp;
+                                                <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(admin.email)}><MDBIcon fas icon="trash-alt" /></MDBBtn>{''}&nbsp;&nbsp;
+                                                <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(admin.userName, admin.email, admin.password, admin.phone, admin.userType)}><MDBIcon fas icon="edit" /></button>{''}&nbsp;&nbsp;
                                             </td>
                                         </tr>
                                     ))}
@@ -229,4 +228,4 @@ function EmployeeDashboard() {
         </div >
     )
 };
-export default EmployeeDashboard;
+export default UserDashboard;

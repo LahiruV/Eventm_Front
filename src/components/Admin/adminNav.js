@@ -80,7 +80,7 @@ class Navbar extends Component {
                                         <a class="nav-link " style={{ fontSize: '17px' }} href="AllleavesDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Staff Leave Report </a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="EmployeeDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> User/Staff Management </a>
+                                        <a class="nav-link " style={{ fontSize: '17px' }} href="UserDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> User/Staff Management </a>
                                     </li>
                                 </ul>
                             </div>

@@ -29,7 +29,7 @@ import Package from './components/userAdmin/package';
 import Ownpackage from './components/userAdmin/ownpackage';
 import LeaveDashboard from './components/Admin/leaveDashboard';
 import AllleavesDashboard from './components/Admin/allleavesDashboard';
-import EmployeeDashboard from './components/Admin/employeeDashboard';
+import UserDashboard from './components/Admin/userDashboard';
 
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
         <Route path="/Package" exact component={Package} />
         <Route path="/Ownpackage" exact component={Ownpackage} />
         <Route path="/LeaveDashboard" exact component={LeaveDashboard} />
-        <Route path="/EmployeeDashboard" exact component={EmployeeDashboard} />
+        <Route path="/UserDashboard" exact component={UserDashboard} />
         <Route path="/AllleavesDashboard" exact component={AllleavesDashboard} />
         <Route path="/UserAdminDashboard" exact component={UserAdminDashboard} />
         <Route path="/UserLogin" exact component={UserLogin} />
