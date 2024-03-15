@@ -11,7 +11,7 @@ import AdminReg from './components/Admin/admin.reg';
 
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Appointment from './components/userAdmin/appointment';
+import RequestEvent from './components/userAdmin/requestEvent';
 import AppointmentEdit from './components/userAdmin/appoimentEdit';
 import HaircareDashboard from './components/Admin/haircareDashboard';
 import Haircare from './components/userAdmin/haircare';
@@ -39,7 +39,7 @@ function App() {
         <Route exact path="/" >
           <Index />
         </Route>
-        <Route path="/Appointment" exact component={Appointment} />
+        <Route path="/RequestEvent" exact component={RequestEvent} />
         <Route path="/ProductDashboard" exact component={ProductDashboard} />
         <Route path="/AppointmentEdit" exact component={AppointmentEdit} />
         <Route path="/HaircareDashboard" exact component={HaircareDashboard} />

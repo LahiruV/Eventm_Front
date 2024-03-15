@@ -73,6 +73,11 @@ function NavBar() {
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                         <MDBNavbarItem>
+                            <MDBNavbarLink href='RequestEvent' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                            Request Event
+                            </MDBNavbarLink>
+                        </MDBNavbarItem>
+                        <MDBNavbarItem>
                             <MDBNavbarLink href='Dress' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
                                 Dress
                             </MDBNavbarLink>
@@ -95,11 +100,6 @@ function NavBar() {
                         <MDBNavbarItem>
                             <MDBNavbarLink href='Nailpedicare' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
                                 Nail & Pedicre
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink href='Appointment' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
-                                Appointment
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                     </MDBNavbarNav>

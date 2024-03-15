@@ -12,10 +12,10 @@ import Navbar from '../main_parts/navbar.user.log.js';
 import NumberFormat from 'react-number-format';
 import jsPDF from 'jspdf';
 import Footer from '../main_parts/footer.js';
-import '../APIUrl';
+import '../APIUrl.js';
 
 
-function Appointment() {
+function RequestEvent() {
 
     const [name, setName] = useState("")
     const [phoneNo, setPhoneNo] = useState("")
@@ -378,4 +378,4 @@ function Appointment() {
     )
 };
 
-export default Appointment;
+export default RequestEvent;
