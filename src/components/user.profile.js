@@ -69,7 +69,7 @@ function UserLogin() {
                                     <div class="card" style={{ borderRadius: '15px' }}>
                                         <div class="card-body text-center">
                                             <div class="mt-3 mb-4">
-                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                                <img src="https://static.vecteezy.com/system/resources/thumbnails/020/911/732/small/profile-icon-avatar-icon-user-icon-person-icon-free-png.png"
                                                     class="rounded-circle img-fluid" style={{ width: '100px' }} />
                                             </div>
                                             <h4 class="mb-2">{profile.firstName} {" "} {profile.lastName}</h4>
