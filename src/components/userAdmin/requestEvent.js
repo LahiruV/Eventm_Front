@@ -1,54 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import {
-    MDBIcon, MDBCardImage,
-    MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBBtn, MDBTableBody, MDBTable, MDBTableHead
-} from 'mdb-react-ui-kit';
-import { TextField } from '@mui/material';
+import React, { useState } from 'react';
+import { MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from 'mdb-react-ui-kit';
+import { TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import Navbar from '../main_parts/navbar.user.log.js';
+import Footer from '../main_parts/footer.js';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import Cookies from 'js-cookie';
-import { reactLocalStorage } from 'reactjs-localstorage';
-import Navbar from '../main_parts/navbar.user.log.js';
-import NumberFormat from 'react-number-format';
-import jsPDF from 'jspdf';
-import Footer from '../main_parts/footer.js';
-import '../APIUrl.js';
-
 
 function RequestEvent() {
-
-    const [name, setName] = useState("")
-    const [phoneNo, setPhoneNo] = useState("")
-    const [nIC, setNIC] = useState("")
-    const [email, setEmail] = useState("")
-    const [date, setDate] = useState("")
-    const [paackage, setPackage] = useState("")
-    const [time, setTime] = useState("");
-    const [submit, setSubmit] = useState(true);
-    const [checkedIndex, setCheckedIndex] = useState(-1);
-    const userName = sessionStorage.getItem('user_name');
-    const [yourAppoiments, setYourAppointments] = useState([]);
+    const [eventDate, setEventDate] = useState('');
+    const [eventTime, setEventTime] = useState('');
+    const [expectedGuests, setExpectedGuests] = useState('');
+    const [eventType, setEventType] = useState('');
+    const [venueDescription, setVenueDescription] = useState('');
+    const [venuePreference, setVenuePreference] = useState('');
+    const [accessibilityRequirements, setAccessibilityRequirements] = useState('');
+    const [staffRequired, setStaffRequired] = useState([]);
+    const [estimatedBudgetRange, setEstimatedBudgetRange] = useState('');
+    const [sponsorshipOpportunities, setSponsorshipOpportunities] = useState('');
+    const [vendorsNeeded, setVendorsNeeded] = useState('');
+    const [numVendorBooths, setNumVendorBooths] = useState('');
     const uniqueId = "A" + generateId();
-    const type = "Appointment"
-    const [price, setPrice] = useState("")
-
-
-    function print() {
-        let x = 100
-        var doc = new jsPDF('p', 'pt');
-        doc.setTextColor(254, 8, 8);
-        doc.text(20, 20, "Report")
-        doc.addFont('helvetica', 'normal')
-        doc.setFontSize(12);
-        doc.setTextColor(3, 3, 3);
-        doc.text(25, 60, ' Appointment Report ')
-        for (let i = 0; i < yourAppoiments.length; i++) {
-            doc.text(25, x, 'Name :' + " " + yourAppoiments[i].name + " " + " " + " " + " " + " Package : " + yourAppoiments[i].paackage + " " + " " + " " + " " + " Date Time : " + yourAppoiments[i].date + "" + yourAppoiments[i].time)
-            x = x + 20
-        }
-        doc.save('Report.pdf')
-
-    }
+    const email = sessionStorage.getItem('user_name');
 
     function generateId() {
         let id = '';
@@ -58,324 +30,261 @@ function RequestEvent() {
         return id;
     }
 
-    const handleChange = (event) => {
-        setPackage(event.target.value);
-    };
-    const handleCheckboxChange = (index, value) => {
-        setTime(value);
-        setCheckedIndex(index);
-    };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(price);
-        const appointment = { name, email, phoneNo, nIC, date, paackage, time, userName };
+        if (
+            !eventDate ||
+            !eventTime ||
+            !expectedGuests ||
+            !eventType ||
+            !venueDescription ||
+            !venuePreference ||
+            !accessibilityRequirements ||
+            staffRequired.length === 0 ||
+            !estimatedBudgetRange ||
+            !sponsorshipOpportunities ||
+            !vendorsNeeded ||
+            !numVendorBooths
+        ) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+
+        const reqevents = { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange, sponsorshipOpportunities, vendorsNeeded, numVendorBooths };
         try {
-            const response = await axios.post(global.APIUrl + "/appointment/addAppointment", appointment);
-            console.log(response.data);
-            book()
+            const response = await axios.post(global.APIUrl + "/eventReq/addEventReq", reqevents);           
+            Swal.fire({
+                title: "Success!",
+                text: "Success",
+                icon: 'success',
+                confirmButtonText: "OK",
+                type: "success"
+            })
+            window.location.href = "/RequestEvent";
         } catch (error) {
             console.log(error.message);
             Swal.fire({
                 title: "Error!",
-                text: "Appointment Not Added",
+                text: "Not Added",
                 icon: 'error',
                 confirmButtonText: "OK",
                 type: "success"
             })
-            window.location.href = "/Appointment";
+            window.location.href = "/RequestEvent";
         }
     };
-
-    function book() {
-        var code = ""
-        var size = ""
-        var color = ""
-        var exlist = ""
-        reactLocalStorage.setObject("DBooking", [code, paackage, price, size, color, uniqueId, type, exlist, paackage]);
-        window.location.href = "/Booking";
-    }
-
-    const valid = () => {
-        if ((name !== "") && (email !== "") && (phoneNo !== "") && (nIC !== "") && (date !== "") && (paackage !== "") && (time !== "")) {
-            setSubmit(false)
-        } else {
-            setSubmit(true)
-        }
-    }
-    const getAppointments = async () => {
-        try {
-            const res = await axios.get(global.APIUrl + "/appointment/allappointment/" + userName);
-            console.log(res.data);
-            setYourAppointments(res.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-
-    function remove(name) {
-        axios.delete(global.APIUrl + "/appointment/deleteAppointment/" + name).then(() => {
-            window.location.href = "/Appointment";
-
-        }).catch((err) => {
-            Swal.fire({
-                title: "Error!",
-                text: "Appointment Not Delete",
-                icon: 'error',
-                confirmButtonText: "OK",
-                type: "success"
-            })
-        })
-    }
-
-    function editAppoiment(name, email, phoneNo, nIC, date, paackage, time) {
-        reactLocalStorage.setObject("AppointmentEdit", [name, email, phoneNo, nIC, date, paackage, time]);
-        window.location.href = "/AppointmentEdit";
-    }
-
-    const priceChange = () => {
-        if (paackage === "Hair Cut") {
-            setPrice("4500")
-        } else if (paackage === "Keratin Treatment") {
-            setPrice("20000")
-        } else if (paackage === "Hair Straight") {
-            setPrice("15000")
-        } else if (paackage === "Hair Coloring") {
-            setPrice("10500")
-        } else if (paackage === "Hair Relaxing") {
-            setPrice("10000")
-        } else if (paackage === "Nail") {
-            setPrice("2500")
-        } else if (paackage === "Pedicure") {
-            setPrice("4000")
-        } else if (paackage === "Facial Treatment") {
-            setPrice("5000")
-        } else if (paackage === "Makeup") {
-            setPrice("2000")
-        } else if (paackage === "Dressing") {
-            setPrice("200000")
-        }
-    }
-
-    useEffect(() => {
-        getAppointments()
-        valid()
-        priceChange()
-    }, [name, email, phoneNo, nIC, date, paackage, time])
 
     return (
         <div>
             <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
                 <center>
-                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Salon Service Hub In The Sri Lanka</small>
+                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Event Management Hub In The Sri Lanka</small>
                 </center>
             </div>
             <Navbar />
-            <div className='bg-image' >
+            <div className='bg-image'>
                 <img src='https://img.freepik.com/free-vector/customer-online-review-rating-feedback-set_124507-8052.jpg?size=626&ext=jpg' className='img-fluid' alt='Sample' />
                 <div className='mask' style={{ backgroundColor: '#292929' }}>
                     <div className='d-flex justify-content-center align-items-center h-100'>
-                        <p className='text-white h1 mb-0 text-uppercase' style={{ fontSize: '55px', letterSpacing: '2px' }}>Make Your Appointment</p>
+                        <p className='text-white h1 mb-0 text-uppercase' style={{ fontSize: '55px', letterSpacing: '2px' }}>Make Your Request</p>
                     </div>
                 </div>
             </div>
-            <br />
-            <br />
-            <center>
-                <div className='card' style={{ backgroundColor: "", boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)", width: "90%" }}>
-                    <h3 style={{ marginTop: '40px' }}>Add Your Appointment</h3>
-                    <div class="row container-fluid" style={{ marginTop: '7%', marginBottom: '7%' }}>
-                        <form onSubmit={handleSubmit}>
+            <MDBCard className="my-5 mx-auto" style={{ maxWidth: '800px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+                <MDBCardBody>
+                    <form onSubmit={handleSubmit}>
+                        <MDBRow className="mb-3">
 
-                            <div class="row mb-4">
-                                <div className="col">
-                                    <TextField className="form-control" id="outlined-basic" label="Name" variant="outlined" onChange={(e) => {
-                                        setName(e.target.value);
-                                    }} />
-                                </div>
-
-
-                                <div className="col">
-                                    <TextField className="form-control" id="outlined-basic" label="NIC" variant="outlined" onChange={(e) => {
-                                        setNIC(e.target.value);
-                                    }} />
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col">
-                                    <TextField format="0## ### ####" className="form-control" id="outlined-basic" label="Contact No" variant="outlined" type='number' onChange={(e) => {
-                                        setPhoneNo(e.target.value);
+                            <MDBCol>
+                                <TextField
+                                    label="Event Date"
+                                    type="date"
+                                    fullWidth
+                                    value={eventDate}
+                                    onChange={(e) => setEventDate(e.target.value)}
+                                    InputLabelProps={{
+                                        shrink: true,
                                     }}
-                                        onKeyPress={(event) => {
-                                            if (event.target.value.length >= 10) {
-                                                event.preventDefault();
-                                            }
-                                        }} />
-                                </div>
+                                    required
+                                    InputProps={{
+                                        inputProps: { min: new Date().toISOString().split('T')[0] }
+                                    }}
+                                />
+                            </MDBCol>
 
-                                <div class="col">
-                                    <TextField className="form-control" id="outlined-basic" type='email' label="Email" variant="outlined" onChange={(e) => {
-                                        setEmail(e.target.value);
-                                    }} required />
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div className="col">
-                                    <div className="row">
-                                        <div className="col">
-                                            <p style={{ paddingLeft: "50px" }}>Select Your Package : </p>
-                                        </div>
-                                        <div className="col">
-                                            <div >
-                                                <select id="packages" value={paackage} onChange={handleChange} style={{ backgroundColor: "#343a40", color: "#fff" }}>
-                                                    <option value="">Please choose an Package</option>
-                                                    <option value="Hair Cut">Hair Cut</option>
-                                                    <option value="Keratin Treatment">Keratin Treatment</option>
-                                                    <option value="Hair Straight">Hair Straight</option>
-                                                    <option value="Hair Coloring">Hair Coloring</option>
-                                                    <option value="Hair Relaxing">Hair Relaxing</option>
-                                                    <option value="Nail">Nail</option>
-                                                    <option value="Pedicure">Pedicure</option>
-                                                    <option value="Facial Treatment">Facial Treatment</option>
-                                                    <option value="Makeup">Makeup</option>
-                                                    <option value="Dressing">Dressing</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <MDBCol>
+                                <TextField
+                                    label="Event Time"
+                                    type="time"
+                                    fullWidth
+                                    value={eventTime}
+                                    onChange={(e) => setEventTime(e.target.value)}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    required
+                                />
+                            </MDBCol>
+                        </MDBRow>
 
-                                <div class="col">
-                                    <div className="row">
-                                        <div className="col">
-                                            <p style={{ paddingLeft: "50px" }}>Date : </p>
-                                        </div>
-                                        <div className="col">
-                                            <div id="date-picker-example" style={{ paddingRight: "150px" }} class="md-form md-outline input-with-post-icon datepicker" inline="true">
-                                                <input placeholder="Select date" type="date" id="example" class="form-control" onChange={(e) => {
-                                                    setDate(e.target.value);
-                                                }} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br />
-                            <div class="row mb-4">
-                                <div className="col">
-                                    <div className="row">
-                                        <div className="col">
-                                            <p style={{ paddingLeft: "400px" }}>Select Time : </p>
-                                        </div>
-                                        <div className="col">
-                                            <div style={{ paddingRight: "180px" }}>
-                                                <div className="form-check form-check-inline">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="inlineCheckbox1"
-                                                        checked={checkedIndex === 0}
-                                                        onChange={() => handleCheckboxChange(0, "10.00 AM")}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="inlineCheckbox1">
-                                                        10.00 AM
-                                                    </label>
-                                                </div>
+                        <MDBRow className="mb-3">
+                            <MDBCol>
+                                <TextField
+                                    label="Expected Number of Guests"
+                                    type="number"
+                                    fullWidth
+                                    value={expectedGuests}
+                                    onChange={(e) => setExpectedGuests(e.target.value)}
+                                    required
+                                />
+                            </MDBCol>
 
-                                                <div className="form-check form-check-inline">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="inlineCheckbox2"
-                                                        checked={checkedIndex === 1}
-                                                        onChange={() => handleCheckboxChange(1, "12.00 PM")}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="inlineCheckbox2">
-                                                        12.00 PM
-                                                    </label>
-                                                </div>
+                            <MDBCol>
+                                <FormControl fullWidth required>
+                                    <InputLabel>Type of Event</InputLabel>
+                                    <Select
+                                        value={eventType}
+                                        onChange={(e) => setEventType(e.target.value)}
+                                    >
+                                        <MenuItem value="conference">Conference</MenuItem>
+                                        <MenuItem value="wedding">Wedding</MenuItem>
+                                        <MenuItem value="birthday">Birthday Party</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </MDBCol>
+                        </MDBRow>
+                        <hr />
+                        <MDBRow className="mb-3">
+                            <MDBCol>
+                                <TextField
+                                    label="Venue Description"
+                                    fullWidth
+                                    multiline
+                                    rows={4}
+                                    value={venueDescription}
+                                    onChange={(e) => setVenueDescription(e.target.value)}
+                                    required
+                                />
+                            </MDBCol>
+                        </MDBRow>
 
-                                                <div className="form-check form-check-inline">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="inlineCheckbox3"
-                                                        checked={checkedIndex === 2}
-                                                        onChange={() => handleCheckboxChange(2, "2.00 PM")}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="inlineCheckbox3">
-                                                        2.00 PM
-                                                    </label>
-                                                </div>
+                        <MDBRow className="mb-3">
+                            <MDBCol>
+                                <FormControl fullWidth required>
+                                    <InputLabel>Venue Style Preference</InputLabel>
+                                    <Select
+                                        value={venuePreference}
+                                        onChange={(e) => setVenuePreference(e.target.value)}
+                                    >
+                                        <MenuItem value="hotel">Hotel</MenuItem>
+                                        <MenuItem value="restaurant">Restaurant</MenuItem>
+                                        <MenuItem value="banquet">Banquet Hall</MenuItem>
+                                        <MenuItem value="garden">Garden</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </MDBCol>
+                        </MDBRow>
+                        <hr />
+                        <MDBRow className="mb-3">
+                            <MDBCol>
+                                <TextField
+                                    label="Accessibility Requirements"
+                                    fullWidth
+                                    multiline
+                                    rows={4}
+                                    value={accessibilityRequirements}
+                                    onChange={(e) => setAccessibilityRequirements(e.target.value)}
+                                    required
+                                />
+                            </MDBCol>
+                        </MDBRow>
 
-                                                <div className="form-check form-check-inline">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="inlineCheckbox4"
-                                                        checked={checkedIndex === 3}
-                                                        onChange={() => handleCheckboxChange(3, "4.00 PM")}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="inlineCheckbox4">
-                                                        4.00 PM
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br />
-                            <br />
-                            <button type="submit" class="btn btn-dark btn-block mb-5" style={{ width: "500px" }} disabled={submit}>Place order</button>
-                        </form>
-                    </div>
-                </div>
-            </center >
-            <center>
-                <div className='card' style={{ backgroundColor: "", boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)", width: "95%" }}>
-                    <h4 className='mt-5' id="#current" style={{ color: "#606060FF", paddingBottom: "1%" }}><u>Make Appointment </u></h4>
-                    <div style={{ paddingLeft: "1050px", paddingBottom: "5px" }}>
-                        <button type="submit" className="btn btn-success btn-block" style={{ width: "200px" }} onClick={print}
-                        >Appointment Report</button>
-                    </div>
-                    <MDBTable className="mt-2" hover>
-                        <MDBTableHead className="bg-warning">
-                            <tr>
-                                <th scope='col' ><h6 className="text-black" style={{ fontWeight: '300', letterSpacing: '2px', fontSize: '18px' }}>Name</h6></th>
-                                <th scope='col' ><h6 className="text-black" style={{ fontWeight: '100', letterSpacing: '2px', fontSize: '18px' }}>NIC</h6></th>
-                                <th scope='col' ><h6 className="text-black" style={{ fontWeight: '100', letterSpacing: '2px', fontSize: '18px' }}>Contact No</h6></th>
-                                <th scope='col' ><h6 className="text-black" style={{ fontWeight: '100', letterSpacing: '2px', fontSize: '18px' }}>Email</h6></th>
-                                <th scope='col' ><h6 className="text-black" style={{ fontWeight: '100', letterSpacing: '2px', fontSize: '18px' }}>Package</h6></th>
-                                <th scope='col' ><h6 className="text-black" style={{ fontWeight: '100', letterSpacing: '2px', fontSize: '18px' }}>Date</h6></th>
-                                <th scope='col' ><h6 className="text-black" style={{ fontWeight: '100', letterSpacing: '2px', fontSize: '18px' }}>Time</h6></th>
-                                <th scope='col' ><h6 className="text-black" style={{ fontWeight: '100', letterSpacing: '2px', fontSize: '18px' }}>Action</h6></th>
-                            </tr>
-                        </MDBTableHead>
-                        <MDBTableBody>
-                            {yourAppoiments.map((yourAppoiments, key) => (
-                                <tr className="bg-light">
-                                    <td style={{ fontSize: '17px' }}>{yourAppoiments.name}</td>
-                                    <td style={{ fontSize: '17px' }}>{yourAppoiments.nIC}</td>
-                                    <td style={{ fontSize: '17px' }}>{yourAppoiments.phoneNo}</td>
-                                    <td style={{ fontSize: '17px' }}>{yourAppoiments.email}</td>
-                                    <td style={{ fontSize: '17px' }}>{yourAppoiments.paackage}</td>
-                                    <td style={{ fontSize: '17px' }}>{yourAppoiments.date}</td>
-                                    <td style={{ fontSize: '17px' }}>{yourAppoiments.time}</td>
-                                    <td>
-                                        <MDBBtn size='lg' className="shadow-0" color="danger" style={{ fontWeight: "bold", fontSize: "12px" }} onClick={() => remove(yourAppoiments.name)}>Delete</MDBBtn>{''}&nbsp;&nbsp;
-                                        <MDBBtn size='lg' className="shadow-0" color="dark" style={{ fontWeight: "bold", fontSize: "12px" }} onClick={() => editAppoiment(yourAppoiments.name, yourAppoiments.nIC, yourAppoiments.phoneNo, yourAppoiments.email, yourAppoiments.paackage, yourAppoiments.date, yourAppoiments.time)}>Edit</MDBBtn>
-                                    </td>
-                                </tr>
-                            ))}
-                        </MDBTableBody>
-                    </MDBTable>
-                </div >
-            </center>
+                        <MDBRow className="mb-3">
+                            <MDBCol>
+                                <FormControl fullWidth required>
+                                    <InputLabel>Types of Staff Required</InputLabel>
+                                    <Select
+                                        multiple
+                                        value={staffRequired}
+                                        onChange={(e) => setStaffRequired(e.target.value)}
+                                        renderValue={(selected) => selected.join(', ')}
+                                    >
+                                        <MenuItem value="eventCoordinator">Event Coordinator</MenuItem>
+                                        <MenuItem value="waitstaff">Waitstaff</MenuItem>
+                                        <MenuItem value="security">Security</MenuItem>
+                                        <MenuItem value="technicalCrew">Technical Crew</MenuItem>
+                                        <MenuItem value="photography">Photography</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </MDBCol>
+                        </MDBRow>
+
+                        <MDBRow className="mb-3">
+                            <MDBCol>
+                                <TextField
+                                    label="Estimated Budget Range"
+                                    fullWidth
+                                    multiline
+                                    rows={4}
+                                    value={estimatedBudgetRange}
+                                    onChange={(e) => setEstimatedBudgetRange(e.target.value)}
+                                    required
+                                />
+                            </MDBCol>
+                        </MDBRow>
+                        <hr />
+                        <MDBRow className="mb-3">
+                            <MDBCol>
+                                <FormControl fullWidth required>
+                                    <InputLabel>Type of Sponsorship Opportunities Needed</InputLabel>
+                                    <Select
+                                        value={sponsorshipOpportunities}
+                                        onChange={(e) => setSponsorshipOpportunities(e.target.value)}
+                                    >
+                                        <MenuItem value="titleSponsor">Title Sponsor</MenuItem>
+                                        <MenuItem value="stageSponsor">Stage Sponsor</MenuItem>
+                                        <MenuItem value="boothSponsor">Booth Sponsor</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </MDBCol>
+                        </MDBRow>
+
+                        <MDBRow className="mb-3">
+                            <MDBCol>
+                                <FormControl fullWidth required>
+                                    <InputLabel>Types of Vendors Needed</InputLabel>
+                                    <Select
+                                        value={vendorsNeeded}
+                                        onChange={(e) => setVendorsNeeded(e.target.value)}
+                                    >
+                                        <MenuItem value="foodVendors">Food Vendors</MenuItem>
+                                        <MenuItem value="merchandiseVendors">Merchandise Vendors</MenuItem>
+                                        <MenuItem value="activityVendors">Activity Vendors</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </MDBCol>
+
+                            <MDBCol>
+                                <TextField
+                                    label="Number of Vendor Booths"
+                                    type="number"
+                                    fullWidth
+                                    value={numVendorBooths}
+                                    onChange={(e) => setNumVendorBooths(e.target.value)}
+                                    required
+                                />
+                            </MDBCol>
+                        </MDBRow>
+                        <button style={{ backgroundColor: 'black', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px' }} type="submit">
+                            Submit
+                        </button>
+                    </form>
+                </MDBCardBody>
+            </MDBCard>
             <Footer />
-        </div >
-    )
-};
+        </div>
+    );
+}
 
 export default RequestEvent;
