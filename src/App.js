@@ -30,6 +30,7 @@ import Ownpackage from './components/userAdmin/ownpackage';
 import LeaveDashboard from './components/Admin/leaveDashboard';
 import AllleavesDashboard from './components/Admin/allleavesDashboard';
 import UserDashboard from './components/Admin/userDashboard';
+import ReqEventDashboard from './components/Admin/reqEventDashboard';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Index />
         </Route>
         <Route path="/RequestEvent" exact component={RequestEvent} />
+        <Route path="/ReqEventDashboard" exact component={ReqEventDashboard} />
         <Route path="/ProductDashboard" exact component={ProductDashboard} />
         <Route path="/AppointmentEdit" exact component={AppointmentEdit} />
         <Route path="/HaircareDashboard" exact component={HaircareDashboard} />

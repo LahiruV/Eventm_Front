@@ -20,10 +20,10 @@ function Admin() {
 
                     <MDBRow style={{ marginTop: '6%' }}>
                         <MDBCol sm='4'>
-                            <a href="haircareDashboard">
+                            <a href="ReqEventDashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="cut text-muted" /> <br /> <span>Hair Care & Facial</span>
+                                        <MDBIcon fas icon="cut text-muted" /> <br /> <span>Req Event Management</span>
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>

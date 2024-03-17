@@ -56,7 +56,7 @@ class Navbar extends Component {
                                 <ul class="navbar-nav flex-column">
                                     <h4 className="mt-4 mb-4 text-warning">&nbsp;&nbsp;&nbsp;Admin Dashboard</h4>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="haircareDashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Hair Care & Facial </a>
+                                        <a class="nav-link" href="ReqEventDashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Req Event Management </a>
                                     </li>
                                     <li class="nav-item ">
                                         <a class="nav-link " style={{ fontSize: '17px' }} href="NailpedicareDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Nail & Pedicare  </a>
