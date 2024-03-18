@@ -31,6 +31,8 @@ import LeaveDashboard from './components/Admin/leaveDashboard';
 import AllleavesDashboard from './components/Admin/allleavesDashboard';
 import UserDashboard from './components/Admin/userDashboard';
 import ReqEventDashboard from './components/Admin/reqEventDashboard';
+
+import CrewDashh from "./components/Admin/CrewDashh";
 //devshan
 
 
@@ -68,6 +70,8 @@ function App() {
         <Route path="/AdminLogin" exact component={AdminLogin} />
         <Route path="/AdminReg" exact component={AdminReg} />
         <Route path="/UserProfile" exact component={UserProfile} />
+
+        <Route path="/Crewdash" component={CrewDashh}></Route>
       </div>
     </Router>
   );
