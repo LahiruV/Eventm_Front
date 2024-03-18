@@ -59,7 +59,7 @@ class Navbar extends Component {
                                         <a class="nav-link" href="ReqEventDashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Req Event Management </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="Finance" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Finance Management </a>
+                                        <a class="nav-link" href="FinanceDashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Finance Management </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="Payment" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Payment Management </a>
