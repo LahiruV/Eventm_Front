@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { MDBCard, MDBCardBody, MDBTable, MDBTableHead, MDBTableBody, MDBInput, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
+import { MDBCard, MDBCardBody, MDBTable, MDBTableHead, MDBTableBody, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Navbar from "./adminNav";
-import NumberFormat from 'react-number-format';
 
 function FinanceDashboard() {
 
@@ -22,7 +21,9 @@ function FinanceDashboard() {
     const [promoPbudget, setPromoPbudget] = useState(0);
     const [fullBudget, setFullBudget] = useState();
     const [name, setName] = useState("");
-    const [status, setStatus] = useState("Active");
+    const [mail, setMail] = useState("");
+    const [status, setStatus] = useState("Process");
+    const [editBtn, setEditBtn] = useState(false);
 
     function generateId() {
         let id = '';
@@ -33,7 +34,7 @@ function FinanceDashboard() {
     }
 
     const valid = () => {
-        if ((name != "")) {
+        if ((name != "") && (mail != "")) {
             setSubmit(false)
         }
         else {
@@ -42,30 +43,30 @@ function FinanceDashboard() {
     }
 
     async function submiting(e) {
-         e.preventDefault();
-         const budget = { bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status };
+        e.preventDefault();
+        const budget = { bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status, mail };
 
-            axios.post(global.APIUrl + "/budget/addbudget", budget).then(() => {
-                Swal.fire({
-                    title: "Success!",
-                    text: "Budget Added",
-                    icon: 'success',
-                    confirmButtonText: "OK",
-                    type: "success"
-                }).then(okay => {
-                    if (okay) {
-                        window.location.href = "/FinanceDashboard";
-                    }
-                });
-            }).catch((err) => {
-                Swal.fire({
-                    title: "Error!",
-                    text: "Not Added",
-                    icon: 'error',
-                    confirmButtonText: "OK",
-                    type: "success"
-                })
-            })       
+        axios.post(global.APIUrl + "/budget/addbudget", budget).then(() => {
+            Swal.fire({
+                title: "Success!",
+                text: "Budget Added",
+                icon: 'success',
+                confirmButtonText: "OK",
+                type: "success"
+            }).then(okay => {
+                if (okay) {
+                    window.location.href = "/FinanceDashboard";
+                }
+            });
+        }).catch((err) => {
+            Swal.fire({
+                title: "Error!",
+                text: "Not Added",
+                icon: 'error',
+                confirmButtonText: "OK",
+                type: "success"
+            })
+        })
     }
 
     const getBudget = async () => {
@@ -75,8 +76,8 @@ function FinanceDashboard() {
         } catch (error) {
             console.log(error);
         }
-    };    
-    
+    };
+
     const getReq = async () => {
         try {
             const res = await axios.get(global.APIUrl + "/place/allplaces/");
@@ -84,8 +85,8 @@ function FinanceDashboard() {
         } catch (error) {
             console.log(error);
         }
-    };    
-    
+    };
+
     const getPlaces = async () => {
         try {
             const res = await axios.get(global.APIUrl + "/place/allplaces/");
@@ -110,24 +111,78 @@ function FinanceDashboard() {
             console.log(error);
         }
     };
-    const getByTypeAdmin = async () => {
-        // try {
-        //     const res = await axios.get(global.APIUrl + "/user/viewSystemReg/" + search);
-        //     setAdmin(res.data);
-        //     console.log(res.data);
-        // } catch (error) {
-        //     console.log(error);
-        // }
-    };
 
-    function remove(email) {
-        axios.delete(global.APIUrl + "/user/deleteadmin/" + email).then(() => {
-            window.location.href = "/UserDashboard";
+    function remove(bid) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to remove this Budget?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancel',
+            confirmButtonText: 'Yes, Remove it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(global.APIUrl + "/budget/deletebudget/" + bid)
+                    .then((res) => {
+                        Swal.fire(
+                            'Deleted!',
+                            'Budget Removed.',
+                            'success'
+                        ).then(okay => {
+                            if (okay) {
+                                window.location.href = "/FinanceDashboard";
+                            }
+                        });
+                    }).catch((err) => {
+                        Swal.fire(
+                            'error',
+                            'Budget Not Removed',
+                            'error'
+                        )
+                    });
+            } else {
+                window.location.href = "/FinanceDashboard";
+            }
+        });
+    }
 
+    const edit = (bid, mail, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status) => {
+        localStorage.setItem("bid", bid);
+        setName(name);
+        setMail(mail);
+        setPlaceAbudget(placeAbudget);
+        setPlacePbudget(placePbudget);
+        setCrewAbudget(crewAbudget);
+        setCrewPbudget(crewPbudget);
+        setPromoAbudget(promoAbudget);
+        setPromoPbudget(promoPbudget);
+        setFullBudget(fullBudget);
+        setStatus(status);
+        setEditBtn(true);
+    }
+
+    const editing = (e) => {
+        e.preventDefault();
+        var bid = localStorage.getItem("bid");
+        const budget = { bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status, mail };
+        axios.put(global.APIUrl + "/budget/updatebudget/", budget).then(() => {
+            Swal.fire({
+                title: "Success!",
+                text: "Budget Updated",
+                icon: 'success',
+                confirmButtonText: "OK",
+                type: "success"
+            }).then(okay => {
+                if (okay) {
+                    window.location.href = "/FinanceDashboard";
+                }
+            });
         }).catch((err) => {
             Swal.fire({
                 title: "Error!",
-                text: "Not Delete",
+                text: "Not Updated",
                 icon: 'error',
                 confirmButtonText: "OK",
                 type: "success"
@@ -135,14 +190,57 @@ function FinanceDashboard() {
         })
     }
 
-    function edit(userName, email, password, phone, userType) {
-        // setUserName(userName)
-        // setEmail(email)
-        // setPassword(password)
-        // setPhone(phone)
-        // setUserType(userType)
+    const accept = (bid) => {
+        var status = "Paid";
+        const budget = { bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status, mail };
+        axios.put(global.APIUrl + "/budget/updatebudget/", budget).then(() => {
+            Swal.fire({
+                title: "Success!",
+                text: "Budget Accepted",
+                icon: 'success',
+                confirmButtonText: "OK",
+                type: "success"
+            }).then(okay => {
+                if (okay) {
+                    window.location.href = "/FinanceDashboard";
+                }
+            });
+        }).catch((err) => {
+            Swal.fire({
+                title: "Error!",
+                text: "Not Accepted",
+                icon: 'error',
+                confirmButtonText: "OK",
+                type: "success"
+            })
+        })
     }
 
+    const reject = (bid) => {
+        var status = "Rejected";
+        const budget = { bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status, mail };
+        axios.put(global.APIUrl + "/budget/updatebudget/", budget).then(() => {
+            Swal.fire({
+                title: "Success!",
+                text: "Budget Rejected",
+                icon: 'success',
+                confirmButtonText: "OK",
+                type: "success"
+            }).then(okay => {
+                if (okay) {
+                    window.location.href = "/FinanceDashboard";
+                }
+            });
+        }).catch((err) => {
+            Swal.fire({
+                title: "Error!",
+                text: "Not Rejected",
+                icon: 'error',
+                confirmButtonText: "OK",
+                type: "success"
+            })
+        })
+    }
 
     useEffect(() => {
         getPlaces()
@@ -153,7 +251,7 @@ function FinanceDashboard() {
         valid()
         setFullBudget(parseInt(placeAbudget) + parseInt(placePbudget) + parseInt(crewAbudget) + parseInt(crewPbudget) - parseInt(promoAbudget) - parseInt(promoPbudget))
 
-    }, [placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, name])
+    }, [placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, name, mail])
 
     return (
         <div class="dashboard-main-wrapper" >
@@ -171,7 +269,11 @@ function FinanceDashboard() {
                                 <MDBCard className='shadow-0'>
                                     <MDBCardBody className="bg-light">
                                         <center>
-                                            <h4>Add Budget Form</h4>
+                                            {editBtn ? (
+                                                <h4>Edit Budget Form</h4>
+                                            ) : (
+                                                <h4>Add Budget Form</h4>
+                                            )}
                                         </center>
                                         <form>
                                             <div class="mb-3">
@@ -184,6 +286,13 @@ function FinanceDashboard() {
                                                     onChange={(e) => {
                                                         setName(e.target.value);
                                                     }} value={name} />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label h6">Client Mail</label>
+                                                <input type="text" class="form-control" placeholder=""
+                                                    onChange={(e) => {
+                                                        setMail(e.target.value);
+                                                    }} value={mail} />
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label h6">Budget For Place Actual Cost (LKR)</label>
@@ -233,7 +342,11 @@ function FinanceDashboard() {
                                             </div>
 
                                             <div className="text-end">
-                                                <button type="button" class="btn btn-success d-letter-spacing " onClick={submiting} disabled={submit} >Save</button>
+                                                {editBtn ? (
+                                                    <button type="button" class="btn btn-success d-letter-spacing " onClick={editing} disabled={submit} >Edit</button>
+                                                ) : (
+                                                    <button type="button" class="btn btn-success d-letter-spacing " onClick={submiting} disabled={submit} >Save</button>
+                                                )}
                                                 &nbsp;&nbsp;&nbsp;
                                                 <a href="../Admin">
                                                     <MDBBtn className='btn-sm' outline style={{ fontSize: '15px', fontWeight: '500', letterSpacing: '2px' }} color='dark'>
@@ -247,21 +360,13 @@ function FinanceDashboard() {
                                     </MDBCardBody>
                                 </MDBCard>
                             </MDBCol>
-
-                            <div className=" pt-1">
-                                <h6>Search Type</h6>
-                                {/* <MDBInput className="mt-3 bg-white" id='form1' type='text' onChange={(e) => {
-                                    setSearch(e.target.value);
-                                }} /> */}
-                                <br />
-                                <button type="button" class="btn btn-success d-letter-spacing " onClick={getByTypeAdmin}>Go</button>
-                            </div>
                             <h2 style={{ paddingTop: '40px' }}>Added Budget</h2>
                             <hr />
                             <MDBTable borderless className='mt-3' >
                                 <MDBTableHead>
                                     <tr className="bg-dark">
                                         <th scope='col' className="text-white d-letter-spacing h6">ID</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Client Mail</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Req Name</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Place Budget</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Crew Budget</th>
@@ -279,7 +384,12 @@ function FinanceDashboard() {
                                                     {budget.bid}
                                                 </h6>
                                             </td>
-                                             <td>
+                                            <td>
+                                                <h6>
+                                                    {budget.mail}
+                                                </h6>
+                                            </td>
+                                            <td>
                                                 <h6>
                                                     {budget.name}
                                                 </h6>
@@ -288,13 +398,13 @@ function FinanceDashboard() {
                                                 <h6>
                                                     {budget.placeAbudget + budget.placePbudget}
                                                 </h6>
-                                            </td>                                           
+                                            </td>
                                             <td>
                                                 <h6>
                                                     {budget.crewAbudget + budget.crewPbudget}
                                                 </h6>
                                             </td>
-                                             <td>
+                                            <td>
                                                 <h6>
                                                     {budget.promoAbudget + budget.promoPbudget}
                                                 </h6>
@@ -310,8 +420,27 @@ function FinanceDashboard() {
                                                 </h6>
                                             </td>
                                             <td className="text-center">
-                                                <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(budget.email)}><MDBIcon fas icon="trash-alt" /></MDBBtn>{''}&nbsp;&nbsp;
-                                                <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(budget.bid,budget.name,budget.placeAbudget,budget.placePbudget,budget.crewAbudget,budget.crewPbudget,budget.promoAbudget,budget.promoPbudget,budget.fullBudget,budget.status)}><MDBIcon fas icon="edit" /></button>{''}&nbsp;&nbsp;
+                                                {budget.status === 'Rejected' ? (
+                                                    <MDBBtn size='sm' className="shadow-0" color='success' type='submit' onClick={() => accept(budget.bid)}>
+                                                        <MDBIcon fas icon="check-circle" />
+                                                    </MDBBtn>
+                                                ) : (
+                                                    <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => reject(budget.bid)}>
+                                                        <MDBIcon fas icon="times-circle" />
+                                                    </MDBBtn>
+                                                )}
+                                                {budget.status !== 'Paid' && (
+                                                    <>
+                                                        <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(budget.bid)}>
+                                                            <MDBIcon fas icon="trash-alt" />
+                                                        </MDBBtn>
+                                                        &nbsp;&nbsp;
+                                                        <MDBBtn size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
+                                                            <MDBIcon fas icon="edit" />
+                                                        </MDBBtn>
+                                                        &nbsp;&nbsp;
+                                                    </>
+                                                )}
                                             </td>
                                         </tr>
                                     ))}
@@ -357,7 +486,7 @@ function FinanceDashboard() {
                                                 <h6>
                                                     {req.password}
                                                 </h6>
-                                            </td>                                          
+                                            </td>
                                         </tr>
                                     ))}
                                 </MDBTableBody>
