@@ -7,7 +7,7 @@ import NumberFormat from 'react-number-format';
 
 function FinanceDashboard() {
 
-    const [admin, setAdmin] = useState([]);
+    const [budget, setBudget] = useState([]);
     const [req, setReq] = useState([]);
     const [place, setPlace] = useState([]);
     const [crew, setCrew] = useState([]);
@@ -68,6 +68,24 @@ function FinanceDashboard() {
             })       
     }
 
+    const getBudget = async () => {
+        try {
+            const res = await axios.get(global.APIUrl + "/budget/allbudgets/");
+            setBudget(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };    
+    
+    const getReq = async () => {
+        try {
+            const res = await axios.get(global.APIUrl + "/place/allplaces/");
+            setPlace(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };    
+    
     const getPlaces = async () => {
         try {
             const res = await axios.get(global.APIUrl + "/place/allplaces/");
@@ -130,6 +148,8 @@ function FinanceDashboard() {
         getPlaces()
         getSponsors()
         getCrews()
+        getBudget()
+        getReq()
         valid()
         setFullBudget(parseInt(placeAbudget) + parseInt(placePbudget) + parseInt(crewAbudget) + parseInt(crewPbudget) - parseInt(promoAbudget) - parseInt(promoPbudget))
 
@@ -241,45 +261,57 @@ function FinanceDashboard() {
                             <MDBTable borderless className='mt-3' >
                                 <MDBTableHead>
                                     <tr className="bg-dark">
-                                        <th scope='col' className="text-white d-letter-spacing h6">Name</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Email</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Phone Number</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Admin Role</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Password</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">ID</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Req Name</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Place Budget</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Crew Budget</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Promo Budget</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Full Budget</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Status</th>
                                         <th scope='col' className="text-white d-letter-spacing h6 text-center">Action</th>
                                     </tr>
                                 </MDBTableHead>
                                 <MDBTableBody>
-                                    {admin.map((admin, key) => (
+                                    {budget.map((budget, key) => (
                                         <tr className="bg-light">
                                             <td>
                                                 <h6>
-                                                    {admin.userName}
+                                                    {budget.bid}
+                                                </h6>
+                                            </td>
+                                             <td>
+                                                <h6>
+                                                    {budget.name}
                                                 </h6>
                                             </td>
                                             <td>
                                                 <h6>
-                                                    {admin.email}
+                                                    {budget.placeAbudget + budget.placePbudget}
+                                                </h6>
+                                            </td>                                           
+                                            <td>
+                                                <h6>
+                                                    {budget.crewAbudget + budget.crewPbudget}
+                                                </h6>
+                                            </td>
+                                             <td>
+                                                <h6>
+                                                    {budget.promoAbudget + budget.promoPbudget}
                                                 </h6>
                                             </td>
                                             <td>
                                                 <h6>
-                                                    {admin.phone}
+                                                    {budget.fullBudget}
                                                 </h6>
                                             </td>
                                             <td>
                                                 <h6>
-                                                    {admin.userType}
-                                                </h6>
-                                            </td>
-                                            <td>
-                                                <h6>
-                                                    {admin.password}
+                                                    {budget.status}
                                                 </h6>
                                             </td>
                                             <td className="text-center">
-                                                <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(admin.email)}><MDBIcon fas icon="trash-alt" /></MDBBtn>{''}&nbsp;&nbsp;
-                                                <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(admin.userName, admin.email, admin.password, admin.phone, admin.userType)}><MDBIcon fas icon="edit" /></button>{''}&nbsp;&nbsp;
+                                                <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(budget.email)}><MDBIcon fas icon="trash-alt" /></MDBBtn>{''}&nbsp;&nbsp;
+                                                <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(budget.bid,budget.name,budget.placeAbudget,budget.placePbudget,budget.crewAbudget,budget.crewPbudget,budget.promoAbudget,budget.promoPbudget,budget.fullBudget,budget.status)}><MDBIcon fas icon="edit" /></button>{''}&nbsp;&nbsp;
                                             </td>
                                         </tr>
                                     ))}
@@ -325,11 +357,7 @@ function FinanceDashboard() {
                                                 <h6>
                                                     {req.password}
                                                 </h6>
-                                            </td>
-                                            <td className="text-center">
-                                                <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(admin.email)}><MDBIcon fas icon="trash-alt" /></MDBBtn>{''}&nbsp;&nbsp;
-                                                <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(admin.userName, admin.email, admin.password, admin.phone, admin.userType)}><MDBIcon fas icon="edit" /></button>{''}&nbsp;&nbsp;
-                                            </td>
+                                            </td>                                          
                                         </tr>
                                     ))}
                                 </MDBTableBody>
@@ -453,7 +481,7 @@ function FinanceDashboard() {
                                             </td>
                                             <td>
                                                 <h6>
-                                                    {admin.category}
+                                                    {sponsor.category}
                                                 </h6>
                                             </td>
                                         </tr>
