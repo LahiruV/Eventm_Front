@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from 'mdb-react-ui-kit';
 import { TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import Navbar from '../main_parts/navbar.user.log.js';
@@ -16,11 +16,15 @@ function RequestEvent() {
     const [accessibilityRequirements, setAccessibilityRequirements] = useState('');
     const [staffRequired, setStaffRequired] = useState([]);
     const [estimatedBudgetRange, setEstimatedBudgetRange] = useState('');
-    const [sponsorshipOpportunities, setSponsorshipOpportunities] = useState('');
-    const [vendorsNeeded, setVendorsNeeded] = useState('');
-    const [numVendorBooths, setNumVendorBooths] = useState('');
     const uniqueId = "A" + generateId();
     const email = sessionStorage.getItem('user_name');
+    const [place, setPlace] = useState([]);
+    const [crew, setCrew] = useState([]);
+
+    useEffect(() => {
+        getPlaces();
+        getCrews();
+    }, []);
 
     function generateId() {
         let id = '';
@@ -29,6 +33,23 @@ function RequestEvent() {
         }
         return id;
     }
+
+    const getPlaces = async () => {
+        try {
+            const res = await axios.get(global.APIUrl + "/place/allplaces/");
+            setPlace(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const getCrews = async () => {
+        try {
+            const res = await axios.get(global.APIUrl + "/crew/allcrew/");
+            setCrew(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -42,18 +63,15 @@ function RequestEvent() {
             !venuePreference ||
             !accessibilityRequirements ||
             staffRequired.length === 0 ||
-            !estimatedBudgetRange ||
-            !sponsorshipOpportunities ||
-            !vendorsNeeded ||
-            !numVendorBooths
+            !estimatedBudgetRange
         ) {
             alert('Please fill in all required fields.');
             return;
         }
 
-        const reqevents = { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange, sponsorshipOpportunities, vendorsNeeded, numVendorBooths };
+        const reqevents = { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange };
         try {
-            const response = await axios.post(global.APIUrl + "/eventReq/addEventReq", reqevents);           
+            const response = await axios.post(global.APIUrl + "/eventReq/addEventReq", reqevents);
             Swal.fire({
                 title: "Success!",
                 text: "Success",
@@ -177,14 +195,16 @@ function RequestEvent() {
                                         value={venuePreference}
                                         onChange={(e) => setVenuePreference(e.target.value)}
                                     >
-                                        <MenuItem value="hotel">Hotel</MenuItem>
-                                        <MenuItem value="restaurant">Restaurant</MenuItem>
-                                        <MenuItem value="banquet">Banquet Hall</MenuItem>
-                                        <MenuItem value="garden">Garden</MenuItem>
+                                        {place.map((place, index) => (
+                                            <MenuItem key={index} value={place.name}>
+                                                {place.name}
+                                            </MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
                             </MDBCol>
                         </MDBRow>
+
                         <hr />
                         <MDBRow className="mb-3">
                             <MDBCol>
@@ -210,16 +230,15 @@ function RequestEvent() {
                                         onChange={(e) => setStaffRequired(e.target.value)}
                                         renderValue={(selected) => selected.join(', ')}
                                     >
-                                        <MenuItem value="eventCoordinator">Event Coordinator</MenuItem>
-                                        <MenuItem value="waitstaff">Waitstaff</MenuItem>
-                                        <MenuItem value="security">Security</MenuItem>
-                                        <MenuItem value="technicalCrew">Technical Crew</MenuItem>
-                                        <MenuItem value="photography">Photography</MenuItem>
+                                        {crew.map((crew, index) => (
+                                            <MenuItem key={index} value={crew.name}>
+                                                {crew.name}
+                                            </MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
                             </MDBCol>
                         </MDBRow>
-
                         <MDBRow className="mb-3">
                             <MDBCol>
                                 <TextField
@@ -229,49 +248,6 @@ function RequestEvent() {
                                     rows={4}
                                     value={estimatedBudgetRange}
                                     onChange={(e) => setEstimatedBudgetRange(e.target.value)}
-                                    required
-                                />
-                            </MDBCol>
-                        </MDBRow>
-                        <hr />
-                        <MDBRow className="mb-3">
-                            <MDBCol>
-                                <FormControl fullWidth required>
-                                    <InputLabel>Type of Sponsorship Opportunities Needed</InputLabel>
-                                    <Select
-                                        value={sponsorshipOpportunities}
-                                        onChange={(e) => setSponsorshipOpportunities(e.target.value)}
-                                    >
-                                        <MenuItem value="titleSponsor">Title Sponsor</MenuItem>
-                                        <MenuItem value="stageSponsor">Stage Sponsor</MenuItem>
-                                        <MenuItem value="boothSponsor">Booth Sponsor</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </MDBCol>
-                        </MDBRow>
-
-                        <MDBRow className="mb-3">
-                            <MDBCol>
-                                <FormControl fullWidth required>
-                                    <InputLabel>Types of Vendors Needed</InputLabel>
-                                    <Select
-                                        value={vendorsNeeded}
-                                        onChange={(e) => setVendorsNeeded(e.target.value)}
-                                    >
-                                        <MenuItem value="foodVendors">Food Vendors</MenuItem>
-                                        <MenuItem value="merchandiseVendors">Merchandise Vendors</MenuItem>
-                                        <MenuItem value="activityVendors">Activity Vendors</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </MDBCol>
-
-                            <MDBCol>
-                                <TextField
-                                    label="Number of Vendor Booths"
-                                    type="number"
-                                    fullWidth
-                                    value={numVendorBooths}
-                                    onChange={(e) => setNumVendorBooths(e.target.value)}
                                     required
                                 />
                             </MDBCol>
