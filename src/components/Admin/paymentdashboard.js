@@ -185,9 +185,6 @@ function Paymentdashboard() {
                                         <div key={key}></div>
                                     )
                                 ))}
-
-
-
                             </MDBTableBody>
                         </MDBTable>
                     </div>

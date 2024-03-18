@@ -10,7 +10,6 @@ function ReqEventDashboard() {
 
     const [evtReq, setEvtReq] = useState([]);
     const [email, setEmail] = useState("")
-    /////
     const [eventDate, setEventDate] = useState('');
     const [eventTime, setEventTime] = useState('');
     const [expectedGuests, setExpectedGuests] = useState('');
@@ -70,7 +69,7 @@ function ReqEventDashboard() {
     }
 
 
-    function remove(id) {  
+    function remove(id) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You want to remove this event request?",
@@ -100,7 +99,7 @@ function ReqEventDashboard() {
             else {
                 window.location.href = "/ReqEventDashboard";
             }
-        })    
+        })
     }
 
     function edit(userName, email, password, phone, userType) {
@@ -118,6 +117,36 @@ function ReqEventDashboard() {
             console.log(error);
         }
     };
+
+    const accept = async (uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venuePreference, venueDescription, staffRequired, accessibilityRequirements, estimatedBudgetRange) => {
+        const status = "Accepted"
+        const reqevents = { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange, status };
+        try {
+            const response = await axios.put(global.APIUrl + "/eventReq/updateEventReq", reqevents);
+            console.log(response.data);
+            Swal.fire({
+                title: "Success!",
+                text: "Event Request Accepted",
+                icon: 'success',
+                confirmButtonText: "OK",
+                type: "success"
+            });
+            setTimeout(() => {
+                window.location.href = "/ReqEventDashboard";
+            }, 1000);
+
+        } catch (error) {
+            console.log(error.message);
+            Swal.fire({
+                title: "Error!",
+                text: "Event Request Not Accepted",
+                icon: 'error',
+                confirmButtonText: "OK",
+                type: "success"
+            })
+            window.location.href = "/ReqEventDashboard";
+        }
+    }
 
     useEffect(() => {
         getReq()
@@ -139,7 +168,7 @@ function ReqEventDashboard() {
                                 <MDBCard className='shadow-0'>
                                     <MDBCardBody className="bg-light">
                                         <center>
-                                            <h4>Request Event Form</h4>
+                                            <h4>Edit Request Event Form</h4>
                                         </center>
                                         <form onSubmit={handleSubmit}>
                                             <MDBRow className="mb-3">
@@ -283,7 +312,7 @@ function ReqEventDashboard() {
                                             </MDBRow>
 
                                             <button style={{ backgroundColor: 'black', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px' }} type="submit">
-                                                Submit
+                                            Edit
                                             </button>
                                         </form>
                                         <br />
@@ -358,14 +387,26 @@ function ReqEventDashboard() {
                                                     <h6>{evtReq.status}</h6>
                                                 </td>
                                                 <td className="text-center">
-                                                    <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(evtReq.uniqueId)}>
-                                                        <MDBIcon fas icon="trash-alt" />
-                                                    </MDBBtn>
-                                                    {' '}
-                                                    <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(evtReq.eventDate, evtReq.eventTime, evtReq.expectedGuests, evtReq.eventType, evtReq.venuePreference, evtReq.venueDescription, evtReq.staffRequired, evtReq.accessibilityRequirements, evtReq.estimatedBudgetRange)}>
-                                                        <MDBIcon fas icon="edit" />
-                                                    </button>
-                                                    {' '}
+                                                    {evtReq.status === 'Pending' ? (
+                                                        <>
+                                                            <MDBBtn size='sm' className="shadow-0" color='success' type='submit' onClick={() => accept(evtReq.uniqueId, evtReq.email, evtReq.eventDate, evtReq.eventTime, evtReq.expectedGuests, evtReq.eventType, evtReq.venuePreference, evtReq.venueDescription, evtReq.staffRequired, evtReq.accessibilityRequirements, evtReq.estimatedBudgetRange)}>
+                                                                <MDBIcon fas icon="check-circle" />
+                                                            </MDBBtn>
+
+                                                            <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(evtReq.uniqueId)}>
+                                                                <MDBIcon fas icon="trash-alt" />
+                                                            </MDBBtn>
+
+                                                            <MDBBtn size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(evtReq.eventDate, evtReq.eventTime, evtReq.expectedGuests, evtReq.eventType, evtReq.venuePreference, evtReq.venueDescription, evtReq.staffRequired, evtReq.accessibilityRequirements, evtReq.estimatedBudgetRange)}>
+                                                                <MDBIcon fas icon="edit" />
+                                                            </MDBBtn>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <MDBBtn size='sm' className="shadow-0" color='dark' type='submit' disabled>
+                                                                Disabled
+                                                            </MDBBtn></>
+                                                    )}
                                                 </td>
                                             </tr>
                                         ))}
