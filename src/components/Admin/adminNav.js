@@ -35,7 +35,7 @@ class Navbar extends Component {
                             <ul class="navbar-nav ml-auto navbar-right-top">
                                 <li class="nav-item square border border-0">
                                     <MDBNavbarItem style={{ paddingRight: "30px", }}>
-                                        <MDBNavbarLink className="text-success" style={{cursor: 'pointer', fontWeight: 'bold', }} active aria-current='page' onClick={logout}>
+                                        <MDBNavbarLink className="text-success" style={{ cursor: 'pointer', fontWeight: 'bold', }} active aria-current='page' onClick={logout}>
                                             Logout
                                         </MDBNavbarLink>
                                     </MDBNavbarItem>
@@ -58,7 +58,13 @@ class Navbar extends Component {
                                     <li class="nav-item">
                                         <a class="nav-link" href="ReqEventDashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Req Event Management </a>
                                     </li>
-                                    <li class="nav-item ">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="Finance" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Finance Management </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="Payment" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Payment Management </a>
+                                    </li>
+                                    {/* <li class="nav-item ">
                                         <a class="nav-link " style={{ fontSize: '17px' }} href="NailpedicareDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Nail & Pedicare  </a>
                                     </li>
                                     <li class="nav-item ">
@@ -78,7 +84,7 @@ class Navbar extends Component {
                                     </li>
                                     <li class="nav-item ">
                                         <a class="nav-link " style={{ fontSize: '17px' }} href="AllleavesDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Staff Leave Report </a>
-                                    </li>
+                                    </li> */}
                                     <li class="nav-item ">
                                         <a class="nav-link " style={{ fontSize: '17px' }} href="UserDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> User/Staff Management </a>
                                     </li>

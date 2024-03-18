@@ -77,7 +77,7 @@ function NavBar() {
                             Request Event
                             </MDBNavbarLink>
                         </MDBNavbarItem>
-                        <MDBNavbarItem>
+                        {/* <MDBNavbarItem>
                             <MDBNavbarLink href='Dress' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
                                 Dress
                             </MDBNavbarLink>
@@ -101,7 +101,7 @@ function NavBar() {
                             <MDBNavbarLink href='Nailpedicare' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
                                 Nail & Pedicre
                             </MDBNavbarLink>
-                        </MDBNavbarItem>
+                        </MDBNavbarItem> */}
                     </MDBNavbarNav>
 
                     <MDBCollapse navbar show={showNavRight}>

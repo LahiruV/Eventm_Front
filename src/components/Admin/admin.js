@@ -23,12 +23,30 @@ function Admin() {
                             <a href="ReqEventDashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="cut text-muted" /> <br /> <span>Req Event Management</span>
+                                        <MDBIcon fas icon="users text-muted" /> <br /> <span>Req Event Management</span>
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
                         </MDBCol>
                         <MDBCol sm='4'>
+                            <a href="Finance">
+                                <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
+                                    <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
+                                        <MDBIcon fas icon="users text-muted" /> <br /> <span>Finance Management</span>
+                                    </MDBCardHeader>
+                                </MDBCard>
+                            </a>
+                        </MDBCol>
+                         <MDBCol sm='4'>
+                            <a href="Payment">
+                                <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
+                                    <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
+                                        <MDBIcon fas icon="users text-muted" /> <br /> <span>Payment Management</span>
+                                    </MDBCardHeader>
+                                </MDBCard>
+                            </a>
+                        </MDBCol>
+                        {/* <MDBCol sm='4'>
                             <a href="NailpedicareDashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
@@ -93,7 +111,7 @@ function Admin() {
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
-                        </MDBCol>
+                        </MDBCol> */}
                         <MDBCol sm='4'>
                             <a href="UserDashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
