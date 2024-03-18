@@ -80,8 +80,8 @@ function FinanceDashboard() {
 
     const getReq = async () => {
         try {
-            const res = await axios.get(global.APIUrl + "/place/allplaces/");
-            setPlace(res.data);
+            const res = await axios.get(global.APIUrl + "/eventReq/allEventReq/");
+            setReq(res.data);
         } catch (error) {
             console.log(error);
         }
@@ -451,41 +451,46 @@ function FinanceDashboard() {
                             <MDBTable borderless className='mt-3' >
                                 <MDBTableHead>
                                     <tr className="bg-dark">
-                                        <th scope='col' className="text-white d-letter-spacing h6">Name</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Email</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Phone Number</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Admin Role</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Password</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6 text-center">Action</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Id</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Date</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Event Type</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Venue</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">V Desc</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Staff</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">S Desc</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Budget</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Status</th>
                                     </tr>
                                 </MDBTableHead>
                                 <MDBTableBody>
-                                    {req.map((req, key) => (
-                                        <tr className="bg-light">
+                                    {req.map((evtReq, key) => (
+                                        <tr className="bg-light" key={key}>
                                             <td>
-                                                <h6>
-                                                    {req.userName}
-                                                </h6>
+                                                <h6>{evtReq.uniqueId}</h6>
                                             </td>
                                             <td>
-                                                <h6>
-                                                    {req.email}
-                                                </h6>
+                                                <h6>{evtReq.eventDate}</h6>
                                             </td>
                                             <td>
-                                                <h6>
-                                                    {req.phone}
-                                                </h6>
+                                                <h6>{evtReq.eventType}</h6>
                                             </td>
                                             <td>
-                                                <h6>
-                                                    {req.userType}
-                                                </h6>
+                                                <h6>{evtReq.venuePreference}</h6>
                                             </td>
                                             <td>
-                                                <h6>
-                                                    {req.password}
-                                                </h6>
+                                                <h6>{evtReq.venueDescription}</h6>
+                                            </td>
+                                            <td>
+                                                <h6>{evtReq.staffRequired}</h6>
+                                            </td>
+                                            <td>
+                                                <h6>{evtReq.accessibilityRequirements}</h6>
+                                            </td>
+                                            <td>
+                                                <h6>{evtReq.estimatedBudgetRange}</h6>
+                                            </td>
+                                            <td>
+                                                <h6>{evtReq.status}</h6>
                                             </td>
                                         </tr>
                                     ))}
