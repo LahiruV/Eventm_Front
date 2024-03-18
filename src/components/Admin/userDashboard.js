@@ -180,8 +180,7 @@ function UserDashboard() {
                                         <th scope='col' className="text-white d-letter-spacing h6">Name</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Email</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Phone Number</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Admin Role</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Password</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Admin Role</th>                                        
                                         <th scope='col' className="text-white d-letter-spacing h6 text-center">Action</th>
                                     </tr>
                                 </MDBTableHead>
@@ -207,12 +206,7 @@ function UserDashboard() {
                                                 <h6>
                                                     {admin.userType}
                                                 </h6>
-                                            </td>
-                                            <td>
-                                                <h6>
-                                                    {admin.password}
-                                                </h6>
-                                            </td>
+                                            </td>                                           
                                             <td className="text-center">
                                                 <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(admin.email)}><MDBIcon fas icon="trash-alt" /></MDBBtn>{''}&nbsp;&nbsp;
                                                 <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(admin.userName, admin.email, admin.password, admin.phone, admin.userType)}><MDBIcon fas icon="edit" /></button>{''}&nbsp;&nbsp;
