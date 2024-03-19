@@ -13,7 +13,7 @@ function FeedBack() {
     const feedbackId = Math.floor(Math.random() * 100000);
     const [email, setEmail] = useState(userName);
     const [description, setDescription] = useState("");
-    const [rating, setRating] = useState(0);    
+    const [rating, setRating] = useState(0);
     const [errors, setErrors] = useState({});
     const [feedbacks, setFeedbacks] = useState([]);
     const [editBtn, setEditBtn] = useState(false);
@@ -62,8 +62,8 @@ function FeedBack() {
                     confirmButtonText: "OK",
                     type: "success"
                 });
-                fetchFeedbacks(); 
-                clearForm(); 
+                fetchFeedbacks();
+                clearForm();
             } catch (error) {
                 console.log(error.message);
                 Swal.fire({
@@ -77,7 +77,7 @@ function FeedBack() {
         }
     };
 
-    const remove = async (feedbackId) => {        
+    const remove = async (feedbackId) => {
         try {
             await axios.delete(global.APIUrl + "/feedback/deletefeedback/" + feedbackId);
             Swal.fire({
@@ -87,7 +87,7 @@ function FeedBack() {
                 confirmButtonText: "OK",
                 type: "success"
             });
-            fetchFeedbacks(); 
+            fetchFeedbacks();
         } catch (error) {
             console.log(error.message);
             Swal.fire({
@@ -100,7 +100,7 @@ function FeedBack() {
         }
     };
 
-    const edit = (feedbackId,description,rating,email) => {
+    const edit = (feedbackId, description, rating, email) => {
         localStorage.setItem("feedbackId", feedbackId);
         setEmail(email);
         setDescription(description);
@@ -108,6 +108,33 @@ function FeedBack() {
         setEditBtn(true);
     };
 
+    const editing = async () => {
+       
+        const feedback = { feedbackId: localStorage.getItem("feedbackId"), email, description, rating };
+        try {
+            await axios.put(global.APIUrl + "/feedback/updatefeedback", feedback);
+            Swal.fire({
+                title: "Success!",
+                text: "Feedback updated successfully",
+                icon: 'success',
+                confirmButtonText: "OK",
+                type: "success"
+            });
+            fetchFeedbacks();
+            clearForm();
+            setEditBtn(false);
+        } catch (error) {
+            console.log(error.message);
+            Swal.fire({
+                title: "Error!",
+                text: "Failed to update feedback",
+                icon: 'error',
+                confirmButtonText: "OK",
+                type: "success"
+            });
+        }
+  
+};
 
     const clearForm = () => {
         setDescription("");
@@ -126,7 +153,12 @@ function FeedBack() {
             <br />
             <center>
                 <div className='card' style={{ backgroundColor: "", boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)", width: "40%" }}>
-                    <h3 style={{ marginTop: '40px' }}>Make Your FeedBack</h3>
+                    {editBtn ? (
+                        <h3 style={{ marginTop: '40px' }}>Edit Your FeedBack</h3>
+                    ) : (
+                        <h3 style={{ marginTop: '40px' }}>Make Your FeedBack</h3>
+                    )}
+
                     <div className="row container-fluid" style={{ marginTop: '7%', marginBottom: '7%' }}>
                         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -165,19 +197,30 @@ function FeedBack() {
                                     error={errors.rating}
                                 />
                                 {errors.rating && <Typography variant="body2" color="error">{errors.rating}</Typography>}
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"                                    
-                                    sx={{ mt: 2 }}
-                                >
-                                    Submit
-                                </Button>
+                                {editBtn ? (
+                                    <Button                                        
+                                        variant="contained"
+                                        color="primary"
+                                        sx={{ mt: 2 }}
+                                        onClick={editing()}
+                                    >
+                                        Edit
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        color="primary"
+                                        sx={{ mt: 2 }}
+                                    >
+                                        Submit
+                                    </Button>
+                                )}
                             </Box>
                         </form>
                     </div>
                 </div>
-               
+
                 <div style={{ marginTop: '40px', width: '60%' }}>
                     {feedbacks.map((feedback) => (
                         <Card key={feedback.feedbackId} style={{ marginBottom: '20px' }}>
@@ -189,10 +232,10 @@ function FeedBack() {
                                 <Typography variant="body1">Description: {feedback.description}</Typography>
                                 <Typography variant="body1">Rating: {feedback.rating}</Typography>
                                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                                    <IconButton color="primary" onClick={() => edit(feedback.feedbackId,feedback.description,feedback.rating,feedback.email)}>
+                                    <IconButton color="primary" onClick={() => edit(feedback.feedbackId, feedback.description, feedback.rating, feedback.email)}>
                                         <Edit />
                                     </IconButton>
-                                    <IconButton color="error"  onClick={() => remove(feedback.feedbackId)}>
+                                    <IconButton color="error" onClick={() => remove(feedback.feedbackId)}>
                                         <Delete />
                                     </IconButton>
                                 </Box>

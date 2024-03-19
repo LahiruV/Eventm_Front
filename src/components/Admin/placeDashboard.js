@@ -105,7 +105,11 @@ function PlaceDashboard() {
                             'error',
                             'Place Not Removed',
                             'error'
-                        )
+                        ).then(okay => {
+                            if (okay) {
+                                window.location.href = "/PlaceDashboard";
+                            }
+                        });
                     });
             } else {
                 window.location.href = "/PlaceDashboard";
@@ -146,11 +150,8 @@ function PlaceDashboard() {
                 icon: 'error',
                 confirmButtonText: "OK",
                 type: "success"
-            }).then(okay => {
-                if (okay) {
-                    window.location.href = "/PlaceDashboard";
-                }
-            });
+            })
+             window.location.href = "/PlaceDashboard";
         })
     }
 
@@ -194,7 +195,7 @@ function PlaceDashboard() {
                                             <div className="mb-3">
                                                 <label htmlFor="exampleFormControlInput1" className="form-label h6">Phone Number</label>
                                                 <input
-                                                    type="number"
+                                                    type="text"
                                                     className="form-control"
                                                     placeholder=""
                                                     onChange={(e) => setContact(e.target.value)}
@@ -250,7 +251,7 @@ function PlaceDashboard() {
                                     </MDBCardBody>
                                 </MDBCard>
                             </MDBCol>
-                            <h2 style={{ paddingTop: '40px' }}>Added Budget</h2>
+                            <h2 style={{ paddingTop: '40px' }}>Places Details</h2>
                             <hr />
                             <MDBTable borderless className='mt-3' >
                                 <MDBTableHead>
