@@ -62,7 +62,7 @@ class Navbar extends Component {
                                         <a class="nav-link" href="FinanceDashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Finance Management </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="Payment" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Payment Management </a>
+                                        <a class="nav-link" href="Paymentdashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Payment Management </a>
                                     </li>
                                     {/* <li class="nav-item ">
                                         <a class="nav-link " style={{ fontSize: '17px' }} href="NailpedicareDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Nail & Pedicare  </a>
