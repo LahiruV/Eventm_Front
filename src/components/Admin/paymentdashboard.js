@@ -32,40 +32,6 @@ function Paymentdashboard() {
         }
     };
 
-    async function edit(paymentID, price, type, userName) {
-
-        const status = 2
-        const packageFC = { paymentID, price, type, userName, status }
-
-        try {
-            const response = await axios.put(global.APIUrl + "/payment/updatepayment", packageFC);
-            console.log(response.data);
-            Swal.fire({
-                title: "Success!",
-                text: "Payment Edited",
-                icon: 'success',
-                confirmButtonText: "OK",
-                type: "success"
-            });
-            setTimeout(() => {
-                window.location.href = "/Paymentdashboard";
-            }, 1000);
-
-        } catch (error) {
-            console.log(error.message);
-            Swal.fire({
-                title: "Error!",
-                text: "Payment Not Edited",
-                icon: 'error',
-                confirmButtonText: "OK",
-                type: "success"
-            })
-            window.location.href = "/Paymentdashboard";
-        }
-
-
-    }
-
     async function reject(paymentID, budID, cost, email, status, date) {
         axios.put(global.APIUrl + "/payment/updatepayment", {
             paymentID: paymentID,
