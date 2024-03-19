@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Box, Rating } from '@mui/material';
+import { TextField, Button, Typography, Box, Rating, Card, CardContent, IconButton, Avatar } from '@mui/material';
+import { Edit, Delete } from '@mui/icons-material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Navbar from '../main_parts/navbar.user.log.js';
@@ -8,13 +9,27 @@ import '../APIUrl.js';
 
 function FeedBack() {
     const userName = sessionStorage.getItem('user_name');
-    
+
     const feedbackId = Math.floor(Math.random() * 100000);
     const [email, setEmail] = useState(userName);
     const [description, setDescription] = useState("");
     const [rating, setRating] = useState(0);
     const [submit, setSubmit] = useState(true);
     const [errors, setErrors] = useState({});
+    const [feedbacks, setFeedbacks] = useState([]);
+
+    useEffect(() => {
+        fetchFeedbacks();
+    }, []);
+
+    const fetchFeedbacks = async () => {
+        try {
+            const response = await axios.get(global.APIUrl + "/feedback/allfeedback");
+            setFeedbacks(response.data);
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
     const validateForm = () => {
         const errors = {};
@@ -39,19 +54,18 @@ function FeedBack() {
         if (validateForm()) {
             const feedback = { feedbackId, email, description, rating };
             try {
-                const response = await axios.post(global.APIUrl+"/feedback/addfeedback", feedback);
+                const response = await axios.post(global.APIUrl + "/feedback/addfeedback", feedback);
                 Swal.fire({
                     title: "Success!",
                     text: "Feedback submitted successfully",
                     icon: 'success',
                     confirmButtonText: "OK",
                     type: "success"
-                });                
-                setTimeout(() => {
-                    window.location.href = "/";
-                }, 1000);
+                });
+                fetchFeedbacks(); 
+                clearForm(); 
             } catch (error) {
-                console.log(error.message);                
+                console.log(error.message);
                 Swal.fire({
                     title: "Error!",
                     text: "Failed to submit feedback",
@@ -59,16 +73,38 @@ function FeedBack() {
                     confirmButtonText: "OK",
                     type: "success"
                 });
-                setTimeout(() => {
-                    window.location.href = "/FeedBack";
-                }, 1000);
             }
         }
     };
 
-    useEffect(() => {
-        setSubmit(!validateForm());
-    }, [description, rating]);
+    const remove = async (feedbackId) => {        
+        try {
+            await axios.delete(global.APIUrl + "/feedback/deletefeedback/" + feedbackId);
+            Swal.fire({
+                title: "Success!",
+                text: "Feedback deleted successfully",
+                icon: 'success',
+                confirmButtonText: "OK",
+                type: "success"
+            });
+            fetchFeedbacks(); 
+        } catch (error) {
+            console.log(error.message);
+            Swal.fire({
+                title: "Error!",
+                text: "Failed to delete feedback",
+                icon: 'error',
+                confirmButtonText: "OK",
+                type: "success"
+            });
+        }
+    };
+
+
+    const clearForm = () => {
+        setDescription("");
+        setRating(0);
+    };
 
     return (
         <div>
@@ -86,6 +122,7 @@ function FeedBack() {
                     <div className="row container-fluid" style={{ marginTop: '7%', marginBottom: '7%' }}>
                         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                <Avatar style={{ backgroundColor: 'theme.palette.secondary.main', marginRight: '20px', }}>{email[0]}</Avatar> {/* Display user profile icon/image */}
                                 <TextField
                                     id="email"
                                     label="Email"
@@ -132,6 +169,30 @@ function FeedBack() {
                             </Box>
                         </form>
                     </div>
+                </div>
+
+                {/* Render feedbacks */}
+                <div style={{ marginTop: '40px', width: '60%' }}>
+                    {feedbacks.map((feedback) => (
+                        <Card key={feedback.feedbackId} style={{ marginBottom: '20px' }}>
+                            <CardContent>
+                                <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                                    <Avatar style={{ backgroundColor: 'theme.palette.secondary.main', marginRight: '20px', }}>{feedback.email[0]}</Avatar> {/* Display user profile icon/image */}
+                                    <Typography variant="h6" sx={{ marginLeft: '10px' }}>Feedback ID: {feedback.feedbackId}</Typography>
+                                </Box>
+                                <Typography variant="body1">Description: {feedback.description}</Typography>
+                                <Typography variant="body1">Rating: {feedback.rating}</Typography>
+                                <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+                                    <IconButton color="primary">
+                                        <Edit />
+                                    </IconButton>
+                                    <IconButton color="error"  onClick={() => remove(feedback.feedbackId)}>
+                                        <Delete />
+                                    </IconButton>
+                                </Box>
+                            </CardContent>
+                        </Card>
+                    ))}
                 </div>
             </center>
             <Footer />
