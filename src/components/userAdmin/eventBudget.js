@@ -6,6 +6,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 function EventBudget() {
+    const userName = sessionStorage.getItem('user_name');
     const [eventBudget, setEventBudget] = useState([]);
 
     const getBudget = async () => {
@@ -41,10 +42,10 @@ function EventBudget() {
                 type: "success"
             })
         })
-    }   
-    
+    }
+
     const refund = (bid, mail, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status) => {
-        var status = "Refund Requested";    
+        var status = "Refund Requested";
         const budget = { bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status, mail };
         axios.put(global.APIUrl + "/budget/updatebudget/", budget).then(() => {
             Swal.fire({
@@ -112,84 +113,88 @@ function EventBudget() {
                     </MDBTableHead>
                     <MDBTableBody>
                         {eventBudget.map((budget, key) => (
-                            <tr className="bg-light">
-                                <td>
-                                    <h6>
-                                        {budget.bid}
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        {budget.mail}
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        {budget.name}
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        {budget.placeAbudget + budget.placePbudget}
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        {budget.crewAbudget + budget.crewPbudget}
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        {budget.promoAbudget + budget.promoPbudget}
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        {budget.fullBudget}
-                                    </h6>
-                                </td>
-                                <td>
-                                    <h6>
-                                        {budget.status}
-                                    </h6>
-                                </td>
-                                <td className="text-center">
-                                    <div className='col'>
-                                        {((budget.status === 'Process')) && (
-                                            <>
-                                            <div className='row'>
-                                                <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => reject(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
-                                                    Reject
-                                                </MDBBtn>                                              
-                                            </div>
-                                            <br />
-                                            <div className='row'>
-                                                    <MDBBtn size='sm' className="shadow-0" color='success' type='submit' onClick={() => pay(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
-                                                        Pay Now
-                                                    </MDBBtn>                                                                                        
+                            budget.mail === userName ? (
+                                <tr className="bg-light">
+                                    <td>
+                                        <h6>
+                                            {budget.bid}
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            {budget.mail}
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            {budget.name}
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            {budget.placeAbudget + budget.placePbudget}
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            {budget.crewAbudget + budget.crewPbudget}
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            {budget.promoAbudget + budget.promoPbudget}
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            {budget.fullBudget}
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        <h6>
+                                            {budget.status}
+                                        </h6>
+                                    </td>
+                                    <td className="text-center">
+                                        <div className='col'>
+                                            {((budget.status === 'Process')) && (
+                                                <>
+                                                    <div className='row'>
+                                                        <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => reject(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
+                                                            Reject
+                                                        </MDBBtn>
+                                                    </div>
+                                                    <br />
+                                                    <div className='row'>
+                                                        <MDBBtn size='sm' className="shadow-0" color='success' type='submit' onClick={() => pay(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
+                                                            Pay Now
+                                                        </MDBBtn>
+                                                    </div>
+                                                </>
+
+                                            )}
+                                            {((budget.status === 'Paid')) && (
+                                                <div className='row'>
+                                                    <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => refund(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
+                                                        Refund
+                                                    </MDBBtn>
                                                 </div>
-                                            </>
-                                            
-                                        )}
-                                        {((budget.status === 'Paid')) && (
-                                            <div className='row'>
-                                                <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => refund(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
-                                                    Refund
-                                                </MDBBtn>
-                                            </div>
-                                        )}
-                                       
-                                        {((budget.status === 'Refund Requested') || (budget.status === 'Rejected') || (budget.status === 'Rejected By C')) && (
-                                           
+                                            )}
+
+                                            {((budget.status === 'Refund Requested') || (budget.status === 'Rejected') || (budget.status === 'Rejected By C')) && (
+
                                                 <div className='row'>
                                                     <MDBBtn size='sm' className="shadow-0" color='dark' type='submit' disabled>
-                                                       Disabled
-                                                    </MDBBtn>                                       
+                                                        Disabled
+                                                    </MDBBtn>
                                                 </div>
-                                        )}
-                                    </div>
-                                </td>
-                            </tr>
+                                            )}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ) : (
+                                <div key={key}></div>
+                            )
                         ))}
                     </MDBTableBody>
                 </MDBTable>
