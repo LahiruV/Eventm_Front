@@ -548,7 +548,7 @@ function FinanceDashboard() {
                                             </td>
                                             <td>
                                                 <h6>
-                                                    {place.category}
+                                                    {place.cost}
                                                 </h6>
                                             </td>
                                         </tr>
@@ -630,7 +630,7 @@ function FinanceDashboard() {
                                             </td>
                                             <td>
                                                 <h6>
-                                                    {sponsor.category}
+                                                    {sponsor.cost}
                                                 </h6>
                                             </td>
                                         </tr>
