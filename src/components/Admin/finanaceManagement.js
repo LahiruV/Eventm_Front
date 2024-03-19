@@ -7,6 +7,7 @@ import Navbar from "./adminNav";
 function FinanceDashboard() {
 
     const [budget, setBudget] = useState([]);
+    const [payment, setPayment] = useState([])
     const [req, setReq] = useState([]);
     const [place, setPlace] = useState([]);
     const [crew, setCrew] = useState([]);
@@ -107,6 +108,16 @@ function FinanceDashboard() {
         try {
             const res = await axios.get(global.APIUrl + "/sponsor/allsponsors/");
             setSponsor(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getPayments = async () => {
+        try {
+            const res = await axios.get(global.APIUrl + "/payment/allpayment/");
+            setPayment(res.data);
+            console.log(res.data);
         } catch (error) {
             console.log(error);
         }
@@ -243,6 +254,7 @@ function FinanceDashboard() {
     }
 
     useEffect(() => {
+        getPayments()
         getPlaces()
         getSponsors()
         getCrews()
@@ -508,6 +520,36 @@ function FinanceDashboard() {
                                                 <h6>{evtReq.status}</h6>
                                             </td>
                                         </tr>
+                                    ))}
+                                </MDBTableBody>
+                            </MDBTable>
+                            <h2 style={{ paddingTop: '20px' }}>Paid Payment Details</h2>
+                            <hr />
+                            <MDBTable borderless className='mt-3' >
+                                <MDBTableHead>
+                                    <tr className="bg-dark">
+                                        <th scope='col' className="text-white d-letter-spacing h6">Id</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Budget Id</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Mail</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Status</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Cost</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Date</th>
+                                    </tr>
+                                </MDBTableHead>
+                                <MDBTableBody>
+                                    {payment.map((payment, key) => (
+                                        payment.status === 'Paid' ? (
+                                            <tr className="bg-light" key={key}>
+                                                <td style={{ fontSize: '17px' }}>{payment.paymentID}</td>
+                                                <td style={{ fontSize: '17px' }}>{payment.budID}</td>
+                                                <td style={{ fontSize: '17px' }}>{payment.cost} Rs/=</td>
+                                                <td style={{ fontSize: '17px' }}>{payment.email}</td>
+                                                <td style={{ fontSize: '17px', fontWeight: 'bold', }}>{payment.status}</td>
+                                                <td style={{ fontSize: '17px' }}>{payment.date}</td>
+                                            </tr>
+                                        ) : (
+                                            <div key={key}></div>
+                                        )
                                     ))}
                                 </MDBTableBody>
                             </MDBTable>
