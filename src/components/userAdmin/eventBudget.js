@@ -180,7 +180,6 @@ function EventBudget() {
                                                     <br />                                          
                                                 </div>
                                         )}
-
                                     </div>
                                 </td>
                             </tr>
