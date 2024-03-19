@@ -270,14 +270,18 @@ function FeedBack() {
                                 </Box>
                                 <Typography variant="body1">Description: {feedback.description}</Typography>
                                 <Typography variant="body1">Rating: {feedback.rating}</Typography>
-                                <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                                    <IconButton color="primary" onClick={() => edit(feedback.feedbackId, feedback.description, feedback.rating, feedback.email)}>
-                                        <Edit />
-                                    </IconButton>
-                                    <IconButton color="error" onClick={() => remove(feedback.feedbackId)}>
-                                        <Delete />
-                                    </IconButton>
-                                </Box>
+                                {feedback.email === userName ? (
+                                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+                                        <IconButton color="primary" onClick={() => edit(feedback.feedbackId, feedback.description, feedback.rating, feedback.email)}>
+                                            <Edit />
+                                        </IconButton>
+                                        <IconButton color="error" onClick={() => remove(feedback.feedbackId)}>
+                                            <Delete />
+                                        </IconButton>
+                                    </Box>
+                                ) : (
+                                    <></>
+                                )}
                             </CardContent>
                         </Card>
                     ))}
