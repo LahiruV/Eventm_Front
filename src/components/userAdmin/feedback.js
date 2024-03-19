@@ -9,7 +9,7 @@ import '../APIUrl.js';
 function FeedBack() {
     const userName = sessionStorage.getItem('user_name');
     
-    const feedBackId = Math.floor(Math.random() * 100000);
+    const feedbackId = Math.floor(Math.random() * 100000);
     const [email, setEmail] = useState(userName);
     const [description, setDescription] = useState("");
     const [rating, setRating] = useState(0);
@@ -37,7 +37,7 @@ function FeedBack() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validateForm()) {
-            const feedback = { feedBackId, email, description, rating };
+            const feedback = { feedbackId, email, description, rating };
             try {
                 const response = await axios.post(global.APIUrl+"/feedback/addfeedback", feedback);
                 Swal.fire({
@@ -59,8 +59,9 @@ function FeedBack() {
                     confirmButtonText: "OK",
                     type: "success"
                 });
-                // Redirect user
-                window.location.href = "/FeedBack";
+                setTimeout(() => {
+                    window.location.href = "/FeedBack";
+                }, 1000);
             }
         }
     };
