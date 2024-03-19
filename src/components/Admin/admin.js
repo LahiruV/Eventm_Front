@@ -45,73 +45,16 @@ function Admin() {
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
-                        </MDBCol>
-                        {/* <MDBCol sm='4'>
-                            <a href="NailpedicareDashboard">
+                        </MDBCol> 
+                         <MDBCol sm='4'>
+                            <a href="Feedbackdashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="shoe-prints text-muted" /> <br /> Nail & Pedicare
+                                        <MDBIcon fas icon="users text-muted" /> <br /> <span>Feedback Management</span>
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
-                        </MDBCol>
-                        <MDBCol sm='4'>
-                            <a href="PacakageDashboard">
-                                <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
-                                    <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="cube text-muted" /> <br />Package
-                                    </MDBCardHeader>
-                                </MDBCard>
-                            </a>
-                        </MDBCol>
-                    </MDBRow>
-                    <MDBRow style={{ marginTop: '1%' }}>
-                        <MDBCol sm='4'>
-                            <a href="DressDashboard">
-                                <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
-                                    <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="tshirt text-muted" /> <br />Dress
-                                    </MDBCardHeader>
-                                </MDBCard>
-                            </a>
-                        </MDBCol>
-                        <MDBCol sm='4'>
-                            <a href="Paymentdashboard">
-                                <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
-                                    <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="credit-card text-muted" /> <br />Payments
-                                    </MDBCardHeader>
-                                </MDBCard>
-                            </a>
-                        </MDBCol>
-                        <MDBCol sm='4'>
-                            <a href="ProductDashboard">
-                                <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
-                                    <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fab icon="product-hunt" className="text-muted" /> <br />Products
-                                    </MDBCardHeader>
-                                </MDBCard>
-                            </a>
-                        </MDBCol>
-
-                        <MDBCol sm='4'>
-                            <a href="LeaveDashboard">
-                                <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
-                                    <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="user-slash text-muted" /> <br />Staff Leave Form
-                                    </MDBCardHeader>
-                                </MDBCard>
-                            </a>
-                        </MDBCol>
-                        <MDBCol sm='4'>
-                            <a href="AllleavesDashboard">
-                                <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
-                                    <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="user-slash text-muted" /> <br />Staff Leave Report
-                                    </MDBCardHeader>
-                                </MDBCard>
-                            </a>
-                        </MDBCol> */}
+                        </MDBCol>                       
                         <MDBCol sm='4'>
                             <a href="UserDashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>

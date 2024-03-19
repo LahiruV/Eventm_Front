@@ -64,27 +64,9 @@ class Navbar extends Component {
                                     <li class="nav-item">
                                         <a class="nav-link" href="Paymentdashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Payment Management </a>
                                     </li>
-                                    {/* <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="NailpedicareDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Nail & Pedicare  </a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="Feedbackdashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> FeedBack Management </a>
                                     </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="DressDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Dress </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="Paymentdashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Payments </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="ProductDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Products </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="PacakageDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Package </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="LeaveDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Staff Leave Form </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="AllleavesDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Staff Leave Report </a>
-                                    </li> */}
                                     <li class="nav-item ">
                                         <a class="nav-link " style={{ fontSize: '17px' }} href="UserDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> User/Staff Management </a>
                                     </li>
