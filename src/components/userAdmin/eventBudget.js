@@ -156,28 +156,35 @@ function EventBudget() {
                                 <td className="text-center">
                                     <div className='col'>
                                         {((budget.status === 'Process')) && (
+                                            <>
                                             <div className='row'>
                                                 <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => reject(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
                                                     Reject
-                                                </MDBBtn>
-                                                <br />
+                                                </MDBBtn>                                              
                                             </div>
+                                            <br />
+                                            <div className='row'>
+                                                    <MDBBtn size='sm' className="shadow-0" color='success' type='submit' onClick={() => pay(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
+                                                        Pay Now
+                                                    </MDBBtn>                                                                                        
+                                                </div>
+                                            </>
+                                            
                                         )}
                                         {((budget.status === 'Paid')) && (
                                             <div className='row'>
                                                 <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => refund(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
                                                     Refund
                                                 </MDBBtn>
-                                                <br />
                                             </div>
                                         )}
-                                        {((budget.status !== 'Paid')) && (
+                                       
+                                        {((budget.status === 'Refund Requested') || (budget.status === 'Rejected') || (budget.status === 'Rejected By C')) && (
                                            
                                                 <div className='row'>
-                                                    <MDBBtn size='sm' className="shadow-0" color='success' type='submit' onClick={() => pay(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
-                                                        Pay Now
-                                                    </MDBBtn>
-                                                    <br />                                          
+                                                    <MDBBtn size='sm' className="shadow-0" color='dark' type='submit' disabled>
+                                                       Disabled
+                                                    </MDBBtn>                                       
                                                 </div>
                                         )}
                                     </div>
