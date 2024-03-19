@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-    MDBIcon, MDBCardImage,
-    MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBBtn, MDBTableBody, MDBTable, MDBTableHead
-} from 'mdb-react-ui-kit';
+import { MDBIcon, MDBCardImage, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBBtn, MDBTableBody, MDBTable, MDBTableHead } from 'mdb-react-ui-kit';
 import { TextField } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -10,77 +7,111 @@ import Cookies from 'js-cookie';
 import { reactLocalStorage } from 'reactjs-localstorage';
 import Navbar from '../main_parts/navbar.user.log.js';
 import NumberFormat from 'react-number-format';
-
 import Footer from '../main_parts/footer.js';
 import '../APIUrl.js';
 
-
 function Payment() {
-
     const userName = sessionStorage.getItem('user_name');
     const storedBudget = JSON.parse(localStorage.getItem('budget'));
 
-    const [name, setName] = useState("")
-    const [cardNumber, setCardNumber] = useState("")
-    const [exp, setExp] = useState("")
-    const [cvv, setCvv] = useState("")
-    const [phoneNo, setPhoneNo] = useState("")
-    const [email, setEmail] = useState(storedBudget.mail)
-    const [date, setDate] = useState("")
-    const paymentID = Math.floor(Math.random() * 100000);
+    const [name, setName] = useState("");
+    const [cardNumber, setCardNumber] = useState("");
+    const [exp, setExp] = useState("");
+    const [cvv, setCvv] = useState("");
+    const [phoneNo, setPhoneNo] = useState("");
+    const [email, setEmail] = useState(storedBudget.mail);
+    const [date, setDate] = useState("");
+    const [paymentID, setPaymentID] = useState(Math.floor(Math.random() * 100000));
     const [submit, setSubmit] = useState(true);
+    const [errors, setErrors] = useState({});
 
+    const validateForm = () => {
+        const errors = {};
+        let isValid = true;
 
+        if (!name.trim()) {
+            errors.name = "Name is required";
+            isValid = false;
+        }
+
+        if (!phoneNo.trim()) {
+            errors.phoneNo = "Phone number is required";
+            isValid = false;
+        }
+
+        if (!cardNumber.trim()) {
+            errors.cardNumber = "Card number is required";
+            isValid = false;
+        } 
+
+        if (!exp.trim()) {
+            errors.exp = "Expiration is required";
+            isValid = false;
+        }
+
+        if (!cvv.trim()) {
+            errors.cvv = "CVV is required";
+            isValid = false;
+        } else if (!/^\d{3}$/.test(cvv)) {
+            errors.cvv = "Invalid CVV";
+            isValid = false;
+        }
+
+        if (!date.trim()) {
+            errors.date = "Date is required";
+            isValid = false;
+        }
+
+        setErrors(errors);
+        return isValid;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const status = 'Paid'
-        const budID = storedBudget.bid;
-        const cost = storedBudget.fullBudget;
-        const email = storedBudget.mail;
-        const payment = { paymentID, budID, cost, email, status, date };
-        const budgetChange = storedBudget;
-        budgetChange.status = 'Paid';
-        try {
-            const response = await axios.post(global.APIUrl + "/payment/addpayment", payment).then(() => {
-                axios.put(global.APIUrl + "/budget/updatebudget/", budgetChange)
-            });
-            Swal.fire({
-                title: "Success!",
-                text: "Payment Added",
-                icon: 'success',
-                confirmButtonText: "OK",
-                type: "success"
-            })
-            setTimeout(() => {
+        if (validateForm()) {
+            const status = 'Paid';
+            const budID = storedBudget.bid;
+            const cost = storedBudget.fullBudget;
+            const email = storedBudget.mail;
+            const payment = { paymentID, budID, cost, email, status, date };
+            const budgetChange = storedBudget;
+            budgetChange.status = 'Paid';
+            try {
+                const response = await axios.post(global.APIUrl + "/payment/addpayment", payment).then(() => {
+                    axios.put(global.APIUrl + "/budget/updatebudget/", budgetChange);
+                });
+                Swal.fire({
+                    title: "Success!",
+                    text: "Payment Added",
+                    icon: 'success',
+                    confirmButtonText: "OK",
+                    type: "success"
+                });
+                setTimeout(() => {
+                    window.location.href = "/EventBudget";
+                }, 1000);
+            } catch (error) {
+                console.log(error.message);
+                Swal.fire({
+                    title: "Error!",
+                    text: "Payment Not Added",
+                    icon: 'error',
+                    confirmButtonText: "OK",
+                    type: "success"
+                });
                 window.location.href = "/EventBudget";
-            }, 1000);
-        } catch (error) {
-            console.log(error.message);
-            Swal.fire({
-                title: "Error!",
-                text: "Payment Not Added",
-                icon: 'error',
-                confirmButtonText: "OK",
-                type: "success"
-            })
-            window.location.href = "/EventBudget";
+            }
         }
     };
-    const back = () => {
-        window.location.href = "/EventBudget";
-    }
-    const valid = () => {
-        if ((name !== "") && (phoneNo !== "") && (cardNumber !== "") && (exp !== "") && (cvv !== "") && (date !== "")) {
-            setSubmit(false)
-        } else {
-            setSubmit(true)
-        }
-    }
 
     useEffect(() => {
-        valid()
-    }, [name, email, phoneNo, cardNumber, exp, cvv, date])
+        setSubmit(!validateForm());
+    }, [name, email, phoneNo, cardNumber, exp, cvv, date]);
+
+    const back = () => {
+        window.location.href = "/EventBudget";
+    };
+
     return (
         <div>
             <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
@@ -89,13 +120,12 @@ function Payment() {
                 </center>
             </div>
             <Navbar />
-
             <br />
             <br />
             <center>
                 <div className='card' style={{ backgroundColor: "", boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)", width: "90%" }}>
-                    <h3 style={{ marginTop: '40px' }}>Make Your Payemnt</h3>
-                    <div class="row container-fluid" style={{ marginTop: '7%', marginBottom: '7%' }}>
+                    <h3 style={{ marginTop: '40px' }}>Make Your Payment</h3>
+                    <div className="row container-fluid" style={{ marginTop: '7%', marginBottom: '7%' }}>
                         <form onSubmit={handleSubmit}>
                             <div className="container py-5">
                                 <div className="row d-flex justify-content-center">
@@ -124,94 +154,125 @@ function Payment() {
                                                     </div>
                                                 </div>
                                                 <hr />
-
                                                 <div>
                                                     <h4>Payment Details</h4>
                                                     <br />
                                                     <div className="card-body p-4">
-
                                                         <div className="d-flex justify-content-between align-items-center mb-3">
                                                             <div className="form">
-                                                                <label className="form-label" for="typeText">Card Number</label>
-                                                                <NumberFormat format="#### #### #### ####" class="form-control" placeholder="################" style={{ fontSize: "18px" }} onChange={(e) => {
-                                                                    setCardNumber(e.target.value);
-                                                                }} />
-
+                                                                <label className="form-label" htmlFor="typeText">Card Number</label>
+                                                                <NumberFormat
+                                                                    format="#### #### #### ####"
+                                                                    className="form-control"
+                                                                    placeholder="################"
+                                                                    style={{ fontSize: "18px" }}
+                                                                    value={cardNumber}
+                                                                    onChange={(e) => setCardNumber(e.target.value)}
+                                                                />
+                                                                {errors.cardNumber && <small className="text-danger">{errors.cardNumber}</small>}
                                                             </div>
                                                             <img src="https://img.icons8.com/color/48/000000/visa.png" alt="visa" width="64px" />
                                                         </div>
-
                                                         <div className="d-flex justify-content-between align-items-center mb-4">
                                                             <div className="form">
-                                                                <label className="form-label" for="typeName">Cardholder's Name</label>
-                                                                <input type="text" id="typeName2" className="form-control form-control-lg" size="17"
-                                                                    placeholder="Cardholder's Name" onChange={(e) => {
-                                                                        setName(e.target.value);
-                                                                    }} required />
-
+                                                                <label className="form-label" htmlFor="typeName">Cardholder's Name</label>
+                                                                <input
+                                                                    type="text"
+                                                                    id="typeName2"
+                                                                    className="form-control form-control-lg"
+                                                                    size="17"
+                                                                    placeholder="Cardholder's Name"
+                                                                    value={name}
+                                                                    onChange={(e) => setName(e.target.value)}
+                                                                />
+                                                                {errors.name && <small className="text-danger">{errors.name}</small>}
                                                             </div>
                                                         </div>
-
                                                         <div className="d-flex justify-content-between align-items-center pb-2">
                                                             <div className="form">
-                                                                <label className="form-label" for="typeExp">Expiration</label>
-                                                                <input type="text" id="typeName3" className="form-control form-control-lg" placeholder="MM/YYYY"
-                                                                    onChange={(e) => {
-                                                                        setExp(e.target.value);
-                                                                    }} required />
-
+                                                                <label className="form-label" htmlFor="typeExp">Expiration</label>
+                                                                <input
+                                                                    type="text"
+                                                                    id="typeName3"
+                                                                    className="form-control form-control-lg"
+                                                                    placeholder="MM/YYYY"
+                                                                    value={exp}
+                                                                    onChange={(e) => setExp(e.target.value)}
+                                                                />
+                                                                {errors.exp && <small className="text-danger">{errors.exp}</small>}
                                                             </div>
                                                             <div className="form">
-                                                                <label className="form-label" for="typeText2">Cvv</label>
-                                                                <NumberFormat format="###" class="form-control" placeholder="###" style={{ fontSize: "18px" }} onChange={(e) => {
-                                                                    setCvv(e.target.value);
-                                                                }} />
+                                                                <label className="form-label" htmlFor="typeText2">CVV</label>
+                                                                <NumberFormat
+                                                                    format="###"
+                                                                    className="form-control"
+                                                                    placeholder="###"
+                                                                    style={{ fontSize: "18px" }}
+                                                                    value={cvv}
+                                                                    onChange={(e) => setCvv(e.target.value)}
+                                                                />
+                                                                {errors.cvv && <small className="text-danger">{errors.cvv}</small>}
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                                 <hr />
                                                 <div>
                                                     <div>
                                                         <div className="d-flex justify-content-between mb-4">
-                                                            <h4>Blling Address</h4>
+                                                            <h4>Billing Address</h4>
                                                         </div>
                                                         <div className="card-body">
                                                             <div className="form mb-4">
                                                                 <div className='row'>
                                                                     <div className='col'>
-                                                                        <label className="form-label-1" for="form7Example3">Phone Number</label>
+                                                                        <label className="form-label-1" htmlFor="form7Example3">Phone Number</label>
                                                                     </div>
                                                                     <div className='col'>
-                                                                        <NumberFormat format="0## ### ####" class="form-control" placeholder="0## ### ## ##" style={{ fontSize: "18px" }} onChange={(e) => {
-                                                                            setPhoneNo(e.target.value);
-                                                                        }} />
+                                                                        <NumberFormat
+                                                                            format="0## ### ####"
+                                                                            className="form-control"
+                                                                            placeholder="0## ### ## ##"
+                                                                            style={{ fontSize: "18px" }}
+                                                                            value={phoneNo}
+                                                                            onChange={(e) => setPhoneNo(e.target.value)}
+                                                                        />
+                                                                        {errors.phoneNo && <small className="text-danger">{errors.phoneNo}</small>}
                                                                     </div>
                                                                 </div>
                                                                 <br />
                                                                 <div className="form mb-4">
                                                                     <div className='row'>
                                                                         <div className='col'>
-                                                                            <label className="form-label-2" for="form7Example3">Email Address</label>
+                                                                            <label className="form-label-2" htmlFor="form7Example3">Email Address</label>
                                                                         </div>
                                                                         <div className='col'>
-                                                                            <input type="email" id="email" className="form-control" value={email} onChange={(e) => {
-                                                                                setEmail(e.target.value);
-                                                                            }} disabled />
+                                                                            <input
+                                                                                type="email"
+                                                                                id="email"
+                                                                                className="form-control"
+                                                                                value={email}
+                                                                                onChange={(e) => setEmail(e.target.value)}
+                                                                                disabled
+                                                                            />
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div className="form mb-4">
                                                                     <div className='row'>
                                                                         <div className='col'>
-                                                                            <label className="form-label-2" for="form7Example3">
-                                                                                Date</label>
+                                                                            <label className="form-label-2" htmlFor="form7Example3">Date</label>
                                                                         </div>
                                                                         <div className='col'>
-                                                                            <input type="date" id="date" className="form-control" value={date} onChange={(e) => {
-                                                                                setDate(e.target.value);
-                                                                            }} required />
+                                                                            <input
+                                                                                type="date"
+                                                                                id="date"
+                                                                                className="form-control"
+                                                                                value={date}
+                                                                                onChange={(e) => setDate(e.target.value)}
+                                                                                required
+                                                                            />
+                                                                            {errors.date && <small className="text-danger">{errors.date}</small>}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -235,6 +296,7 @@ function Payment() {
             </center >
             <Footer />
         </div >
-    )
-};
-export default Payment
+    );
+}
+
+export default Payment;
