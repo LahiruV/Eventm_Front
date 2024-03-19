@@ -109,32 +109,32 @@ function FeedBack() {
     };
 
     const editing = async () => {
-       
-        const feedback = { feedbackId: localStorage.getItem("feedbackId"), email, description, rating };
-        try {
-            await axios.put(global.APIUrl + "/feedback/updatefeedback", feedback);
-            Swal.fire({
-                title: "Success!",
-                text: "Feedback updated successfully",
-                icon: 'success',
-                confirmButtonText: "OK",
-                type: "success"
-            });
-            fetchFeedbacks();
-            clearForm();
-            setEditBtn(false);
-        } catch (error) {
-            console.log(error.message);
-            Swal.fire({
-                title: "Error!",
-                text: "Failed to update feedback",
-                icon: 'error',
-                confirmButtonText: "OK",
-                type: "success"
-            });
+        if (validateForm()) {
+            const feedback = { feedbackId: localStorage.getItem("feedbackId"), email, description, rating };
+            try {
+                await axios.put(global.APIUrl + "/feedback/updatefeedback", feedback);
+                Swal.fire({
+                    title: "Success!",
+                    text: "Feedback updated successfully",
+                    icon: 'success',
+                    confirmButtonText: "OK",
+                    type: "success"
+                })
+                fetchFeedbacks();
+                clearForm();
+                setEditBtn(false);
+            } catch (error) {
+                console.log(error.message);
+                Swal.fire({
+                    title: "Error!",
+                    text: "Failed to update feedback",
+                    icon: 'error',
+                    confirmButtonText: "OK",
+                    type: "success"
+                })
+            }
         }
-  
-};
+    };
 
     const clearForm = () => {
         setDescription("");
@@ -160,53 +160,92 @@ function FeedBack() {
                     )}
 
                     <div className="row container-fluid" style={{ marginTop: '7%', marginBottom: '7%' }}>
-                        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                <Avatar style={{ backgroundColor: 'theme.palette.secondary.main', marginRight: '20px', }}>{email[0]}</Avatar>
-                                <TextField
-                                    id="email"
-                                    label="Email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    variant="outlined"
-                                    fullWidth
-                                    margin="normal"
-                                    disabled
-                                />
-                                <TextField
-                                    id="description"
-                                    label="Description"
-                                    value={description}
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    variant="outlined"
-                                    fullWidth
-                                    margin="normal"
-                                    error={errors.description}
-                                    helperText={errors.description}
-                                    multiline
-                                    rows={4}
-                                />
-                                <Typography component="legend">Rate your experience:</Typography>
-                                <Rating
-                                    name="rating"
-                                    value={rating}
-                                    onChange={(event, newValue) => {
-                                        setRating(newValue);
-                                    }}
-                                    size="large"
-                                    error={errors.rating}
-                                />
-                                {errors.rating && <Typography variant="body2" color="error">{errors.rating}</Typography>}
-                                {editBtn ? (
-                                    <Button                                        
+                        {editBtn ? (
+                            <form onSubmit={editing} style={{ width: '100%' }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <Avatar style={{ backgroundColor: 'theme.palette.secondary.main', marginRight: '20px', }}>{email[0]}</Avatar>
+                                    <TextField
+                                        id="email"
+                                        label="Email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        variant="outlined"
+                                        fullWidth
+                                        margin="normal"
+                                        disabled
+                                    />
+                                    <TextField
+                                        id="description"
+                                        label="Description"
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                        variant="outlined"
+                                        fullWidth
+                                        margin="normal"
+                                        error={errors.description}
+                                        helperText={errors.description}
+                                        multiline
+                                        rows={4}
+                                    />
+                                    <Typography component="legend">Rate your experience:</Typography>
+                                    <Rating
+                                        name="rating"
+                                        value={rating}
+                                        onChange={(event, newValue) => {
+                                            setRating(newValue);
+                                        }}
+                                        size="large"
+                                        error={errors.rating}
+                                    />
+                                    {errors.rating && <Typography variant="body2" color="error">{errors.rating}</Typography>}
+                                    <Button
+                                        type="submit"
                                         variant="contained"
                                         color="primary"
                                         sx={{ mt: 2 }}
-                                        onClick={editing()}
                                     >
                                         Edit
                                     </Button>
-                                ) : (
+                                </Box>
+                            </form>
+                        ) : (
+                            <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <Avatar style={{ backgroundColor: 'theme.palette.secondary.main', marginRight: '20px', }}>{email[0]}</Avatar>
+                                    <TextField
+                                        id="email"
+                                        label="Email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        variant="outlined"
+                                        fullWidth
+                                        margin="normal"
+                                        disabled
+                                    />
+                                    <TextField
+                                        id="description"
+                                        label="Description"
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                        variant="outlined"
+                                        fullWidth
+                                        margin="normal"
+                                        error={errors.description}
+                                        helperText={errors.description}
+                                        multiline
+                                        rows={4}
+                                    />
+                                    <Typography component="legend">Rate your experience:</Typography>
+                                    <Rating
+                                        name="rating"
+                                        value={rating}
+                                        onChange={(event, newValue) => {
+                                            setRating(newValue);
+                                        }}
+                                        size="large"
+                                        error={errors.rating}
+                                    />
+                                    {errors.rating && <Typography variant="body2" color="error">{errors.rating}</Typography>}
                                     <Button
                                         type="submit"
                                         variant="contained"
@@ -215,9 +254,9 @@ function FeedBack() {
                                     >
                                         Submit
                                     </Button>
-                                )}
-                            </Box>
-                        </form>
+                                </Box>
+                            </form>
+                        )}
                     </div>
                 </div>
 
