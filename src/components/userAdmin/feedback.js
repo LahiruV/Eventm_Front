@@ -13,10 +13,10 @@ function FeedBack() {
     const feedbackId = Math.floor(Math.random() * 100000);
     const [email, setEmail] = useState(userName);
     const [description, setDescription] = useState("");
-    const [rating, setRating] = useState(0);
-    const [submit, setSubmit] = useState(true);
+    const [rating, setRating] = useState(0);    
     const [errors, setErrors] = useState({});
     const [feedbacks, setFeedbacks] = useState([]);
+    const [editBtn, setEditBtn] = useState(false);
 
     useEffect(() => {
         fetchFeedbacks();
@@ -100,6 +100,14 @@ function FeedBack() {
         }
     };
 
+    const edit = (feedbackId,description,rating,email) => {
+        localStorage.setItem("feedbackId", feedbackId);
+        setEmail(email);
+        setDescription(description);
+        setRating(rating);
+        setEditBtn(true);
+    };
+
 
     const clearForm = () => {
         setDescription("");
@@ -122,7 +130,7 @@ function FeedBack() {
                     <div className="row container-fluid" style={{ marginTop: '7%', marginBottom: '7%' }}>
                         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                <Avatar style={{ backgroundColor: 'theme.palette.secondary.main', marginRight: '20px', }}>{email[0]}</Avatar> {/* Display user profile icon/image */}
+                                <Avatar style={{ backgroundColor: 'theme.palette.secondary.main', marginRight: '20px', }}>{email[0]}</Avatar>
                                 <TextField
                                     id="email"
                                     label="Email"
@@ -160,8 +168,7 @@ function FeedBack() {
                                 <Button
                                     type="submit"
                                     variant="contained"
-                                    color="primary"
-                                    disabled={submit}
+                                    color="primary"                                    
                                     sx={{ mt: 2 }}
                                 >
                                     Submit
@@ -170,20 +177,19 @@ function FeedBack() {
                         </form>
                     </div>
                 </div>
-
-                {/* Render feedbacks */}
+               
                 <div style={{ marginTop: '40px', width: '60%' }}>
                     {feedbacks.map((feedback) => (
                         <Card key={feedback.feedbackId} style={{ marginBottom: '20px' }}>
                             <CardContent>
                                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                                    <Avatar style={{ backgroundColor: 'theme.palette.secondary.main', marginRight: '20px', }}>{feedback.email[0]}</Avatar> {/* Display user profile icon/image */}
+                                    <Avatar style={{ backgroundColor: 'theme.palette.secondary.main', marginRight: '20px', }}>{feedback.email[0]}</Avatar>
                                     <Typography variant="h6" sx={{ marginLeft: '10px' }}>Feedback ID: {feedback.feedbackId}</Typography>
                                 </Box>
                                 <Typography variant="body1">Description: {feedback.description}</Typography>
                                 <Typography variant="body1">Rating: {feedback.rating}</Typography>
                                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                                    <IconButton color="primary">
+                                    <IconButton color="primary" onClick={() => edit(feedback.feedbackId,feedback.description,feedback.rating,feedback.email)}>
                                         <Edit />
                                     </IconButton>
                                     <IconButton color="error"  onClick={() => remove(feedback.feedbackId)}>

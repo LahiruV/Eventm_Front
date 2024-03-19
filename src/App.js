@@ -15,8 +15,9 @@ import Paymentdashboard from './components/Admin/paymentdashboard';
 import UserAdminDashboard from './components/userAdmin/userAdminDashboard';
 import UserDashboard from './components/Admin/userDashboard';
 import ReqEventDashboard from './components/Admin/reqEventDashboard';
-import FinanceDashboard from './components/Admin/finanaceManagement';
 import FeedBack from './components/userAdmin/feedback';
+import FinanceDashboard from './components/Admin/finanaceManagement';
+import PlaceDashboard from './components/Admin/placeDashboard';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/" >
           <Index />
         </Route>
+        <Route path="/PlaceDashboard" exact component={PlaceDashboard} />
         <Route path="/RequestEvent" exact component={RequestEvent} />
         <Route path="/EventBudget" exact component={EventBudget} />
         <Route path="/FinanceDashboard" exact component={FinanceDashboard} />
