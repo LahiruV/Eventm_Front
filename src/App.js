@@ -18,6 +18,7 @@ import ReqEventDashboard from './components/Admin/reqEventDashboard';
 import FeedBack from './components/userAdmin/feedback';
 import FinanceDashboard from './components/Admin/finanaceManagement';
 import PlaceDashboard from './components/Admin/placeDashboard';
+import Feedbackdashboard from './components/Admin/feedbackdashboard';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/" >
           <Index />
         </Route>
+        <Route path="/Feedbackdashboard" exact component={Feedbackdashboard} />
         <Route path="/PlaceDashboard" exact component={PlaceDashboard} />
         <Route path="/RequestEvent" exact component={RequestEvent} />
         <Route path="/EventBudget" exact component={EventBudget} />
