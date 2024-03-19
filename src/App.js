@@ -16,6 +16,7 @@ import UserAdminDashboard from './components/userAdmin/userAdminDashboard';
 import UserDashboard from './components/Admin/userDashboard';
 import ReqEventDashboard from './components/Admin/reqEventDashboard';
 import FinanceDashboard from './components/Admin/finanaceManagement';
+import FeedBack from './components/userAdmin/feedback';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/AdminLogin" exact component={AdminLogin} />
         <Route path="/AdminReg" exact component={AdminReg} />
         <Route path="/UserProfile" exact component={UserProfile} />
+        <Route path="/FeedBack" exact component={FeedBack} />
       </div>
     </Router>
   );
