@@ -453,6 +453,7 @@ function FinanceDashboard() {
                                     <tr className="bg-dark">
                                         <th scope='col' className="text-white d-letter-spacing h6">Id</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Date</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Mail</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Event Type</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Venue</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">V Desc</th>
@@ -470,6 +471,9 @@ function FinanceDashboard() {
                                             </td>
                                             <td>
                                                 <h6>{evtReq.eventDate}</h6>
+                                            </td>
+                                            <td>
+                                                <h6>{evtReq.email}</h6>
                                             </td>
                                             <td>
                                                 <h6>{evtReq.eventType}</h6>
