@@ -18,30 +18,33 @@ import '../APIUrl.js';
 function Payment() {
 
     const userName = sessionStorage.getItem('user_name');
-    const storedBudget = JSON.parse(localStorage.getItem('budget'));    
+    const storedBudget = JSON.parse(localStorage.getItem('budget'));
 
     const [name, setName] = useState("")
     const [cardNumber, setCardNumber] = useState("")
     const [exp, setExp] = useState("")
     const [cvv, setCvv] = useState("")
     const [phoneNo, setPhoneNo] = useState("")
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState(storedBudget.mail)
     const [date, setDate] = useState("")
-
+    const paymentID = Math.floor(Math.random() * 100000);
     const [submit, setSubmit] = useState(true);
-    const [checkedIndex, setCheckedIndex] = useState(-1);
-    const paymentID = 'asd123';
 
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const status = 1
-        const payment = { paymentID,  userName, status, date };
+        const status = 'Paid'
+        const budID = storedBudget.bid;
+        const cost = storedBudget.fullBudget;
+        const email = storedBudget.mail;
+        const payment = { paymentID, budID, cost, email, status, date };
+        const budgetChange = storedBudget;
+        budgetChange.status = 'Paid';
         try {
-            const response = await axios.post(global.APIUrl + "/payment/addpayment", payment);
-            console.log(response.data);
-            unavaedited()
+            const response = await axios.post(global.APIUrl + "/payment/addpayment", payment).then(() => {
+                axios.put(global.APIUrl + "/budget/updatebudget/", budgetChange)
+            });
             Swal.fire({
                 title: "Success!",
                 text: "Payment Added",
@@ -50,7 +53,7 @@ function Payment() {
                 type: "success"
             })
             setTimeout(() => {
-                window.location.href = "/userAdminDashboard";
+                window.location.href = "/EventBudget";
             }, 1000);
         } catch (error) {
             console.log(error.message);
@@ -61,11 +64,11 @@ function Payment() {
                 confirmButtonText: "OK",
                 type: "success"
             })
-            window.location.href = "/userAdminDashboard";
+            window.location.href = "/EventBudget";
         }
     };
     const back = () => {
-        window.location.href = "/userAdminDashboard";
+        window.location.href = "/EventBudget";
     }
     const valid = () => {
         if ((name !== "") && (phoneNo !== "") && (cardNumber !== "") && (exp !== "") && (cvv !== "") && (date !== "")) {
@@ -75,20 +78,6 @@ function Payment() {
         }
     }
 
-    async function unavaedited() {
-
-        const estatus = false
-        const packageFC = { estatus }
-
-        try {
-            const response = await axios.put(global.APIUrl + "/dress/updatedress", packageFC);
-            console.log(response.data);
-        } catch (error) {
-            console.log(error.message);
-        }
-
-    }
-
     useEffect(() => {
         valid()
     }, [name, email, phoneNo, cardNumber, exp, cvv, date])
@@ -96,7 +85,7 @@ function Payment() {
         <div>
             <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
                 <center>
-                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Salon Service Hub In The Sri Lanka</small>
+                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Event Management Hub In The Sri Lanka</small>
                 </center>
             </div>
             <Navbar />
@@ -116,6 +105,11 @@ function Payment() {
                                                 <div>
                                                     <h4>Order Summary</h4>
                                                     <br />
+                                                    <div className="d-flex justify-content-between mb-4">
+                                                        <h5 className="text">Payment ID : </h5>
+                                                        <h5 className="text">{paymentID}</h5>
+                                                    </div>
+                                                    <hr />
                                                     <div className="d-flex justify-content-between mb-4">
                                                         <h5 className="text">Budget ID : </h5>
                                                         <h5 className="text">{storedBudget.bid}</h5>
@@ -202,7 +196,7 @@ function Payment() {
                                                                             <label className="form-label-2" for="form7Example3">Email Address</label>
                                                                         </div>
                                                                         <div className='col'>
-                                                                            <input type="email" id="email" className="form-control" value={userName} onChange={(e) => {
+                                                                            <input type="email" id="email" className="form-control" value={email} onChange={(e) => {
                                                                                 setEmail(e.target.value);
                                                                             }} disabled />
                                                                         </div>

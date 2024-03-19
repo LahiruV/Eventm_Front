@@ -69,8 +69,8 @@ function EventBudget() {
         })
     }
 
-    const pay = (bid, mail, fullBudget) => {
-        const budget = { bid, mail, fullBudget };
+    const pay = (bid, mail, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status) => {
+        const budget = { bid, mail, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status };
         localStorage.setItem('budget', JSON.stringify(budget));
         window.location.href = "/Payment"
     }
@@ -174,7 +174,7 @@ function EventBudget() {
                                         {((budget.status !== 'Paid')) && (
                                            
                                                 <div className='row'>
-                                                    <MDBBtn size='sm' className="shadow-0" color='success' type='submit' onClick={() => pay(budget.bid, budget.mail, budget.fullBudget)}>
+                                                    <MDBBtn size='sm' className="shadow-0" color='success' type='submit' onClick={() => pay(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
                                                         Pay Now
                                                     </MDBBtn>
                                                     <br />                                          
