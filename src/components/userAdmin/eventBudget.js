@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MDBRow, MDBCol, MDBCard, MDBCardBody,MDBTable,MDBTableHead,MDBTableBody,MDBBtn,MDBIcon } from 'mdb-react-ui-kit';
+import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 import Navbar from '../main_parts/navbar.user.log.js';
 import Footer from '../main_parts/footer.js';
 import axios from 'axios';
@@ -17,8 +17,8 @@ function EventBudget() {
         }
     };
 
-    const reject = (bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status, mail) => {
-        var status = "Rejected";
+    const reject = (bid, mail, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status) => {
+        var status = "Rejected By C";
         const budget = { bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status, mail };
         axios.put(global.APIUrl + "/budget/updatebudget/", budget).then(() => {
             Swal.fire({
@@ -41,11 +41,37 @@ function EventBudget() {
                 type: "success"
             })
         })
+    }   
+    
+    const refund = (bid, mail, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status) => {
+        var status = "Refund Requested";    
+        const budget = { bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status, mail };
+        axios.put(global.APIUrl + "/budget/updatebudget/", budget).then(() => {
+            Swal.fire({
+                title: "Success!",
+                text: "Refund Requested",
+                icon: 'success',
+                confirmButtonText: "OK",
+                type: "success"
+            }).then(okay => {
+                if (okay) {
+                    window.location.href = "/EventBudget";
+                }
+            });
+        }).catch((err) => {
+            Swal.fire({
+                title: "Error!",
+                text: "Not Refund Requested",
+                icon: 'error',
+                confirmButtonText: "OK",
+                type: "success"
+            })
+        })
     }
 
     useEffect(() => {
         getBudget();
-    } , []);
+    }, []);
 
     return (
         <div>
@@ -65,75 +91,96 @@ function EventBudget() {
             </div>
             <MDBCard className="my-5 mx-auto" style={{ maxWidth: '1400px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
                 <MDBTable borderless className='mt-3' >
-                                <MDBTableHead>
-                                    <tr className="bg-dark">
-                                        <th scope='col' className="text-white d-letter-spacing h6">ID</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Client Mail</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Req Name</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Place Budget</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Crew Budget</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Promo Budget</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Full Budget</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Status</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6 text-center">Action</th>
-                                    </tr>
-                                </MDBTableHead>
-                                <MDBTableBody>
-                                    {eventBudget.map((budget, key) => (
-                                        <tr className="bg-light">
-                                            <td>
-                                                <h6>
-                                                    {budget.bid}
-                                                </h6>
-                                            </td>
-                                            <td>
-                                                <h6>
-                                                    {budget.mail}
-                                                </h6>
-                                            </td>
-                                            <td>
-                                                <h6>
-                                                    {budget.name}
-                                                </h6>
-                                            </td>
-                                            <td>
-                                                <h6>
-                                                    {budget.placeAbudget + budget.placePbudget}
-                                                </h6>
-                                            </td>
-                                            <td>
-                                                <h6>
-                                                    {budget.crewAbudget + budget.crewPbudget}
-                                                </h6>
-                                            </td>
-                                            <td>
-                                                <h6>
-                                                    {budget.promoAbudget + budget.promoPbudget}
-                                                </h6>
-                                            </td>
-                                            <td>
-                                                <h6>
-                                                    {budget.fullBudget}
-                                                </h6>
-                                            </td>
-                                            <td>
-                                                <h6>
-                                                    {budget.status}
-                                                </h6>
-                                            </td>
-                                            <td className="text-center">                                                
-                                                    <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => reject(budget.bid)}>
-                                                        Reject
-                                                    </MDBBtn>   
-                                                    {' '}                                         
+                    <MDBTableHead>
+                        <tr className="bg-dark">
+                            <th scope='col' className="text-white d-letter-spacing h6">ID</th>
+                            <th scope='col' className="text-white d-letter-spacing h6">Client Mail</th>
+                            <th scope='col' className="text-white d-letter-spacing h6">Req Name</th>
+                            <th scope='col' className="text-white d-letter-spacing h6">Place Budget</th>
+                            <th scope='col' className="text-white d-letter-spacing h6">Crew Budget</th>
+                            <th scope='col' className="text-white d-letter-spacing h6">Promo Budget</th>
+                            <th scope='col' className="text-white d-letter-spacing h6">Full Budget</th>
+                            <th scope='col' className="text-white d-letter-spacing h6">Status</th>
+                            <th scope='col' className="text-white d-letter-spacing h6 text-center">Action</th>
+                        </tr>
+                    </MDBTableHead>
+                    <MDBTableBody>
+                        {eventBudget.map((budget, key) => (
+                            <tr className="bg-light">
+                                <td>
+                                    <h6>
+                                        {budget.bid}
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        {budget.mail}
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        {budget.name}
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        {budget.placeAbudget + budget.placePbudget}
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        {budget.crewAbudget + budget.crewPbudget}
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        {budget.promoAbudget + budget.promoPbudget}
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        {budget.fullBudget}
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        {budget.status}
+                                    </h6>
+                                </td>
+                                <td className="text-center">
+                                    <div className='col'>
+                                        {((budget.status === 'Process')) && (
+                                            <div className='row'>
+                                                <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => reject(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
+                                                    Reject
+                                                </MDBBtn>
+                                                <br />
+                                            </div>
+                                        )}
+                                        {((budget.status === 'Paid')) && (
+                                            <div className='row'>
+                                                <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => refund(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
+                                                    Refund
+                                                </MDBBtn>
+                                                <br />
+                                            </div>
+                                        )}
+                                        {((budget.status !== 'Paid')) && (
+                                           
+                                                <div className='row'>
                                                     <MDBBtn size='sm' className="shadow-0" color='success' type='submit'>
-                                                       Pay Now
-                                                    </MDBBtn>                                                
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </MDBTableBody>
-                            </MDBTable>
+                                                        Pay Now
+                                                    </MDBBtn>
+                                                    <br />                                          
+                                                </div>
+                                        )}
+
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+                    </MDBTableBody>
+                </MDBTable>
             </MDBCard>
             <Footer />
         </div>
