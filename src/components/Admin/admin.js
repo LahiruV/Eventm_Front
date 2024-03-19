@@ -1,10 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-import { MDBCard, MDBCardHeader, MDBCardBody, MDBIcon, MDBCardTitle, MDBCardText, MDBBtn, MDBCol, MDBRow } from 'mdb-react-ui-kit';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import Cookies from 'js-cookie';
-import { reactLocalStorage } from 'reactjs-localstorage';
+import React from 'react';
+import { MDBCard, MDBCardHeader, MDBIcon, MDBCol, MDBRow } from 'mdb-react-ui-kit';
+
 import Navbar from "./adminNav";
 
 function Admin() {
@@ -17,7 +14,6 @@ function Admin() {
 
                     <h4 className="text-uppercase  d-letter-spacing fw-bold" style={{ color: 'black' }}><i class="fas fa-home"></i>Admin Dashboard</h4>
                     <hr />
-
                     <MDBRow style={{ marginTop: '6%' }}>
                         <MDBCol sm='4'>
                             <a href="ReqEventDashboard">
@@ -74,7 +70,6 @@ function Admin() {
                             </a>
                         </MDBCol>
                     </MDBRow>
-
                 </div>
             </div>
         </div>
