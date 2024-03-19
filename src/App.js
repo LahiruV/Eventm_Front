@@ -16,6 +16,7 @@ import AppointmentEdit from './components/userAdmin/appoimentEdit';
 import HaircareDashboard from './components/Admin/haircareDashboard';
 import Haircare from './components/userAdmin/haircare';
 import Nailpedicare from './components/userAdmin/nailpedicare';
+import EventBudget from './components/userAdmin/eventBudget';
 import NailpedicareDashboard from './components/Admin/nailpedicareDashboard';
 import DressDashboard from './components/Admin/dressDashboard';
 import Dress from './components/userAdmin/dress';
@@ -42,6 +43,7 @@ function App() {
           <Index />
         </Route>
         <Route path="/RequestEvent" exact component={RequestEvent} />
+        <Route path="/EventBudget" exact component={EventBudget} />
         <Route path="/FinanceDashboard" exact component={FinanceDashboard} />
         <Route path="/ReqEventDashboard" exact component={ReqEventDashboard} />
         <Route path="/ProductDashboard" exact component={ProductDashboard} />

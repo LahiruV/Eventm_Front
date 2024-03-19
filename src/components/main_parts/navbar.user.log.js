@@ -78,7 +78,7 @@ function NavBar() {
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                         <MDBNavbarItem>
-                            <MDBNavbarLink href='RequestEvent' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                            <MDBNavbarLink href='EventBudget' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
                                 Events Budget
                             </MDBNavbarLink>
                         </MDBNavbarItem>
