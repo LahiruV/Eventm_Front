@@ -69,6 +69,12 @@ function EventBudget() {
         })
     }
 
+    const pay = (bid, mail, fullBudget) => {
+        const budget = { bid, mail, fullBudget };
+        localStorage.setItem('budget', JSON.stringify(budget));
+        window.location.href = "/Payment"
+    }
+
     useEffect(() => {
         getBudget();
     }, []);
@@ -168,7 +174,7 @@ function EventBudget() {
                                         {((budget.status !== 'Paid')) && (
                                            
                                                 <div className='row'>
-                                                    <MDBBtn size='sm' className="shadow-0" color='success' type='submit'>
+                                                    <MDBBtn size='sm' className="shadow-0" color='success' type='submit' onClick={() => pay(budget.bid, budget.mail, budget.fullBudget)}>
                                                         Pay Now
                                                     </MDBBtn>
                                                     <br />                                          
