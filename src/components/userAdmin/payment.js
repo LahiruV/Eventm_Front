@@ -12,22 +12,13 @@ import Navbar from '../main_parts/navbar.user.log.js';
 import NumberFormat from 'react-number-format';
 
 import Footer from '../main_parts/footer.js';
-import '../APIUrl';
+import '../APIUrl.js';
 
 
-function Booking() {
+function Payment() {
 
     const userName = sessionStorage.getItem('user_name');
-    var Booking = reactLocalStorage.getObject('DBooking');
-    const paymentID = Booking[5]
-    const code = Booking[0]
-    const price = Booking[2]
-    const category = Booking[1]
-    const type = Booking[6]
-    const size = Booking[3]
-    const color = Booking[4]
-    const picture = Booking[7]
-    const items = Booking[8]
+    const storedBudget = JSON.parse(localStorage.getItem('budget'));    
 
     const [name, setName] = useState("")
     const [cardNumber, setCardNumber] = useState("")
@@ -39,13 +30,14 @@ function Booking() {
 
     const [submit, setSubmit] = useState(true);
     const [checkedIndex, setCheckedIndex] = useState(-1);
+    const paymentID = 'asd123';
 
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const status = 1
-        const payment = { paymentID, price, type, userName, status, items, date };
+        const payment = { paymentID,  userName, status, date };
         try {
             const response = await axios.post(global.APIUrl + "/payment/addpayment", payment);
             console.log(response.data);
@@ -86,7 +78,7 @@ function Booking() {
     async function unavaedited() {
 
         const estatus = false
-        const packageFC = { code, price, category, size, color, picture, estatus }
+        const packageFC = { estatus }
 
         try {
             const response = await axios.put(global.APIUrl + "/dress/updatedress", packageFC);
@@ -99,7 +91,6 @@ function Booking() {
 
     useEffect(() => {
         valid()
-        console.log(Booking);
     }, [name, email, phoneNo, cardNumber, exp, cvv, date])
     return (
         <div>
@@ -126,24 +117,16 @@ function Booking() {
                                                     <h4>Order Summary</h4>
                                                     <br />
                                                     <div className="d-flex justify-content-between mb-4">
-                                                        <h5 className="text">Reference : </h5>
-                                                        <h5 className="text">{paymentID}</h5>
-                                                    </div>{(code != "") ? (
-                                                        <div className="d-flex justify-content-between mb-4">
-                                                            <h5 className="text">Dress Code : </h5>
-                                                            <h5 className="text">{code}</h5>
-                                                        </div>) : (
-                                                        <div className=''>
-
-                                                        </div>
-                                                    )}
+                                                        <h5 className="text">Budget ID : </h5>
+                                                        <h5 className="text">{storedBudget.bid}</h5>
+                                                    </div>
                                                     <div className="d-flex justify-content-between mb-4">
-                                                        <h5 className="text">Category : </h5>
-                                                        <h5 className="text">{category}</h5>
+                                                        <h5 className="text">Email : </h5>
+                                                        <h5 className="text">{storedBudget.mail}</h5>
                                                     </div>
                                                     <div className="d-flex justify-content-between mb-4">
                                                         <h5 className="text">Price  : </h5>
-                                                        <h5 className="text"> {price} Rs/= </h5>
+                                                        <h5 className="text"> {storedBudget.fullBudget} Rs/= </h5>
                                                     </div>
                                                 </div>
                                                 <hr />
@@ -260,4 +243,4 @@ function Booking() {
         </div >
     )
 };
-export default Booking
+export default Payment

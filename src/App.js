@@ -20,7 +20,7 @@ import EventBudget from './components/userAdmin/eventBudget';
 import NailpedicareDashboard from './components/Admin/nailpedicareDashboard';
 import DressDashboard from './components/Admin/dressDashboard';
 import Dress from './components/userAdmin/dress';
-import Booking from './components/userAdmin/booking';
+import Payment from './components/userAdmin/payment';
 import Paymentdashboard from './components/Admin/paymentdashboard';
 import UserAdminDashboard from './components/userAdmin/userAdminDashboard';
 import ProductDashboard from './components/Admin/productDashboard';
@@ -54,7 +54,7 @@ function App() {
         <Route path="/NailpedicareDashboard" exact component={NailpedicareDashboard} />
         <Route path="/DressDashboard" exact component={DressDashboard} />
         <Route path="/Dress" exact component={Dress} />
-        <Route path="/Booking" exact component={Booking} />
+        <Route path="/Payment" exact component={Payment} />
         <Route path="/Paymentdashboard" exact component={Paymentdashboard} />
         <Route path="/Product" exact component={Product} />
         <Route path="/PacakageDashboard" exact component={PacakageDashboard} />
