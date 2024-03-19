@@ -190,7 +190,7 @@ function FinanceDashboard() {
         })
     }
 
-    const accept = (bid) => {
+    const accept = (bid, mail, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status) => {
         var status = "Paid";
         const budget = { bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status, mail };
         axios.put(global.APIUrl + "/budget/updatebudget/", budget).then(() => {
@@ -216,7 +216,7 @@ function FinanceDashboard() {
         })
     }
 
-    const reject = (bid) => {
+    const reject = (bid, mail, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status) => {
         var status = "Rejected";
         const budget = { bid, name, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, status, mail };
         axios.put(global.APIUrl + "/budget/updatebudget/", budget).then(() => {
@@ -420,27 +420,38 @@ function FinanceDashboard() {
                                                 </h6>
                                             </td>
                                             <td className="text-center">
-                                                {budget.status === 'Rejected' ? (
-                                                    <MDBBtn size='sm' className="shadow-0" color='success' type='submit' onClick={() => accept(budget.bid)}>
-                                                        <MDBIcon fas icon="check-circle" />
-                                                    </MDBBtn>
-                                                ) : (
-                                                    <MDBBtn size='sm' className="shadow-0" color='danger' type='submit' onClick={() => reject(budget.bid)}>
-                                                        <MDBIcon fas icon="times-circle" />
-                                                    </MDBBtn>
-                                                )}
-                                                {budget.status !== 'Paid' && (
-                                                    <>
-                                                        <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(budget.bid)}>
-                                                            <MDBIcon fas icon="trash-alt" />
-                                                        </MDBBtn>
-                                                        &nbsp;&nbsp;
-                                                        <MDBBtn size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
-                                                            <MDBIcon fas icon="edit" />
-                                                        </MDBBtn>
-                                                        &nbsp;&nbsp;
-                                                    </>
-                                                )}
+                                                <div className='col'>
+                                                    <div className='row'>
+                                                        {budget.status === 'Rejected' ? (
+                                                            <button size='sm' className="shadow-0" color='success' type='submit' onClick={() => accept(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
+                                                                <MDBIcon fas icon="check-circle" />
+                                                            </button>
+                                                        ) : (
+                                                            <button size='sm' className="shadow-0" color='danger' type='submit' onClick={() => reject(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
+                                                                <MDBIcon fas icon="times-circle" />
+                                                            </button>
+                                                        )}
+                                                    </div>
+
+                                                    <br />
+
+                                                    {budget.status !== 'Paid' && (
+                                                        <>
+                                                            <div className='row'>
+                                                                <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(budget.bid)}>
+                                                                    <MDBIcon fas icon="trash-alt" />
+                                                                </MDBBtn>
+                                                            </div>
+                                                            <br />
+                                                            <div className='row'>
+                                                                <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(budget.bid, budget.mail, budget.name, budget.placeAbudget, budget.placePbudget, budget.crewAbudget, budget.crewPbudget, budget.promoAbudget, budget.promoPbudget, budget.fullBudget, budget.status)}>
+                                                                    <MDBIcon fas icon="edit" />
+                                                                </button></div>
+                                                        </>
+                                                    )}
+                                                </div>
+
+
                                             </td>
                                         </tr>
                                     ))}
