@@ -23,7 +23,7 @@ function Admin() {
                             <a href="ReqEventDashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="users text-muted" /> <br /> <span>Req Event Management</span>
+                                        <MDBIcon fas icon="calendar text-muted" /> <br /> <span>Req Event Management</span>
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
@@ -32,7 +32,7 @@ function Admin() {
                             <a href="FinanceDashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="users text-muted" /> <br /> <span>Finance Management</span>
+                                        <MDBIcon fas icon="coins text-muted" /> <br /> <span>Finance Management</span>
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
@@ -41,7 +41,7 @@ function Admin() {
                             <a href="Paymentdashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="users text-muted" /> <br /> <span>Payment Management</span>
+                                        <MDBIcon fas icon="credit-card text-muted" /> <br /> <span>Payment Management</span>
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
@@ -50,7 +50,7 @@ function Admin() {
                             <a href="Feedbackdashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="users text-muted" /> <br /> <span>Feedback Management</span>
+                                        <MDBIcon fas icon="comments text-muted" /> <br /> <span>Feedback Management</span>
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
@@ -59,7 +59,7 @@ function Admin() {
                             <a href="PlaceDashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="users text-muted" /> <br /> <span>Place Management</span>
+                                        <MDBIcon fas icon="location-arrow text-muted" /> <br /> <span>Place Management</span>
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
