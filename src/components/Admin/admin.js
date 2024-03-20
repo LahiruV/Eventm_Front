@@ -50,16 +50,7 @@ function Admin() {
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
-                        </MDBCol>
-                        <MDBCol sm='4'>
-                            <a href="PlaceDashboard">
-                                <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
-                                    <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="location-arrow text-muted" /> <br /> <span>Place Management</span>
-                                    </MDBCardHeader>
-                                </MDBCard>
-                            </a>
-                        </MDBCol>
+                        </MDBCol>                      
                         <MDBCol sm='4'>
                             <a href="UserDashboard">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
@@ -73,7 +64,7 @@ function Admin() {
                             <a href="CrewDash">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="users text-muted" /> <br />Crew Management
+                                        <MDBIcon fas icon="circle-user text-muted" /> <br />Crew Management
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
@@ -82,7 +73,7 @@ function Admin() {
                             <a href="PlaceDash">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="users text-muted" /> <br />Place Management
+                                        <MDBIcon fas icon="location-arrow text-muted" /> <br />Place Management
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
@@ -91,7 +82,7 @@ function Admin() {
                             <a href="SponsorDash">
                                 <MDBCard className=" square border-bottom border-5 border-dark bgdigram " style={{ boxShadow: '2px 3px 5px #BBBBBB' }}>
                                     <MDBCardHeader className=" fw-bold mt-2 h1 pl-2 pt-5 pb-4 text-center text-uppercase" style={{ color: 'black' }}>
-                                        <MDBIcon fas icon="users text-muted" /> <br />Sponsor Management
+                                        <MDBIcon fas icon="reply text-muted" /> <br />Sponsor Management
                                     </MDBCardHeader>
                                 </MDBCard>
                             </a>
