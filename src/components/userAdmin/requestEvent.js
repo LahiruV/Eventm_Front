@@ -36,16 +36,16 @@ function RequestEvent() {
 
     const getPlaces = async () => {
         try {
-            const res = await axios.get(global.APIUrl + "/place/allplaces/");
-            setPlace(res.data);
+            const res = await axios.get(global.APIUrl + "/place");
+            setPlace(res.data.existingPosts);
         } catch (error) {
             console.log(error);
         }
     };
     const getCrews = async () => {
         try {
-            const res = await axios.get(global.APIUrl + "/crew/allcrew/");
-            setCrew(res.data);
+            const res = await axios.get(global.APIUrl + "/crew");
+            setCrew(res.data.existingPosts);
         } catch (error) {
             console.log(error);
         }

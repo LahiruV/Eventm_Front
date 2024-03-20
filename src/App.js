@@ -15,7 +15,6 @@ import Paymentdashboard from './components/Admin/paymentdashboard';
 import UserAdminDashboard from './components/userAdmin/userAdminDashboard';
 import UserDashboard from './components/Admin/userDashboard';
 import ReqEventDashboard from './components/Admin/reqEventDashboard';
-import FinanceDashboard from './components/Admin/finanaceManagement';
 import FeedBack from './components/userAdmin/feedback';
 import CrewCreate from './components/Admin/CrewCreate';
 import CrewEdit from './components/Admin/CrewEdit';
@@ -29,6 +28,10 @@ import SponsorCreate from './components/Admin/SponsorCreate';
 import SponsorDash from './components/Admin/SponsorDash';
 import SponsorEdit from './components/Admin/SponsorEdit';
 import SponsorReport from './components/Admin/SponsorReport';
+import FinanceDashboard from './components/Admin/finanaceManagement';
+import PlaceDashboard from './components/Admin/placeDashboard';
+import Feedbackdashboard from './components/Admin/feedbackdashboard';
+
 
 function App() {
   return (
@@ -37,6 +40,8 @@ function App() {
         <Route exact path="/" >
           <Index />
         </Route>
+        <Route path="/Feedbackdashboard" exact component={Feedbackdashboard} />
+        <Route path="/PlaceDashboard" exact component={PlaceDashboard} />
         <Route path="/RequestEvent" exact component={RequestEvent} />
         <Route path="/EventBudget" exact component={EventBudget} />
         <Route path="/FinanceDashboard" exact component={FinanceDashboard} />

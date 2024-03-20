@@ -109,7 +109,7 @@ function UserDashboard() {
             <Navbar />
             <div class="dashboard-wrapper">
                 <div style={{ paddingTop: '3%', paddingLeft: '2%', width: '98%' }}>
-                    <h4 className="text-uppercase  d-letter-spacing fw-bold" style={{ color: 'black' }}><i class="fas fa-home"></i>Admin Dashboard</h4>
+                    <h4 className="text-uppercase  d-letter-spacing fw-bold" style={{ color: 'black' }}><i class="fas fa-home"></i> Admin Dashboard</h4>
                     <hr />
                     <div className="container-fluid bg-white" style={{ paddingLeft: '5%', paddingTop: '2%', paddingBottom: '2%', paddingRight: '5%' }} >
 
