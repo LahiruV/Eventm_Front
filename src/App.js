@@ -17,7 +17,18 @@ import UserDashboard from './components/Admin/userDashboard';
 import ReqEventDashboard from './components/Admin/reqEventDashboard';
 import FinanceDashboard from './components/Admin/finanaceManagement';
 import FeedBack from './components/userAdmin/feedback';
-
+import CrewCreate from './components/Admin/CrewCreate';
+import CrewEdit from './components/Admin/CrewEdit';
+import CrewDash from './components/Admin/CrewDash';
+import CrewReport from './components/Admin/CrewReport';
+import PlaceDash from './components/Admin/PlaceDash';
+import PlaceEdit from './components/Admin/PlaceEdit';
+import PlaceCreate from './components/Admin/PlaceCreate';
+import PlaceReport from './components/Admin/PlaceReport';
+import SponsorCreate from './components/Admin/SponsorCreate';
+import SponsorDash from './components/Admin/SponsorDash';
+import SponsorEdit from './components/Admin/SponsorEdit';
+import SponsorReport from './components/Admin/SponsorReport';
 
 function App() {
   return (
@@ -42,6 +53,21 @@ function App() {
         <Route path="/AdminReg" exact component={AdminReg} />
         <Route path="/UserProfile" exact component={UserProfile} />
         <Route path="/FeedBack" exact component={FeedBack} />
+        <Route path="/CrewCreate" exact component={CrewCreate} />
+        <Route path="/CrewEdit/:id" exact component={CrewEdit} />
+        <Route path="/CrewDash" exact component={CrewDash} />
+        <Route path="/CrewReport" exact component={CrewReport} />
+        <Route path="/PlaceDash" exact component={PlaceDash} />
+        <Route path="/PlaceReport" exact component={PlaceReport} />
+        <Route path="/PlaceEdit/:id" exact component={PlaceEdit} />
+        <Route path="/PlaceCreate" exact component={PlaceCreate} />
+        <Route path="/SponsorCreate" exact component={SponsorCreate} />
+        <Route path="/SponsorDash" exact component={SponsorDash} />
+        <Route path="/SponsorEdit/:id" exact component={SponsorEdit} />
+        <Route path="/SponsorReport" exact component={SponsorReport} />
+        
+        
+        
       </div>
     </Router>
   );
