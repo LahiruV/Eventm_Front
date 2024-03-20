@@ -29,7 +29,6 @@ import SponsorDash from './components/Admin/SponsorDash';
 import SponsorEdit from './components/Admin/SponsorEdit';
 import SponsorReport from './components/Admin/SponsorReport';
 import FinanceDashboard from './components/Admin/finanaceManagement';
-import PlaceDashboard from './components/Admin/placeDashboard';
 import Feedbackdashboard from './components/Admin/feedbackdashboard';
 
 
@@ -41,7 +40,6 @@ function App() {
           <Index />
         </Route>
         <Route path="/Feedbackdashboard" exact component={Feedbackdashboard} />
-        <Route path="/PlaceDashboard" exact component={PlaceDashboard} />
         <Route path="/RequestEvent" exact component={RequestEvent} />
         <Route path="/EventBudget" exact component={EventBudget} />
         <Route path="/FinanceDashboard" exact component={FinanceDashboard} />
