@@ -35,7 +35,7 @@ class Navbar extends Component {
                             <ul class="navbar-nav ml-auto navbar-right-top">
                                 <li class="nav-item square border border-0">
                                     <MDBNavbarItem style={{ paddingRight: "30px", }}>
-                                        <MDBNavbarLink className="text-success" style={{cursor: 'pointer', fontWeight: 'bold', }} active aria-current='page' onClick={logout}>
+                                        <MDBNavbarLink className="text-success" style={{ cursor: 'pointer', fontWeight: 'bold', }} active aria-current='page' onClick={logout}>
                                             Logout
                                         </MDBNavbarLink>
                                     </MDBNavbarItem>
@@ -56,31 +56,28 @@ class Navbar extends Component {
                                 <ul class="navbar-nav flex-column">
                                     <h4 className="mt-4 mb-4 text-warning">&nbsp;&nbsp;&nbsp;Admin Dashboard</h4>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="haircareDashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Hair Care & Facial </a>
+                                        <a class="nav-link" href="ReqEventDashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Req Event Management </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="FinanceDashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Finance Management </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="Paymentdashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> Payment Management </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="Feedbackdashboard" style={{ fontSize: '17px' }} aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"> FeedBack Management </a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="NailpedicareDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Nail & Pedicare  </a>
+                                        <a class="nav-link " style={{ fontSize: '17px' }} href="UserDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> User/Staff Management </a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="DressDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Dress </a>
+                                        <a class="nav-link " style={{ fontSize: '17px' }} href="CrewDash" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Crew Management</a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="Paymentdashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Payments </a>
+                                        <a class="nav-link " style={{ fontSize: '17px' }} href="PlaceDash" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Place Management</a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="ProductDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Products </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="PacakageDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Package </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="LeaveDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Staff Leave Form </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="AllleavesDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Staff Leave Report </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " style={{ fontSize: '17px' }} href="EmployeeDashboard" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"> Employee & Salary </a>
+                                        <a class="nav-link " style={{ fontSize: '17px' }} href="SponsorDash" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Sponsor Management</a>
                                     </li>
                                 </ul>
                             </div>

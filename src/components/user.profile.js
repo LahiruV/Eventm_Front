@@ -56,7 +56,7 @@ function UserLogin() {
         <div>
             <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
                 <center>
-                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Salon Service Hub In The Sri Lanka</small>
+                <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Event Management Hub In The Sri Lanka</small>                    
                 </center>
             </div>
             <Navbar />
@@ -69,7 +69,7 @@ function UserLogin() {
                                     <div class="card" style={{ borderRadius: '15px' }}>
                                         <div class="card-body text-center">
                                             <div class="mt-3 mb-4">
-                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                                <img src="https://static.vecteezy.com/system/resources/thumbnails/020/911/732/small/profile-icon-avatar-icon-user-icon-person-icon-free-png.png"
                                                     class="rounded-circle img-fluid" style={{ width: '100px' }} />
                                             </div>
                                             <h4 class="mb-2">{profile.firstName} {" "} {profile.lastName}</h4>

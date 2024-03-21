@@ -16,7 +16,6 @@ function Home() {
                 </center>
             </div>
             <Navbar />
-
             <header class="py-5" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')", backgroundSize: "cover", backgroundPosition: "center" }}>
                 <div class="container px-5">
                     <div class="row gx-5 align-items-center justify-content-center">

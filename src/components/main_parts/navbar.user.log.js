@@ -9,7 +9,7 @@ import {
     MDBNavbarNav,
     MDBNavbarItem,
     MDBNavbarLink,
-    MDBCollapse,    
+    MDBCollapse,
 } from 'mdb-react-ui-kit';
 import Swal from 'sweetalert2';
 
@@ -54,7 +54,7 @@ function NavBar() {
         <MDBNavbar expand='lg' className="sticky-top" light bgColor='dark'>
             <MDBContainer fluid>
                 <MDBNavbarBrand href='/' style={{ fontSize: '25px' }} className="pt-2 navbar-brand h1 fw-bold">
-                <span className="text-success">&nbsp;Event</span><span className="text-white">-By OSH</span>                                       
+                    <span className="text-success">&nbsp;Event</span><span className="text-white">-By OSH</span>
                 </MDBNavbarBrand>
                 <MDBNavbarToggler
                     aria-controls='navbarSupportedContent'
@@ -73,33 +73,18 @@ function NavBar() {
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                         <MDBNavbarItem>
-                            <MDBNavbarLink href='Dress' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
-                                Dress
+                            <MDBNavbarLink href='RequestEvent' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                                Request Event
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                         <MDBNavbarItem>
-                            <MDBNavbarLink href='Package' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
-                                Packages
+                            <MDBNavbarLink href='EventBudget' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                                Events Budget
                             </MDBNavbarLink>
-                        </MDBNavbarItem>
+                        </MDBNavbarItem> 
                         <MDBNavbarItem>
-                            <MDBNavbarLink href='Product' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
-                                Our Products
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink href='Haircare' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
-                                Hair Care & Facial
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink href='Nailpedicare' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
-                                Nail & Pedicre
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink href='Appointment' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
-                                Appointment
+                            <MDBNavbarLink href='Feedback' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                               FeedBack
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                     </MDBNavbarNav>
