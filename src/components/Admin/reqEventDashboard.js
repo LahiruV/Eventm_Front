@@ -224,9 +224,9 @@ function ReqEventDashboard() {
                                                             value={eventType}
                                                             onChange={(e) => setEventType(e.target.value)}
                                                         >
-                                                            <MenuItem value="conference">Conference</MenuItem>
-                                                            <MenuItem value="wedding">Wedding</MenuItem>
-                                                            <MenuItem value="birthday">Birthday Party</MenuItem>
+                                                            <MenuItem value="Celebrity Events">Celebrity Events</MenuItem>
+                                                            <MenuItem value="Wedding">Wedding</MenuItem>
+                                                            <MenuItem value="Parties">Parties</MenuItem>
                                                         </Select>
                                                     </FormControl>
                                                 </MDBCol>
@@ -312,7 +312,7 @@ function ReqEventDashboard() {
                                             </MDBRow>
 
                                             <button style={{ backgroundColor: 'black', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px' }} type="submit">
-                                            Edit
+                                                Edit
                                             </button>
                                         </form>
                                         <br />
