@@ -10,6 +10,7 @@ import AdminLogin from './components/Admin/admin.login';
 import AdminReg from './components/Admin/admin.reg';
 import RequestEvent from './components/userAdmin/requestEvent';
 import EventBudget from './components/userAdmin/eventBudget';
+import ChatPage from './components/userAdmin/chatPage';
 import Payment from './components/userAdmin/payment';
 import Paymentdashboard from './components/Admin/paymentdashboard';
 import UserAdminDashboard from './components/userAdmin/userAdminDashboard';
@@ -53,6 +54,7 @@ function App() {
         <Route path="/AdminReg" exact component={AdminReg} />
         <Route path="/UserProfile" exact component={UserProfile} />
         <Route path="/FeedBack" exact component={FeedBack} />
+        <Route path="/ChatPage" exact component={ChatPage} />
         <Route path="/CrewCreate" exact component={CrewCreate} />
         <Route path="/CrewEdit/:id" exact component={CrewEdit} />
         <Route path="/CrewDash" exact component={CrewDash} />        

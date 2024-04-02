@@ -87,6 +87,11 @@ function NavBar() {
                                FeedBack
                             </MDBNavbarLink>
                         </MDBNavbarItem>
+                         <MDBNavbarItem>
+                            <MDBNavbarLink href='ChatPage' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                               Chat
+                            </MDBNavbarLink>
+                        </MDBNavbarItem>
                     </MDBNavbarNav>
 
                     <MDBCollapse navbar show={showNavRight}>
