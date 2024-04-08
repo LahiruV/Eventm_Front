@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MDBCard, MDBCardBody, MDBTable, MDBTableHead, MDBTableBody, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
+import { MDBCard, MDBCardBody, MDBTable, MDBTableHead, MDBTableBody, MDBRow, MDBCol, MDBBtn, MDBIcon,MDBInput } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Navbar from "./adminNav";
@@ -25,6 +25,7 @@ function FinanceDashboard() {
     const [mail, setMail] = useState("");
     const [status, setStatus] = useState("Process");
     const [editBtn, setEditBtn] = useState(false);
+    const [searchMail, setSearchMail] = useState("");
 
     function generateId() {
         let id = '';
@@ -253,6 +254,17 @@ function FinanceDashboard() {
         })
     }
 
+
+    const getSearchMail = async () => {
+        try {
+            const res = await axios.get(`${global.APIUrl}/budget/allbudgets/${searchMail}`);
+            setBudget(res.data);
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    };
+
     useEffect(() => {
         getPayments()
         getPlaces()
@@ -372,6 +384,17 @@ function FinanceDashboard() {
                                     </MDBCardBody>
                                 </MDBCard>
                             </MDBCol>
+                            <div className="text-end mt-5">
+                        </div>
+
+                        <div className=" pt-1 mt-5">
+                            <h6>Search By Mail</h6>
+                            <MDBInput className="mt-3 bg-white" id='form1' type='text' onChange={(e) => {
+                                setSearchMail(e.target.value);
+                            }} />
+                            <br />
+                            <button type="button" class="btn btn-success d-letter-spacing " onClick={getSearchMail} >Go</button>
+                        </div>                     
                             <h2 style={{ paddingTop: '40px' }}>Added Budget</h2>
                             <hr />
                             <MDBTable borderless className='mt-3' >
