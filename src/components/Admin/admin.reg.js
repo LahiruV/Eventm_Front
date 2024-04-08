@@ -195,8 +195,11 @@ function Admin_registration() {
                                     <label for="exampleFormControlInput1" class="form-label" style={{ fontSize: "20px" }}><b>User Role</b></label>
                                     <select class="form-control" style={{ fontSize: "18px" }} onChange={setUserTypeFunction} value={userType}>
                                         <option value="">Select Admin Role</option>
-                                        <option value="Admin">Admin</option>
-                                        {/* Add more options as needed */}
+                                        <option value="Admin">Admin</option>                                        
+                                        <option value="Request Manager">Request Manager</option>                                        
+                                        <option value="Sponsor Manager">Sponsor Manager</option>                                        
+                                        <option value="Place Manager">Place Manager</option>                                        
+                                        <option value="Crew Manager">Crew Manager</option>                                                                                                                     
                                     </select>
                                 </div>
                                 <div class="mb-3">

@@ -4,7 +4,6 @@ import { TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/mater
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Navbar from "./adminNav";
-import NumberFormat from 'react-number-format';
 
 function ReqEventDashboard() {
 
@@ -19,9 +18,33 @@ function ReqEventDashboard() {
     const [accessibilityRequirements, setAccessibilityRequirements] = useState('');
     const [staffRequired, setStaffRequired] = useState([]);
     const [estimatedBudgetRange, setEstimatedBudgetRange] = useState('');
-    const uniqueId = "A"
+    const [uniqueId, setUniqueId] = useState('');
+    const [place, setPlace] = useState([]);
+    const [crew, setCrew] = useState([]);
 
-    const handleSubmit = async (event) => {
+    useEffect (() => {
+        getPlaces();
+        getCrews();
+    }, []);
+
+    const getPlaces = async () => {
+        try {
+            const res = await axios.get(global.APIUrl + "/place");
+            setPlace(res.data.existingPosts);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const getCrews = async () => {
+        try {
+            const res = await axios.get(global.APIUrl + "/crew");
+            setCrew(res.data.existingPosts);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleEdit = async (event) => {
         event.preventDefault();
 
         if (
@@ -41,7 +64,7 @@ function ReqEventDashboard() {
 
         const reqevents = { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange };
         try {
-            const response = await axios.post(global.APIUrl + "/eventReq/addEventReq", reqevents);
+            const response = await axios.put(global.APIUrl + "/eventReq/updateEventReq", reqevents);
             Swal.fire({
                 title: "Success!",
                 text: "Success",
@@ -54,7 +77,7 @@ function ReqEventDashboard() {
             console.log(error.message);
             Swal.fire({
                 title: "Error!",
-                text: "Not Added",
+                text: "Not Updated",
                 icon: 'error',
                 confirmButtonText: "OK",
                 type: "success"
@@ -62,12 +85,6 @@ function ReqEventDashboard() {
             window.location.href = "/ReqEventDashboard";
         }
     };
-
-
-    async function edited(e) {
-
-    }
-
 
     function remove(id) {
         Swal.fire({
@@ -102,13 +119,20 @@ function ReqEventDashboard() {
         })
     }
 
-    function edit(userName, email, password, phone, userType) {
-        // setUserName(userName)
-        // setEmail(email)
-        // setPassword(password)
-        // setPhone(phone)
-        // setUserType(userType)
+    function edit(evtReq) {
+        setUniqueId(evtReq.uniqueId);
+        setEmail(evtReq.email);
+        setEventDate(evtReq.eventDate);
+        setEventTime(evtReq.eventTime);
+        setExpectedGuests(evtReq.expectedGuests);
+        setEventType(evtReq.eventType);
+        setVenuePreference(evtReq.venuePreference);
+        setVenueDescription(evtReq.venueDescription);
+        setStaffRequired(evtReq.staffRequired);
+        setAccessibilityRequirements(evtReq.accessibilityRequirements);
+        setEstimatedBudgetRange(evtReq.estimatedBudgetRange);
     }
+    
     const getReq = async () => {
         try {
             const res = await axios.get(global.APIUrl + "/eventReq/allEventReq/");
@@ -170,7 +194,7 @@ function ReqEventDashboard() {
                                         <center>
                                             <h4>Edit Request Event Form</h4>
                                         </center>
-                                        <form onSubmit={handleSubmit}>
+                                        <form onSubmit={handleEdit}>
                                             <MDBRow className="mb-3">
 
                                                 <MDBCol>
@@ -254,14 +278,16 @@ function ReqEventDashboard() {
                                                             value={venuePreference}
                                                             onChange={(e) => setVenuePreference(e.target.value)}
                                                         >
-                                                            <MenuItem value="hotel">Hotel</MenuItem>
-                                                            <MenuItem value="restaurant">Restaurant</MenuItem>
-                                                            <MenuItem value="banquet">Banquet Hall</MenuItem>
-                                                            <MenuItem value="garden">Garden</MenuItem>
+                                                            {place.map((place, index) => (
+                                                                <MenuItem key={index} value={place.name}>
+                                                                    {place.name}
+                                                                </MenuItem>
+                                                            ))}
                                                         </Select>
                                                     </FormControl>
                                                 </MDBCol>
                                             </MDBRow>
+
                                             <hr />
                                             <MDBRow className="mb-3">
                                                 <MDBCol>
@@ -287,16 +313,15 @@ function ReqEventDashboard() {
                                                             onChange={(e) => setStaffRequired(e.target.value)}
                                                             renderValue={(selected) => selected.join(', ')}
                                                         >
-                                                            <MenuItem value="eventCoordinator">Event Coordinator</MenuItem>
-                                                            <MenuItem value="waitstaff">Waitstaff</MenuItem>
-                                                            <MenuItem value="security">Security</MenuItem>
-                                                            <MenuItem value="technicalCrew">Technical Crew</MenuItem>
-                                                            <MenuItem value="photography">Photography</MenuItem>
+                                                            {crew.map((crew, index) => (
+                                                                <MenuItem key={index} value={crew.name}>
+                                                                    {crew.name}
+                                                                </MenuItem>
+                                                            ))}
                                                         </Select>
                                                     </FormControl>
                                                 </MDBCol>
                                             </MDBRow>
-
                                             <MDBRow className="mb-3">
                                                 <MDBCol>
                                                     <TextField
@@ -310,9 +335,8 @@ function ReqEventDashboard() {
                                                     />
                                                 </MDBCol>
                                             </MDBRow>
-
                                             <button style={{ backgroundColor: 'black', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px' }} type="submit">
-                                                Edit
+                                                Submit
                                             </button>
                                         </form>
                                         <br />
@@ -397,9 +421,9 @@ function ReqEventDashboard() {
                                                                 <MDBIcon fas icon="trash-alt" />
                                                             </MDBBtn>
 
-                                                            <MDBBtn size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(evtReq.eventDate, evtReq.eventTime, evtReq.expectedGuests, evtReq.eventType, evtReq.venuePreference, evtReq.venueDescription, evtReq.staffRequired, evtReq.accessibilityRequirements, evtReq.estimatedBudgetRange)}>
+                                                            <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(evtReq)}>
                                                                 <MDBIcon fas icon="edit" />
-                                                            </MDBBtn>
+                                                            </button>
                                                         </>
                                                     ) : (
                                                         <>

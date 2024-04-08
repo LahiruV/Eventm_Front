@@ -88,7 +88,7 @@ function NavBar() {
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                          <MDBNavbarItem>
-                            <MDBNavbarLink href='ChatPage' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                            <MDBNavbarLink href='Chat' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
                                Chat
                             </MDBNavbarLink>
                         </MDBNavbarItem>

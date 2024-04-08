@@ -3,8 +3,7 @@ import { MDBIcon, MDBCardImage, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText,
 import { TextField } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import Cookies from 'js-cookie';
-import { reactLocalStorage } from 'reactjs-localstorage';
+import emailjs from 'emailjs-com';
 import Navbar from '../main_parts/navbar.user.log.js';
 import NumberFormat from 'react-number-format';
 import Footer from '../main_parts/footer.js';
@@ -80,6 +79,7 @@ function Payment() {
                 const response = await axios.post(global.APIUrl + "/payment/addpayment", payment).then(() => {
                     axios.put(global.APIUrl + "/budget/updatebudget/", budgetChange);
                 });
+                
                 Swal.fire({
                     title: "Success!",
                     text: "Payment Added",
@@ -87,6 +87,25 @@ function Payment() {
                     confirmButtonText: "OK",
                     type: "success"
                 });
+                const templateParams = {
+                    to_email: userName,
+                    payment_id: paymentID,
+                    price: cost
+                };
+        
+                emailjs.send(
+                    'service_o9w0gm7',
+                    'template_gw38gcz',
+                    templateParams,
+                    'jMT_4sdBCj0m5mlLD'
+                )
+                    .then((response) => {
+                        console.log('Email sent:', response);
+                    })
+                    .catch((error) => {
+                        console.error('Email sending failed:', error);
+                    });
+    
                 setTimeout(() => {
                     window.location.href = "/EventBudget";
                 }, 1000);

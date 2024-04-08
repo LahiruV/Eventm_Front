@@ -11,6 +11,7 @@ import AdminReg from './components/Admin/admin.reg';
 import RequestEvent from './components/userAdmin/requestEvent';
 import EventBudget from './components/userAdmin/eventBudget';
 import ChatPage from './components/userAdmin/chatPage';
+import Chat from './components/userAdmin/chat';
 import Payment from './components/userAdmin/payment';
 import Paymentdashboard from './components/Admin/paymentdashboard';
 import UserAdminDashboard from './components/userAdmin/userAdminDashboard';
@@ -28,6 +29,8 @@ import SponsorDash from './components/Admin/SponsorDash';
 import SponsorEdit from './components/Admin/SponsorEdit';
 import FinanceDashboard from './components/Admin/finanaceManagement';
 import Feedbackdashboard from './components/Admin/feedbackdashboard';
+import ChatAdmin from './components/Admin/ChatAdmin';
+import ChatPageAdmin from './components/Admin/ChatPageAdmin';
 
 
 function App() {
@@ -38,6 +41,8 @@ function App() {
           <Index />
         </Route>
         <Route path="/Feedbackdashboard" exact component={Feedbackdashboard} />
+        <Route path="/ChatAdmin" exact component={ChatAdmin} />
+        <Route path="/ChatPageAdmin" exact component={ChatPageAdmin} />
         <Route path="/RequestEvent" exact component={RequestEvent} />
         <Route path="/EventBudget" exact component={EventBudget} />
         <Route path="/FinanceDashboard" exact component={FinanceDashboard} />
@@ -55,6 +60,7 @@ function App() {
         <Route path="/UserProfile" exact component={UserProfile} />
         <Route path="/FeedBack" exact component={FeedBack} />
         <Route path="/ChatPage" exact component={ChatPage} />
+        <Route path="/Chat" exact component={Chat} />
         <Route path="/CrewCreate" exact component={CrewCreate} />
         <Route path="/CrewEdit/:id" exact component={CrewEdit} />
         <Route path="/CrewDash" exact component={CrewDash} />        
@@ -64,9 +70,7 @@ function App() {
         <Route path="/SponsorCreate" exact component={SponsorCreate} />
         <Route path="/SponsorDash" exact component={SponsorDash} />
         <Route path="/SponsorEdit/:id" exact component={SponsorEdit} />        
-        
-        
-        
+                        
       </div>
     </Router>
   );

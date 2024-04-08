@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 import { MDBContainer, MDBListGroup, MDBListGroupItem, MDBTypography, MDBInput } from 'mdb-react-ui-kit';
-import Navbar from '../main_parts/navbar.user.log.js';
-import Footer from '../main_parts/footer.js';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Navbar from "./adminNav";
+import NumberFormat from 'react-number-format';
 
-function ChatPage() {    
+function ChatPageAdmin() {
+
     const [messages, setMessages] = useState([]);
     const [message, setNewMessage] = useState("");
     const [submit, setSubmit] = useState(true);
-    const email = sessionStorage.getItem("user_name");
-    const conmail = sessionStorage.getItem("con_mail");
+    const email = sessionStorage.getItem("cus_mail");
+    const conmail = sessionStorage.getItem("admin_name");
     const key = email + conmail
 
     useEffect(() => {
@@ -37,35 +38,25 @@ function ChatPage() {
     };
 
     const handleMessageSend = async () => {
+        var email = sessionStorage.getItem("admin_name");
         const chat = { email, message, key };
         try {
             await axios.post(global.APIUrl + '/chat/addchat', chat);
-            window.location.href = "/ChatPage";
+            window.location.href = "/ChatPageAdmin";
         } catch (error) {
             console.error('Error sending message:', error);
         }
     };
 
-
     return (
-        <div>
-            <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
-                <center>
-                    <small style={{ fontSize: '14px', letterSpacing: '2px' }} className="text-muted text-capitalize">The Largest Event Management Hub In The Sri Lanka</small>
-                </center>
-            </div>
+        <div class="dashboard-main-wrapper" >
             <Navbar />
-            <div className='bg-image'>
-                <img src='https://img.freepik.com/free-vector/customer-online-review-rating-feedback-set_124507-8052.jpg?size=626&ext=jpg' className='img-fluid' alt='Sample' />
-                <div className='mask' style={{ backgroundColor: '#292929' }}>
-                    <div className='d-flex justify-content-center align-items-center h-100'>
-                        <p className='text-white h1 mb-0 text-uppercase' style={{ fontSize: '55px', letterSpacing: '2px' }}>Chat with Request Manager</p>
-                    </div>
-                </div>
-            </div>
-            <MDBCard className="my-5 mx-auto" style={{ maxWidth: '1400px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-            <div className="container mt-5">
-            <MDBContainer className="p-3" style={{ backgroundColor: '#fff', borderRadius: '8px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
+            <div class="dashboard-wrapper">
+                <div style={{ paddingTop: '3%', paddingLeft: '2%', width: '98%' }}>
+                    <h4 className="text-uppercase  d-letter-spacing fw-bold" style={{ color: 'black' }}><i class="fas fa-home"></i> Chat Box </h4>
+                    <hr />
+                    <div className="container-fluid bg-white" style={{ paddingLeft: '5%', paddingTop: '2%', paddingBottom: '2%', paddingRight: '5%' }} >
+                    <MDBContainer className="p-3" style={{ backgroundColor: '#fff', borderRadius: '8px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
                 <MDBCard>
                     <MDBCardBody>
                         <MDBTypography variant="h5" className="fw-bold">Chat Box</MDBTypography>
@@ -96,11 +87,11 @@ function ChatPage() {
                     </MDBCardBody>
                 </MDBCard>
             </MDBContainer>
-        </div>
-            </MDBCard>
-            <Footer />
-        </div>
-    );
-}
+                    </div>
+                </div>
+            </div>
+        </div >
+    )
+};
 
-export default ChatPage;
+export default ChatPageAdmin;
