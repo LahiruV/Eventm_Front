@@ -8,7 +8,8 @@ import Navbar from "./adminNav";
 function ReqEventDashboard() {
 
     const [evtReq, setEvtReq] = useState([]);
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState("");
+    const [status, setStatus] = useState("");
     const [eventDate, setEventDate] = useState('');
     const [eventTime, setEventTime] = useState('');
     const [expectedGuests, setExpectedGuests] = useState('');
@@ -22,7 +23,7 @@ function ReqEventDashboard() {
     const [place, setPlace] = useState([]);
     const [crew, setCrew] = useState([]);
 
-    useEffect (() => {
+    useEffect(() => {
         getPlaces();
         getCrews();
     }, []);
@@ -62,7 +63,7 @@ function ReqEventDashboard() {
             return;
         }
 
-        const reqevents = { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange };
+        const reqevents = { uniqueId, email, status, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange };
         try {
             const response = await axios.put(global.APIUrl + "/eventReq/updateEventReq", reqevents);
             Swal.fire({
@@ -131,8 +132,9 @@ function ReqEventDashboard() {
         setStaffRequired(evtReq.staffRequired);
         setAccessibilityRequirements(evtReq.accessibilityRequirements);
         setEstimatedBudgetRange(evtReq.estimatedBudgetRange);
+        setStatus(evtReq.status);
     }
-    
+
     const getReq = async () => {
         try {
             const res = await axios.get(global.APIUrl + "/eventReq/allEventReq/");
