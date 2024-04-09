@@ -141,6 +141,17 @@ function FeedBack() {
         setRating(0);
     };
 
+    const renderRatingStars = (rating) => {
+        const stars = [];
+        for (let i = 0; i < rating; i++) {
+            stars.push(<span key={i}>&#9733;</span>);
+        }
+        for (let i = rating; i < 5; i++) {
+            stars.push(<span key={i}>&#9734;</span>);
+        }
+        return stars;
+    };
+
     return (
         <div>
             <div className="pt-1 pb-1" style={{ backgroundColor: '#F4F4F4' }}>
@@ -269,7 +280,7 @@ function FeedBack() {
                                     <Typography variant="h6" sx={{ marginLeft: '10px' }}>Feedback ID: {feedback.feedbackId}</Typography>
                                 </Box>
                                 <Typography variant="body1">Description: {feedback.description}</Typography>
-                                <Typography variant="body1">Rating: {feedback.rating}</Typography>
+                                <Typography variant="body1">Rating: {renderRatingStars(feedback.rating)}</Typography>
                                 {feedback.email === userName ? (
                                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
                                         <IconButton color="primary" onClick={() => edit(feedback.feedbackId, feedback.description, feedback.rating, feedback.email)}>

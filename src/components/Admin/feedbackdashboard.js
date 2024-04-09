@@ -10,6 +10,7 @@ import Navbar from "./adminNav";
 function Feedbackdashboard() {
 
     const [feedback, setFeedback] = useState([])
+    const [searchMail, setSearchMail] = useState("");
 
     const getFeedback = async () => {
         try {
@@ -17,6 +18,16 @@ function Feedbackdashboard() {
             setFeedback(res.data);
         } catch (error) {
             console.log(error);
+        }
+    };
+
+    const getSearchMail = async () => {
+        try {
+            const res = await axios.get(`${global.APIUrl}/feedback/allfeedback/${searchMail}`);
+            setFeedback(res.data);
+        } catch (error) {
+            console.log(error);
+            return null;
         }
     };
 
@@ -38,14 +49,14 @@ function Feedbackdashboard() {
                         <div className="text-end mt-5">
                         </div>
 
-                        {/* <div className=" pt-1 mt-5">
-                            <h6>Search Type</h6>
+                        <div className=" pt-1 mt-5">
+                            <h6>Search Client Email</h6>
                             <MDBInput className="mt-3 bg-white" id='form1' type='text' onChange={(e) => {
-                                setType(e.target.value);
+                                setSearchMail(e.target.value);
                             }} />
                             <br />
-                            <button type="button" class="btn btn-success d-letter-spacing " onClick={getPaymentsType} >Go</button>
-                        </div>                      */}
+                            <button type="button" class="btn btn-success d-letter-spacing " onClick={getSearchMail} >Go</button>
+                        </div>                     
 
                         <h4 className='mt-5' id="#current" style={{ color: "#606060FF", paddingBottom: "1%" }}><u>FeedBack  Details</u></h4>
 
