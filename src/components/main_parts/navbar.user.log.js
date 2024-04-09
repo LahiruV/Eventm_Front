@@ -81,15 +81,25 @@ function NavBar() {
                             <MDBNavbarLink href='EventBudget' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
                                 Events Budget
                             </MDBNavbarLink>
-                        </MDBNavbarItem> 
+                        </MDBNavbarItem>
                         <MDBNavbarItem>
                             <MDBNavbarLink href='Feedback' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
-                               FeedBack
+                                FeedBack
                             </MDBNavbarLink>
                         </MDBNavbarItem>
-                         <MDBNavbarItem>
+                        <MDBNavbarItem>
+                            <MDBNavbarLink href='/' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                                Our Crew
+                            </MDBNavbarLink>
+                        </MDBNavbarItem>
+                        <MDBNavbarItem>
+                            <MDBNavbarLink href='/' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                                Our Venues
+                            </MDBNavbarLink>
+                        </MDBNavbarItem>
+                        <MDBNavbarItem>
                             <MDBNavbarLink href='Chat' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
-                               Chat
+                                Chat
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                     </MDBNavbarNav>
