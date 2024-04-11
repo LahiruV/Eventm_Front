@@ -119,34 +119,15 @@ export default class CrewReport extends Component {
                   placeholder="Search Crew Details"
                   name="searchQuery"
                   onChange={this.handleSearchArea}>
-
                 </input>
               </div>
-
-
             </center>
-
             <div className="p-3 mb-2 text-light rounded-3" style={{ backgroundColor: "" }} >
-
-
-
-
-
-
             </div>
-
-
             <button onClick={this.exportToExcel} className="btn btn-dark" >
               <i class="fa-solid fa-file-arrow-down"></i>
             </button>
             <hr />
-
-
-
-
-
-
-
             <div className="table-responsive">
               <table id="table" className="table table-bordered table-striped">
                 <thead>
