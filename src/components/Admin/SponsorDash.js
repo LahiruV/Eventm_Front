@@ -104,8 +104,7 @@ handleSearchArea = (e) =>{
         </div>
         <button className="btn btn-dark"  ><a href="/SponsorReport" style={{textDecoration:'none',color:'white'}}>Reports &nbsp;
         <i class="fa-solid fa-folder-open"></i>
-          </a></button>
-       
+          </a></button>       
         </center>
              
         <table className="table table-hover  table table-bordered border-dark table table-light table-striped" style={{marginTop:'5px'}}>
@@ -120,7 +119,6 @@ handleSearchArea = (e) =>{
                <th scope="col">Description</th>
                <th scope="col">Category</th>
                <th scope="col">Action</th>
-
              </tr>
            </thead>
            <tbody>
@@ -129,8 +127,7 @@ handleSearchArea = (e) =>{
                   <tr key={index}>
                     <th scope="row">{index+1}</th>
                     <td>
-                      <a href={`/SponsorPost/${sponsor._id}`} style={{textDecoration:'none'}}>
-                     
+                      <a href={`/SponsorPost/${sponsor._id}`} style={{textDecoration:'none'}}>                     
                       {`SID${sponsor._id.substr(0,7)}`}
                       </a>
                       </td>
@@ -139,8 +136,7 @@ handleSearchArea = (e) =>{
                     <td>{sponsor.contact}</td>
                     <td>{sponsor.cost}</td>
                     <td>{sponsor.description}</td>
-                    <td>{sponsor.category}</td>
-                
+                    <td>{sponsor.category}</td>                
                     <td>
                       {/* Edit button */}
                       <a className="btn btn-dark" href={`/SponsorEdit/${sponsor._id}`}>
@@ -152,10 +148,7 @@ handleSearchArea = (e) =>{
                         <i className="far fa-trash-alt"></i>
                       </a>
                     </td>
-
                   </tr>
-
-
             ))}
             </tbody>          
          </table>
