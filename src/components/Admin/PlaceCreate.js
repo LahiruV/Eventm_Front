@@ -124,8 +124,7 @@ export default class CrewCreate extends Component {
               if(res.data.success){
               Swal.fire('Added','Place Added Successfilly','success')
                   this.setState(
-                      {
-                      
+                      {                      
                         name:"",
                         address:"",
                         contact:"",
@@ -133,12 +132,10 @@ export default class CrewCreate extends Component {
                         description:"",
                         image:"",
                         category:""
-
                       }
                   )
               }
           })
-
           }
 }
 
