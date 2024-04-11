@@ -94,22 +94,12 @@ export default class CrewReport extends Component {
           <h4 className="text-uppercase  d-letter-spacing fw-bold" style={{ color: 'black' }}><i class="fa-solid fa-folder-open"></i> Crew Reports</h4>
           <hr />
           <div className="container-fluid bg-light ">
-
             <br />
-
-
-
             <a href="/CrewDash">
               <button className="btn btn-dark" >
-
                 <i class="fa-solid fa-circle-left"></i>
-
-
               </button>
             </a>
-
-
-
             <center>
               <div className="col-lg-4 mt-2 mb-3">
 
@@ -152,17 +142,12 @@ export default class CrewReport extends Component {
                       <td>{crew.category}</td>
                       <td>
                         <a href={`/CrewPost/${crew._id}`} className="btn btn-light btn-sm mr-2">View Details</a>
-
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-
-
-
-
           </div>
         </div>
       </div>
