@@ -35,6 +35,7 @@ import ChatPageAdmin from './components/Admin/ChatPageAdmin';
 import Venue from './components/userAdmin/venue';
 import ChatSponsor from './components/Admin/ChatSponsor';
 import ChatSponse from './components/userAdmin/chatSponse';
+import CrewAttend from './components/Admin/CrewAttend';
 
 
 
@@ -79,6 +80,7 @@ function App() {
         <Route path="/venue" exact component={Venue} />
         <Route path="/ChatSponsor" exact component={ChatSponsor} />
         <Route path="/ChatSponse" exact component={ChatSponse} />
+        <Route path="/CrewAttend" exact component={CrewAttend} />
       </div>
     </Router>
   );

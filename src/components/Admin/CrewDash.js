@@ -100,9 +100,6 @@ export default class CrewDash extends Component {
             </center>
 
             <div className="p-3 mb-2 text-light rounded-3" style={{ backgroundColor: "" }} >
-
-
-
               <div class="container text-center">
                 <div class="row">
                   <div class="col">
