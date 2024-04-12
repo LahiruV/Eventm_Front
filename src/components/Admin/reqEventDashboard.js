@@ -22,6 +22,7 @@ function ReqEventDashboard() {
     const [uniqueId, setUniqueId] = useState('');
     const [place, setPlace] = useState([]);
     const [crew, setCrew] = useState([]);
+    const [editBtn, setEditBtn] = useState(false);
 
     useEffect(() => {
         getPlaces();
@@ -133,6 +134,7 @@ function ReqEventDashboard() {
         setAccessibilityRequirements(evtReq.accessibilityRequirements);
         setEstimatedBudgetRange(evtReq.estimatedBudgetRange);
         setStatus(evtReq.status);
+        setEditBtn(true)
     }
 
     const getReq = async () => {
@@ -189,157 +191,159 @@ function ReqEventDashboard() {
                         <MDBRow className='mt-3'>
                             <MDBCol sm='3'></MDBCol>
                             <MDBCol sm='6'>
-                                <MDBCard className='shadow-0'>
-                                    <MDBCardBody className="bg-light">
-                                        <center>
-                                            <h4>Edit Request Event Form</h4>
-                                        </center>
-                                        <form onSubmit={handleEdit}>
-                                            <MDBRow className="mb-3">
+                                {(editBtn) && (
+                                    <MDBCard className='shadow-0'>
+                                        <MDBCardBody className="bg-light">
+                                            <center>
+                                                <h4>Edit Request Event Form</h4>
+                                            </center>
+                                            <form onSubmit={handleEdit}>
+                                                <MDBRow className="mb-3">
 
-                                                <MDBCol>
-                                                    <TextField
-                                                        label="Event Date"
-                                                        type="date"
-                                                        fullWidth
-                                                        value={eventDate}
-                                                        onChange={(e) => setEventDate(e.target.value)}
-                                                        InputLabelProps={{
-                                                            shrink: true,
-                                                        }}
-                                                        required
-                                                        InputProps={{
-                                                            inputProps: { min: new Date().toISOString().split('T')[0] }
-                                                        }}
-                                                    />
-                                                </MDBCol>
-                                                <MDBCol>
-                                                    <TextField
-                                                        label="Event Time"
-                                                        type="time"
-                                                        fullWidth
-                                                        value={eventTime}
-                                                        onChange={(e) => setEventTime(e.target.value)}
-                                                        InputLabelProps={{
-                                                            shrink: true,
-                                                        }}
-                                                        required
-                                                    />
-                                                </MDBCol>
-                                            </MDBRow>
+                                                    <MDBCol>
+                                                        <TextField
+                                                            label="Event Date"
+                                                            type="date"
+                                                            fullWidth
+                                                            value={eventDate}
+                                                            onChange={(e) => setEventDate(e.target.value)}
+                                                            InputLabelProps={{
+                                                                shrink: true,
+                                                            }}
+                                                            required
+                                                            InputProps={{
+                                                                inputProps: { min: new Date().toISOString().split('T')[0] }
+                                                            }}
+                                                        />
+                                                    </MDBCol>
+                                                    <MDBCol>
+                                                        <TextField
+                                                            label="Event Time"
+                                                            type="time"
+                                                            fullWidth
+                                                            value={eventTime}
+                                                            onChange={(e) => setEventTime(e.target.value)}
+                                                            InputLabelProps={{
+                                                                shrink: true,
+                                                            }}
+                                                            required
+                                                        />
+                                                    </MDBCol>
+                                                </MDBRow>
 
-                                            <MDBRow className="mb-3">
-                                                <MDBCol>
-                                                    <TextField
-                                                        label="Expected Number of Guests"
-                                                        type="number"
-                                                        fullWidth
-                                                        value={expectedGuests}
-                                                        onChange={(e) => setExpectedGuests(e.target.value)}
-                                                        required
-                                                    />
-                                                </MDBCol>
+                                                <MDBRow className="mb-3">
+                                                    <MDBCol>
+                                                        <TextField
+                                                            label="Expected Number of Guests"
+                                                            type="number"
+                                                            fullWidth
+                                                            value={expectedGuests}
+                                                            onChange={(e) => setExpectedGuests(e.target.value)}
+                                                            required
+                                                        />
+                                                    </MDBCol>
 
-                                                <MDBCol>
-                                                    <FormControl fullWidth required>
-                                                        <InputLabel>Type of Event</InputLabel>
-                                                        <Select
-                                                            value={eventType}
-                                                            onChange={(e) => setEventType(e.target.value)}
-                                                        >
-                                                            <MenuItem value="Celebrity Events">Celebrity Events</MenuItem>
-                                                            <MenuItem value="Wedding">Wedding</MenuItem>
-                                                            <MenuItem value="Parties">Parties</MenuItem>
-                                                        </Select>
-                                                    </FormControl>
-                                                </MDBCol>
-                                            </MDBRow>
-                                            <hr />
-                                            <MDBRow className="mb-3">
-                                                <MDBCol>
-                                                    <TextField
-                                                        label="Venue Description"
-                                                        fullWidth
-                                                        multiline
-                                                        rows={4}
-                                                        value={venueDescription}
-                                                        onChange={(e) => setVenueDescription(e.target.value)}
-                                                        required
-                                                    />
-                                                </MDBCol>
-                                            </MDBRow>
+                                                    <MDBCol>
+                                                        <FormControl fullWidth required>
+                                                            <InputLabel>Type of Event</InputLabel>
+                                                            <Select
+                                                                value={eventType}
+                                                                onChange={(e) => setEventType(e.target.value)}
+                                                            >
+                                                                <MenuItem value="Celebrity Events">Celebrity Events</MenuItem>
+                                                                <MenuItem value="Wedding">Wedding</MenuItem>
+                                                                <MenuItem value="Parties">Parties</MenuItem>
+                                                            </Select>
+                                                        </FormControl>
+                                                    </MDBCol>
+                                                </MDBRow>
+                                                <hr />
+                                                <MDBRow className="mb-3">
+                                                    <MDBCol>
+                                                        <TextField
+                                                            label="Venue Description"
+                                                            fullWidth
+                                                            multiline
+                                                            rows={4}
+                                                            value={venueDescription}
+                                                            onChange={(e) => setVenueDescription(e.target.value)}
+                                                            required
+                                                        />
+                                                    </MDBCol>
+                                                </MDBRow>
 
-                                            <MDBRow className="mb-3">
-                                                <MDBCol>
-                                                    <FormControl fullWidth required>
-                                                        <InputLabel>Venue Style Preference</InputLabel>
-                                                        <Select
-                                                            value={venuePreference}
-                                                            onChange={(e) => setVenuePreference(e.target.value)}
-                                                        >
-                                                            {place.map((place, index) => (
-                                                                <MenuItem key={index} value={place.name}>
-                                                                    {place.name}
-                                                                </MenuItem>
-                                                            ))}
-                                                        </Select>
-                                                    </FormControl>
-                                                </MDBCol>
-                                            </MDBRow>
-                                            <hr />
-                                            <MDBRow className="mb-3">
-                                                <MDBCol>
-                                                    <TextField
-                                                        label="Accessibility Requirements"
-                                                        fullWidth
-                                                        multiline
-                                                        rows={4}
-                                                        value={accessibilityRequirements}
-                                                        onChange={(e) => setAccessibilityRequirements(e.target.value)}
-                                                        required
-                                                    />
-                                                </MDBCol>
-                                            </MDBRow>
-                                            <MDBRow className="mb-3">
-                                                <MDBCol>
-                                                    <FormControl fullWidth required>
-                                                        <InputLabel>Types of Staff Required</InputLabel>
-                                                        <Select
-                                                            multiple
-                                                            value={staffRequired}
-                                                            onChange={(e) => setStaffRequired(e.target.value)}
-                                                            renderValue={(selected) => selected.join(', ')}
-                                                        >
-                                                            {crew.map((crew, index) => (
-                                                                <MenuItem key={index} value={crew.name}>
-                                                                    {crew.name}
-                                                                </MenuItem>
-                                                            ))}
-                                                        </Select>
-                                                    </FormControl>
-                                                </MDBCol>
-                                            </MDBRow>
-                                            <MDBRow className="mb-3">
-                                                <MDBCol>
-                                                    <TextField
-                                                        label="Estimated Budget Range"
-                                                        fullWidth
-                                                        multiline
-                                                        rows={4}
-                                                        value={estimatedBudgetRange}
-                                                        onChange={(e) => setEstimatedBudgetRange(e.target.value)}
-                                                        required
-                                                    />
-                                                </MDBCol>
-                                            </MDBRow>
-                                            <button style={{ backgroundColor: 'black', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px' }} type="submit">
-                                                Edit
-                                            </button>
-                                        </form>
-                                        <br />
+                                                <MDBRow className="mb-3">
+                                                    <MDBCol>
+                                                        <FormControl fullWidth required>
+                                                            <InputLabel>Venue Style Preference</InputLabel>
+                                                            <Select
+                                                                value={venuePreference}
+                                                                onChange={(e) => setVenuePreference(e.target.value)}
+                                                            >
+                                                                {place.map((place, index) => (
+                                                                    <MenuItem key={index} value={place.name}>
+                                                                        {place.name}
+                                                                    </MenuItem>
+                                                                ))}
+                                                            </Select>
+                                                        </FormControl>
+                                                    </MDBCol>
+                                                </MDBRow>
+                                                <hr />
+                                                <MDBRow className="mb-3">
+                                                    <MDBCol>
+                                                        <TextField
+                                                            label="Accessibility Requirements"
+                                                            fullWidth
+                                                            multiline
+                                                            rows={4}
+                                                            value={accessibilityRequirements}
+                                                            onChange={(e) => setAccessibilityRequirements(e.target.value)}
+                                                            required
+                                                        />
+                                                    </MDBCol>
+                                                </MDBRow>
+                                                <MDBRow className="mb-3">
+                                                    <MDBCol>
+                                                        <FormControl fullWidth required>
+                                                            <InputLabel>Types of Staff Required</InputLabel>
+                                                            <Select
+                                                                multiple
+                                                                value={staffRequired}
+                                                                onChange={(e) => setStaffRequired(e.target.value)}
+                                                                renderValue={(selected) => selected.join(', ')}
+                                                            >
+                                                                {crew.map((crew, index) => (
+                                                                    <MenuItem key={index} value={crew.name}>
+                                                                        {crew.name}
+                                                                    </MenuItem>
+                                                                ))}
+                                                            </Select>
+                                                        </FormControl>
+                                                    </MDBCol>
+                                                </MDBRow>
+                                                <MDBRow className="mb-3">
+                                                    <MDBCol>
+                                                        <TextField
+                                                            label="Estimated Budget Range"
+                                                            fullWidth
+                                                            multiline
+                                                            rows={4}
+                                                            value={estimatedBudgetRange}
+                                                            onChange={(e) => setEstimatedBudgetRange(e.target.value)}
+                                                            required
+                                                        />
+                                                    </MDBCol>
+                                                </MDBRow>
+                                                <button style={{ backgroundColor: 'black', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px' }} type="submit">
+                                                    Edit
+                                                </button>
+                                            </form>
+                                            <br />
 
-                                    </MDBCardBody>
-                                </MDBCard>
+                                        </MDBCardBody>
+                                    </MDBCard>
+                                )}
                             </MDBCol>
                             {/* <div className=" pt-1">
                                 <h6>Search Type</h6>
