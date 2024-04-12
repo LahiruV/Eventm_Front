@@ -111,8 +111,7 @@ export default class PlaceDash extends Component {
               <br />
               <br />
             </center>
-            <div className="row">
-              {/* Map over the place data and generate cards */}
+            <div className="row">              
               {this.state.place.map((place, index) => (
                 <div className="col-md-4 mb-4" key={index}>
                   <div className="card">
