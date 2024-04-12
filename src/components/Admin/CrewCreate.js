@@ -17,8 +17,6 @@ export default class CrewCreate extends Component {
       from: "",
       cost: "",
       category: "",
-
-
       nameError: "",
       genderError: "",
       contactError: "",
@@ -49,9 +47,6 @@ export default class CrewCreate extends Component {
     let fromError = "";
     let costError = "";
     let categoryError = "";
-
-
-
 
 
 
@@ -160,8 +155,6 @@ export default class CrewCreate extends Component {
             </a>
             <form style={{ paddingLeft: '200px', paddingRight: '200px', paddingTop: '30px' }} className="needs-validation" noValidate>
 
-
-
               <div className="row">
 
                 <div class="col">
@@ -177,11 +170,6 @@ export default class CrewCreate extends Component {
                   </div>
                 </div>
               </div>
-
-
-
-
-
 
               <div className="row">
                 <div className="col">
@@ -203,9 +191,6 @@ export default class CrewCreate extends Component {
                   </div>
                 </div>
 
-
-
-
                 <div class="col">
                   <label style={{ marginBottom: '5px' }} >Contact</label>
                   <input type="number" class="form-control" name="contact" placeholder="Enter Contact Number"
@@ -219,7 +204,6 @@ export default class CrewCreate extends Component {
                 </div>
               </div>
 
-
               <div className="row">
                 <div class="col">
                   <label style={{ marginBottom: '5px' }} >From</label>
@@ -232,7 +216,6 @@ export default class CrewCreate extends Component {
                     {this.state.fromError}
                   </div>
                 </div>
-
 
                 <div class="col">
                   <label style={{ marginBottom: '5px' }} >Cost (Rs.) - Per Person</label>
@@ -266,18 +249,12 @@ export default class CrewCreate extends Component {
                     <option value="Music Bands">Music Bands</option>
                     <option value="Photography">Photography</option>
 
-                    {/* Add more options as needed */}
                   </select>
                   <div style={{ fontSize: 15, color: "red" }}>
                     {this.state.categoryError}
                   </div>
                 </div>
               </div>
-
-
-
-
-
               <hr />
               <div>
                 <button className="btn btn-dark" type="submit" onClick={this.onSubmit}>
@@ -286,17 +263,11 @@ export default class CrewCreate extends Component {
                 </button>
                 <br />
                 <br />
-
               </div>
             </form>
-
-
           </div>
         </div>
       </div>
-
-
-
     )
   }
 }
