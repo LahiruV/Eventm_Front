@@ -831,6 +831,7 @@ function FinanceDashboard() {
                             </>
                           )}
                         </div>
+                        <br />
                         <button
                           size="sm"
                           className="shadow-0"
