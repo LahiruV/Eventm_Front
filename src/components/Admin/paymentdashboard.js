@@ -4,7 +4,7 @@ import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBInput } from 'mdb-reac
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Navbar from "./adminNav";
-
+import * as XLSX from 'xlsx';
 
 
 
@@ -69,6 +69,13 @@ function Paymentdashboard() {
         }
     };
 
+    const exportToExcel = () => {
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(payment);
+        XLSX.utils.book_append_sheet(wb, ws, "Payment Data");
+        XLSX.writeFile(wb, "payment.xlsx");
+    };
+
     useEffect(() => {
         getPayments()
     }, [])
@@ -94,6 +101,9 @@ function Paymentdashboard() {
                             }} />
                             <br />
                             <button type="button" class="btn btn-success d-letter-spacing " onClick={getSearchMail} >Go</button>
+                            <button onClick={exportToExcel} className="btn btn-dark" style={{width: 10, marginLeft:1060}}>
+                                <i class="fa-solid fa-file-arrow-down"></i>
+                            </button>
                         </div>           
 
                         <h4 className='mt-5' id="#current" style={{ color: "#606060FF", paddingBottom: "1%" }}><u>Accepted  Payments</u></h4>
