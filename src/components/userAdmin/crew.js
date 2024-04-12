@@ -24,7 +24,7 @@ function Crew() {
 
   useEffect(() => {
     //get server side http module to get data to client side Http request
-    axios.get("http://localhost:4000/crew").then((res) => {
+    axios.get("http://localhost:5000/crew").then((res) => {
       if (res.data.success) {
         setData(res.data.existingPosts);
       }
