@@ -32,6 +32,8 @@ import FinanceDashboard from './components/Admin/finanaceManagement';
 import Feedbackdashboard from './components/Admin/feedbackdashboard';
 import ChatAdmin from './components/Admin/ChatAdmin';
 import ChatPageAdmin from './components/Admin/ChatPageAdmin';
+import Venue from './components/userAdmin/venue';
+
 
 
 function App() {
@@ -72,6 +74,7 @@ function App() {
         <Route path="/SponsorDash" exact component={SponsorDash} />
         <Route path="/SponsorEdit/:id" exact component={SponsorEdit} />        
         <Route path="/crew" exact component={Crew} />
+        <Route path="/venue" exact component={Venue} />
       </div>
     </Router>
   );
