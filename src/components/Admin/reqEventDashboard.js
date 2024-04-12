@@ -186,9 +186,7 @@ function ReqEventDashboard() {
                     <h4 className="text-uppercase  d-letter-spacing fw-bold" style={{ color: 'black' }}><i class="fas fa-home"></i> Request Event Dashboard</h4>
                     <hr />
                     <div className="container-fluid bg-white" style={{ paddingLeft: '5%', paddingTop: '2%', paddingBottom: '2%', paddingRight: '5%' }} >
-
                         <MDBRow className='mt-3'>
-
                             <MDBCol sm='3'></MDBCol>
                             <MDBCol sm='6'>
                                 <MDBCard className='shadow-0'>
@@ -215,7 +213,6 @@ function ReqEventDashboard() {
                                                         }}
                                                     />
                                                 </MDBCol>
-
                                                 <MDBCol>
                                                     <TextField
                                                         label="Event Time"
@@ -289,7 +286,6 @@ function ReqEventDashboard() {
                                                     </FormControl>
                                                 </MDBCol>
                                             </MDBRow>
-
                                             <hr />
                                             <MDBRow className="mb-3">
                                                 <MDBCol>
@@ -304,7 +300,6 @@ function ReqEventDashboard() {
                                                     />
                                                 </MDBCol>
                                             </MDBRow>
-
                                             <MDBRow className="mb-3">
                                                 <MDBCol>
                                                     <FormControl fullWidth required>
@@ -338,7 +333,7 @@ function ReqEventDashboard() {
                                                 </MDBCol>
                                             </MDBRow>
                                             <button style={{ backgroundColor: 'black', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px' }} type="submit">
-                                                Submit
+                                                Edit
                                             </button>
                                         </form>
                                         <br />
