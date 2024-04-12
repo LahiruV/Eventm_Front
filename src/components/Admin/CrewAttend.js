@@ -129,12 +129,12 @@ function CrewAttend() {
                                         <tr className="bg-light">
                                             <td>
                                                 <h6>
-                                                    {attend.userName}
+                                                    {attend.sponsorID}
                                                 </h6>
                                             </td>
                                             <td>
                                                 <h6>
-                                                    {attend.email}
+                                                    {attend.date}
                                                 </h6>
                                             </td>                                                                   
                                         </tr>
