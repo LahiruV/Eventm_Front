@@ -99,7 +99,12 @@ function NavBar() {
                         </MDBNavbarItem>
                         <MDBNavbarItem>
                             <MDBNavbarLink href='Chat' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
-                                Chat
+                                Chat With Req Manager
+                            </MDBNavbarLink>
+                        </MDBNavbarItem> 
+                        <MDBNavbarItem>
+                            <MDBNavbarLink href='ChatSponse' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                                Chat With Sponse Manager
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                     </MDBNavbarNav>

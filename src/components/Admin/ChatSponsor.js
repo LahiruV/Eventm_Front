@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import Navbar from "./adminNav";
 import NumberFormat from 'react-number-format';
 
-function ChatAdmin() {
+function ChatSponsor() {
 
     const [users, setUsers] = useState([]);
 
@@ -19,8 +19,6 @@ function ChatAdmin() {
             });
         sessionStorage.setItem("cus_mail", 'empty');
     }, []);
-
-
 
     return (
         <div class="dashboard-main-wrapper" >
@@ -64,4 +62,4 @@ const SquareCard = ({ name, mail }) => {
         </MDBCol>
     );
 };
-export default ChatAdmin;
+export default ChatSponsor;

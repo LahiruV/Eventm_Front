@@ -33,6 +33,8 @@ import Feedbackdashboard from './components/Admin/feedbackdashboard';
 import ChatAdmin from './components/Admin/ChatAdmin';
 import ChatPageAdmin from './components/Admin/ChatPageAdmin';
 import Venue from './components/userAdmin/venue';
+import ChatSponsor from './components/Admin/ChatSponsor';
+import ChatSponse from './components/userAdmin/chatSponse';
 
 
 
@@ -75,6 +77,8 @@ function App() {
         <Route path="/SponsorEdit/:id" exact component={SponsorEdit} />        
         <Route path="/crew" exact component={Crew} />
         <Route path="/venue" exact component={Venue} />
+        <Route path="/ChatSponsor" exact component={ChatSponsor} />
+        <Route path="/ChatSponse" exact component={ChatSponse} />
       </div>
     </Router>
   );
