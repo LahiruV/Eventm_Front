@@ -104,7 +104,6 @@ export default class CrewDash extends Component {
                 <div class="row">
                   <div class="col">
                     <div class="card">
-
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="bouncer teams" onChange={this.handleSearchArea} />
                         <label class="form-check-label" for="exampleRadios1">
