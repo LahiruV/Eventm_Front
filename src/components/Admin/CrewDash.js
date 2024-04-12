@@ -60,9 +60,7 @@ export default class CrewDash extends Component {
 
   //Search Function
   handleSearchArea = (e) => {
-
     const searchKey = e.currentTarget.value;
-
     axios.get("http://localhost:5000/crew").then(res => {
       if (res.data.success) {
 
@@ -83,17 +81,10 @@ export default class CrewDash extends Component {
           <h4 className="text-uppercase  d-letter-spacing fw-bold" style={{ color: 'black' }}><i class="fas fa-home"></i> Crew Management Dashboard</h4>
           <hr />
           <div className="container-fluid bg-light ">
-
             <br />
-
-
-
             <button className="btn btn-info" style={{ backgroundColor: "#00A36C" }} ><a href="/CrewCreate" style={{ textDecoration: 'none', color: 'white' }}>Add New Crew Profile &nbsp;
               <i class="fas fa-plus-circle"></i>
             </a></button>
-
-
-
             <center>
               <div className="col-lg-4 mt-2 mb-3">
 
@@ -109,7 +100,6 @@ export default class CrewDash extends Component {
               <button className="btn btn-dark"  ><a href="/CrewReport" style={{ textDecoration: 'none', color: 'white' }}>Reports &nbsp;
                 <i class="fa-solid fa-folder-open"></i>
               </a></button>
-
             </center>
 
             <div className="p-3 mb-2 text-light rounded-3" style={{ backgroundColor: "" }} >
@@ -122,8 +112,8 @@ export default class CrewDash extends Component {
                     <div class="card">
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="bouncer teams" onChange={this.handleSearchArea} />
-                        <label class="form-check-label" for="exampleRadios2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="bouncer teams" onChange={this.handleSearchArea} />
+                        <label class="form-check-label" for="exampleRadios1">
                           Bouncer Teams
                         </label>
                       </div>
@@ -132,8 +122,8 @@ export default class CrewDash extends Component {
                   <div class="col">
                     <div class="card">
                       <div class="form-check" >
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="chef teams" onChange={this.handleSearchArea} />
-                        <label class="form-check-label" for="exampleRadios1">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="chef teams" onChange={this.handleSearchArea} />
+                        <label class="form-check-label" for="exampleRadios2">
                           Chef Teams
                         </label>
                       </div>
@@ -142,8 +132,8 @@ export default class CrewDash extends Component {
                   <div class="col">
                     <div class="card">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="dj music" onChange={this.handleSearchArea} />
-                        <label class="form-check-label" for="exampleRadios2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="dj music" onChange={this.handleSearchArea} />
+                        <label class="form-check-label" for="exampleRadios3">
                           DJ Music
                         </label>
                       </div>
@@ -152,8 +142,8 @@ export default class CrewDash extends Component {
                   <div class="col">
                     <div class="card">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="dancing teams" onChange={this.handleSearchArea} />
-                        <label class="form-check-label" for="exampleRadios3">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="dancing teams" onChange={this.handleSearchArea} />
+                        <label class="form-check-label" for="exampleRadios4">
                           Dancing Teams
                         </label>
                       </div>
@@ -165,8 +155,8 @@ export default class CrewDash extends Component {
                   <div class="col">
                     <div class="card">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="bar tender" onChange={this.handleSearchArea} />
-                        <label class="form-check-label" for="exampleRadios2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="bar tender" onChange={this.handleSearchArea} />
+                        <label class="form-check-label" for="exampleRadios5">
                           Bar Tenders
                         </label>
                       </div>
@@ -175,8 +165,8 @@ export default class CrewDash extends Component {
                   <div class="col">
                     <div class="card">
                       <div class="form-check" >
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="ushering teams" onChange={this.handleSearchArea} />
-                        <label class="form-check-label" for="exampleRadios1">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="ushering teams" onChange={this.handleSearchArea} />
+                        <label class="form-check-label" for="exampleRadios16">
                           Ushering Teams
                         </label>
                       </div>
@@ -185,8 +175,8 @@ export default class CrewDash extends Component {
                   <div class="col">
                     <div class="card">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="music bands" onChange={this.handleSearchArea} />
-                        <label class="form-check-label" for="exampleRadios2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios7" value="music bands" onChange={this.handleSearchArea} />
+                        <label class="form-check-label" for="exampleRadios7">
                           Music Bands
                         </label>
                       </div>
@@ -195,8 +185,8 @@ export default class CrewDash extends Component {
                   <div class="col">
                     <div class="card">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="photography" onChange={this.handleSearchArea} />
-                        <label class="form-check-label" for="exampleRadios3">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios8" value="photography" onChange={this.handleSearchArea} />
+                        <label class="form-check-label" for="exampleRadios8">
                           Photography
                         </label>
                       </div>
@@ -204,13 +194,6 @@ export default class CrewDash extends Component {
                   </div>
                 </div>
               </div>
-
-
-
-
-
-
-
             </div>
 
 
@@ -238,9 +221,6 @@ export default class CrewDash extends Component {
                 </div>
               ))}
             </div>
-
-
-
           </div>
         </div>
       </div>

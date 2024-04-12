@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import {
   MDBCard,
@@ -21,6 +20,7 @@ import { TextField } from "@mui/material";
 function Crew() {
   const [data, setData] = useState();
   const [eventDate, setEventDate] = useState();
+  const [crewName, setCrewName] = useState();
 
   useEffect(() => {
     //get server side http module to get data to client side Http request
@@ -31,7 +31,33 @@ function Crew() {
     });
   }, []);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      eventDate,
+      crewName
+    }
+
+    axios.post("http://localhost:5000/eventReq/availability",data).then((res) => {
+      if(res.data.status === 'Date is Booked Already'){
+         Swal.fire({
+          title: res.data.status,
+          text: "Booked Already",
+          icon: 'error',
+          confirmButtonText: "OK",
+          type: "success"
+      });
+      }else{
+        Swal.fire({
+          title: res.data.status,
+          text: "You can make a Booking",
+          icon: 'success',
+          confirmButtonText: "OK",
+          type: "success"
+      });
+      }
+    })
+  };
 
   return (
     <div>
@@ -67,25 +93,18 @@ function Crew() {
         className="my-5 mx-auto"
         style={{ maxWidth: "800px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}
       >
-        <form
-          onSubmit={handleSubmit}
-        >
-          <div style={{ display: "flex" ,gap:'10px'}}>
+        <form onSubmit={handleSubmit}>
+          <div style={{ display: "flex", gap: "10px" }}>
             <TextField
-              label="Event Date"
-              type="date"
+              label="Crew Name"
+              type="text"
               fullWidth
-              value={eventDate}
-              onChange={(e) => setEventDate(e.target.value)}
+              value={crewName}
+              onChange={(e) => setCrewName(e.target.value)}
               InputLabelProps={{
                 shrink: true,
               }}
               required
-              InputProps={{
-                inputProps: {
-                  min: new Date().toISOString().split("T")[0],
-                },
-              }}
             />
             <TextField
               label="Event Date"
@@ -103,9 +122,18 @@ function Crew() {
                 },
               }}
             />
-            <button style={{ backgroundColor: 'black', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '5px' }} type="submit">
-                            Submit
-                        </button>
+            <button
+              style={{
+                backgroundColor: "black",
+                color: "white",
+                border: "none",
+                padding: "10px 20px",
+                borderRadius: "5px",
+              }}
+              type="submit"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </MDBCard>
@@ -126,7 +154,7 @@ function Crew() {
                     <strong>Crew ID:</strong>{" "}
                     <a
                       href={`/CrewePost/${crew._id}`}
-style={{ textDecoration: "none" }}
+                      style={{ textDecoration: "none" }}
                     >{`CID${crew._id.substr(0, 7)}`}</a>
                   </p>
                   <p className="card-text">
