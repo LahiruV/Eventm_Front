@@ -4,9 +4,11 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Navbar from "./adminNav";
 import NumberFormat from 'react-number-format';
+import * as XLSX from 'xlsx';
+
 
 function UserDashboard() {
-    
+
     const [admin, setAdmin] = useState([]);
     const [submit, setSubmit] = useState(true);
     const [userName, setUserName] = useState("")
@@ -97,11 +99,16 @@ function UserDashboard() {
         setUserType(userType)
     }
 
+    const exportToExcel = () => {
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(admin);
+        XLSX.utils.book_append_sheet(wb, ws, "User Data");
+        XLSX.writeFile(wb, "user.xlsx");
+    }
 
     useEffect(() => {
         getAdmins()
         valid()
-
     }, [userName, email, password, phone, userType])
 
     return (
@@ -174,13 +181,16 @@ function UserDashboard() {
                                 <br />
                                 <button type="button" class="btn btn-success d-letter-spacing " onClick={getByTypeAdmin}>Go</button>
                             </div>
+                            <button onClick={exportToExcel} className="btn btn-dark" style={{width: 10, marginLeft:1060}}>
+                                <i class="fa-solid fa-file-arrow-down"></i>
+                            </button>
                             <MDBTable borderless className='mt-3' >
                                 <MDBTableHead>
                                     <tr className="bg-dark">
                                         <th scope='col' className="text-white d-letter-spacing h6">Name</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Email</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Phone Number</th>
-                                        <th scope='col' className="text-white d-letter-spacing h6">Admin Role</th>                                        
+                                        <th scope='col' className="text-white d-letter-spacing h6">Admin Role</th>
                                         <th scope='col' className="text-white d-letter-spacing h6 text-center">Action</th>
                                     </tr>
                                 </MDBTableHead>
@@ -206,7 +216,7 @@ function UserDashboard() {
                                                 <h6>
                                                     {admin.userType}
                                                 </h6>
-                                            </td>                                           
+                                            </td>
                                             <td className="text-center">
                                                 <MDBBtn size='sm' className="shadow-0" color='danger' onClick={() => remove(admin.email)}><MDBIcon fas icon="trash-alt" /></MDBBtn>{''}&nbsp;&nbsp;
                                                 <button size='sm' className="shadow-0" color='dark' type='submit' onClick={() => edit(admin.userName, admin.email, admin.password, admin.phone, admin.userType)}><MDBIcon fas icon="edit" /></button>{''}&nbsp;&nbsp;
