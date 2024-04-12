@@ -15,6 +15,7 @@ import Chat from './components/userAdmin/chat';
 import Payment from './components/userAdmin/payment';
 import Paymentdashboard from './components/Admin/paymentdashboard';
 import UserAdminDashboard from './components/userAdmin/userAdminDashboard';
+import Crew from './components/userAdmin/crew';
 import UserDashboard from './components/Admin/userDashboard';
 import ReqEventDashboard from './components/Admin/reqEventDashboard';
 import FeedBack from './components/userAdmin/feedback';
@@ -70,7 +71,7 @@ function App() {
         <Route path="/SponsorCreate" exact component={SponsorCreate} />
         <Route path="/SponsorDash" exact component={SponsorDash} />
         <Route path="/SponsorEdit/:id" exact component={SponsorEdit} />        
-                        
+        <Route path="/crew" exact component={Crew} />
       </div>
     </Router>
   );

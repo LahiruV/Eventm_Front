@@ -88,7 +88,7 @@ function NavBar() {
                             </MDBNavbarLink>
                         </MDBNavbarItem>
                         <MDBNavbarItem>
-                            <MDBNavbarLink href='/' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
+                            <MDBNavbarLink href='/crew' tabIndex={-1} aria-disabled='true' style={{ color: '#DCDCDC', cursor: 'pointer' }}>
                                 Our Crew
                             </MDBNavbarLink>
                         </MDBNavbarItem>
