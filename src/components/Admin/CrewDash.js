@@ -205,8 +205,7 @@ export default class CrewDash extends Component {
                       <p className="card-text"><strong>Gender:</strong> {crew.gender}</p>
                       <p className="card-text"><strong>Phone Number:</strong> {crew.contact}</p>
                       <p className="card-text"><strong>Location:</strong> {crew.from}</p>
-                      <p className="card-text"><strong>Cost:</strong> {crew.cost}</p>
-                      <a href={`/CrewPost/${crew._id}`} className="btn btn-light btn-sm mr-2">View Details</a>
+                      <p className="card-text"><strong>Cost:</strong> {crew.cost}</p>                      
                       <a href={`/CrewEdit/${crew._id}`} className="btn btn-dark btn-sm mr-2">Edit</a>
                       <button className="btn btn-danger btn-sm" onClick={() => this.onDelete(crew._id)}>Delete</button>
                     </div>
