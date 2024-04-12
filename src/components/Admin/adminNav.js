@@ -82,6 +82,9 @@ class Navbar extends Component {
                                     <li class="nav-item ">
                                         <a class="nav-link " style={{ fontSize: '17px' }} href="ChatAdmin" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Chat Management</a>
                                     </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link " style={{ fontSize: '17px' }} href="ChatSponsor" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Chat Management Sponsor</a>
+                                    </li>
                                 </ul>
                             </div>
                         </nav>
