@@ -73,6 +73,9 @@ class Navbar extends Component {
                                     <li class="nav-item ">
                                         <a class="nav-link " style={{ fontSize: '17px' }} href="CrewDash" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Crew Management</a>
                                     </li>
+                                     <li class="nav-item ">
+                                        <a class="nav-link " style={{ fontSize: '17px' }} href="CrewAttend" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Crew Attend Management</a>
+                                    </li>
                                     <li class="nav-item ">
                                         <a class="nav-link " style={{ fontSize: '17px' }} href="PlaceDash" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Place Management</a>
                                     </li>

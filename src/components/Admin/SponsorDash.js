@@ -101,10 +101,7 @@ handleSearchArea = (e) =>{
         onChange={this.handleSearchArea}>
 
         </input>
-        </div>
-        <button className="btn btn-dark"  ><a href="/SponsorReport" style={{textDecoration:'none',color:'white'}}>Reports &nbsp;
-        <i class="fa-solid fa-folder-open"></i>
-          </a></button>       
+        </div>        
         </center>
              
         <table className="table table-hover  table table-bordered border-dark table table-light table-striped" style={{marginTop:'5px'}}>
