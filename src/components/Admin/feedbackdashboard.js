@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import Navbar from "./adminNav";
-
+import * as XLSX from 'xlsx';
 
 
 
@@ -31,6 +31,13 @@ function Feedbackdashboard() {
         }
     };
 
+    const exportToExcel = () => {
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(feedback);
+        XLSX.utils.book_append_sheet(wb, ws, "Fedback Data");
+        XLSX.writeFile(wb, "feedback.xlsx");
+    };
+
     useEffect(() => {
         getFeedback()
     }, [])
@@ -56,6 +63,9 @@ function Feedbackdashboard() {
                             }} />
                             <br />
                             <button type="button" class="btn btn-success d-letter-spacing " onClick={getSearchMail} >Go</button>
+                            <button onClick={exportToExcel} className="btn btn-dark" style={{width: 10, marginLeft:1060}}>
+                                <i class="fa-solid fa-file-arrow-down"></i>
+                            </button>
                         </div>                     
 
                         <h4 className='mt-5' id="#current" style={{ color: "#606060FF", paddingBottom: "1%" }}><u>FeedBack  Details</u></h4>
