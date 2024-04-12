@@ -111,8 +111,8 @@ handleSearchArea = (e) =>{
            <thead>
              <tr>
                <th scope="col">#</th>
-               <th scope="col">Place ID</th>
-               <th scope="col">Place Name</th>
+               <th scope="col">Sponsor ID</th>
+               <th scope="col">Sponsor Name</th>
                <th scope="col">Address</th>
                <th scope="col">Phone Number</th>
                <th scope="col">Cost</th>

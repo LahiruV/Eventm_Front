@@ -157,8 +157,8 @@ export default class SponsorCreate extends Component {
 
               <div className="row">
                 <div class="col">
-                  <label style={{ marginBottom: '5px' }} >Place Name</label>
-                  <input type="text" class="form-control" name="name" placeholder="Enter Place Name"
+                  <label style={{ marginBottom: '5px' }} >Sponsor Name</label>
+                  <input type="text" class="form-control" name="name" placeholder="Enter Sponsor Name"
                     value={this.state.name}
                     onChange={this.handleInputChange}
                     required
@@ -240,8 +240,7 @@ export default class SponsorCreate extends Component {
                     <option value="">Select Category</option>
                     <option value="Category 1">Category 1</option>
                     <option value="Category 2">Category 2</option>
-
-                    {/* Add more options as needed */}
+                                        
                   </select>
                   <div style={{ fontSize: 15, color: "red" }}>
                     {this.state.categoryError}
