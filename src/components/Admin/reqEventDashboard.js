@@ -23,6 +23,8 @@ function ReqEventDashboard() {
     const [place, setPlace] = useState([]);
     const [crew, setCrew] = useState([]);
     const [editBtn, setEditBtn] = useState(false);
+    const [searchMail, setSearchMail] = useState("");
+
 
     useEffect(() => {
         getPlaces();
@@ -175,6 +177,17 @@ function ReqEventDashboard() {
             window.location.href = "/ReqEventDashboard";
         }
     }
+
+    const getSearchMail = async () => {
+        try {
+            const res = await axios.get(`${global.APIUrl}/eventReq/allEventReq/${searchMail}`);
+            setEvtReq(res.data);
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    };
+
 
     useEffect(() => {
         getReq()
@@ -345,14 +358,14 @@ function ReqEventDashboard() {
                                     </MDBCard>
                                 )}
                             </MDBCol>
-                            {/* <div className=" pt-1">
-                                <h6>Search Type</h6>
+                            <div className=" pt-1">
+                                <h6>Search By Mail</h6>
                                 <MDBInput className="mt-3 bg-white" id='form1' type='text' onChange={(e) => {
-                                    setSearch(e.target.value);
+                                    setSearchMail(e.target.value);
                                 }} />
                                 <br />
-                                <button type="button" class="btn btn-success d-letter-spacing " onClick={getByTypeAdmin}>Go</button>
-                            </div> */}
+                                <button type="button" class="btn btn-success d-letter-spacing " onClick={getSearchMail}>Go</button>
+                            </div>
                             <div className="table-responsive">
                                 <MDBTable borderless className='mt-3' >
                                     <MDBTableHead>
