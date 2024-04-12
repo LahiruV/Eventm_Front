@@ -96,10 +96,7 @@ export default class CrewDash extends Component {
                   onChange={this.handleSearchArea}>
 
                 </input>
-              </div>
-              <button className="btn btn-dark"  ><a href="/CrewReport" style={{ textDecoration: 'none', color: 'white' }}>Reports &nbsp;
-                <i class="fa-solid fa-folder-open"></i>
-              </a></button>
+              </div>             
             </center>
 
             <div className="p-3 mb-2 text-light rounded-3" style={{ backgroundColor: "" }} >
