@@ -116,14 +116,12 @@ export default class SponsorCreate extends Component {
           Swal.fire('Added', 'Sponsor Profile Added Successfilly', 'success')
           this.setState(
             {
-
               name: "",
               address: "",
               contact: "",
               cost: "",
               description: "",
               category: ""
-
             }
           )
         }
