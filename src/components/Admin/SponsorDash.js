@@ -23,7 +23,7 @@ componentDidMount(){
 
 retriveSponsor(){
   //get server side http module to get data to client side Http request
-  axios.get("http://localhost:5000/sponsor").then(res =>{
+  axios.get(global.APIUrl+"/sponsor").then(res =>{
       if(res.data.success){
         this.setState({
             sponsor:res.data.existingPosts
@@ -38,7 +38,7 @@ retriveSponsor(){
 //delete a material card
 onDelete = (id) =>{
 
-  axios.delete(`http://localhost:5000/sponsor/deletesponsor/${id}`).then((res) =>{
+  axios.delete(global.APIUrl+`/sponsor/deletesponsor/${id}`).then((res) =>{
     Swal.fire('Deleted','Deleted Successfilly','success')
     this.retriveSponsor();
   })
@@ -64,7 +64,7 @@ handleSearchArea = (e) =>{
 
   const searchKey= e.currentTarget.value;
 
-  axios.get("http://localhost:5000/sponsor").then(res =>{
+  axios.get(global.APIUrl+"/sponsor").then(res =>{
       if(res.data.success){
 
         this.filterData(res.data.existingPosts,searchKey)

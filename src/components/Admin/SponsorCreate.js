@@ -69,6 +69,11 @@ export default class SponsorCreate extends Component {
 
     if (!this.state.cost) {
       costError = "*Cost is Required"
+    } 
+    
+    
+    if (!this.state.category) {
+      categoryError = "*Category is Required"
     }
 
 
@@ -111,7 +116,7 @@ export default class SponsorCreate extends Component {
     if (isValid) {
       console.log(data)
       //Post data to back end using the Http link
-      axios.post("http://localhost:5000/sponsor/save", data).then((res) => {
+      axios.post(global.APIUrl+"/sponsor/save", data).then((res) => {
         if (res.data.success) {
           Swal.fire('Added', 'Sponsor Profile Added Successfilly', 'success')
           this.setState(
@@ -238,8 +243,9 @@ export default class SponsorCreate extends Component {
                     required
                   >
                     <option value="">Select Category</option>
-                    <option value="Category 1">Category 1</option>
-                    <option value="Category 2">Category 2</option>
+                    <option value="Silver Sponsor">Silver Sponsor</option>
+                    <option value="Gold Sponsor">Gold Sponsor</option>
+                    <option value="Platinum Sponsor">Platinum Sponsor</option>
                                         
                   </select>
                   <div style={{ fontSize: 15, color: "red" }}>

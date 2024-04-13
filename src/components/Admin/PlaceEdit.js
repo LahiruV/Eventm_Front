@@ -101,7 +101,7 @@ export default class PlaceEdit extends Component {
     if (isValid) {
       console.log(data)
       //Put data to back end using the Http link
-      axios.put(`http://localhost:5000/place/updateplace/${id}`, data).then((res) => {
+      axios.put(global.APIUrl + `/place/updateplace/${id}`, data).then((res) => {
         if (res.data.success) {
           Swal.fire('Updated', 'Place Updated Successfully', 'success')
           this.setState(
@@ -126,7 +126,7 @@ export default class PlaceEdit extends Component {
 
     const id = this.props.match.params.id;
 
-    axios.get(`http://localhost:5000/place/${id}`).then((res) => {
+    axios.get(global.APIUrl + `/place/${id}`).then((res) => {
       if (res.data.success) {
         this.setState({
           placeID: res.data.place.placeID,
@@ -183,7 +183,8 @@ export default class PlaceEdit extends Component {
                   <label style={{ marginBottom: '5px' }} >Place Name</label>
                   <input type="text" class="form-control" name="name" placeholder="Enter Place Name"
                     value={this.state.name}
-
+                    readOnly
+                    disabled
                     onChange={this.handleInputChange}
                     required
                   />
@@ -243,7 +244,6 @@ export default class PlaceEdit extends Component {
                   <label style={{ marginBottom: '5px' }} >Description</label>
                   <input type="text" class="form-control" name="description" placeholder="Enter Description"
                     value={this.state.description}
-                    readOnly
                     onChange={this.handleInputChange}
                     required
                   />
@@ -255,7 +255,7 @@ export default class PlaceEdit extends Component {
                 <div class="col">
                   <label style={{ marginBottom: '5px' }} >Image URL</label>
                   <input type="text" class="form-control" name="image" placeholder="Enter Image URL"
-                    value={this.state.image}                    
+                    value={this.state.image}
                     onChange={this.handleInputChange}
                     required
                   />
@@ -264,14 +264,20 @@ export default class PlaceEdit extends Component {
                   </div>
                 </div>
 
-                <div class="col">
-                  <label style={{ marginBottom: '5px' }} >Category</label>
-                  <input type="text" class="form-control" name="category" placeholder="Enter Category"
+                <div className="col">
+                  <label style={{ marginBottom: '5px' }}>Category</label>
+                  <select
+                    className="form-control"
+                    name="category"
                     value={this.state.category}
-
                     onChange={this.handleInputChange}
                     required
-                  />
+                  >
+                    <option value="">Select Category</option>
+                    <option value="Indoor">Indoor</option>
+                    <option value="OutDoor">OutDoor</option>
+                    {/* Add more options as needed */}
+                  </select>
                   <div style={{ fontSize: 15, color: "red" }}>
                     {this.state.categoryError}
                   </div>

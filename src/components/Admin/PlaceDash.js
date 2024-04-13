@@ -23,7 +23,7 @@ export default class PlaceDash extends Component {
 
   retrivePlace() {
     //get server side http module to get data to client side Http request
-    axios.get("http://localhost:5000/place").then(res => {
+    axios.get(global.APIUrl+"/place").then(res => {
       if (res.data.success) {
         this.setState({
           place: res.data.existingPosts
@@ -38,7 +38,7 @@ export default class PlaceDash extends Component {
   //delete a material card
   onDelete = (id) => {
 
-    axios.delete(`http://localhost:5000/place/deleteplace/${id}`).then((res) => {
+    axios.delete(global.APIUrl+`/place/deleteplace/${id}`).then((res) => {
       Swal.fire('Deleted', 'Deleted Successfilly', 'success')
       this.retrivePlace();
     })
@@ -62,7 +62,7 @@ export default class PlaceDash extends Component {
   //Search Function
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
-    axios.get("http://localhost:5000/place").then(res => {
+    axios.get(global.APIUrl+"/place").then(res => {
       if (res.data.success) {
         this.filterData(res.data.existingPosts, searchKey)
       }

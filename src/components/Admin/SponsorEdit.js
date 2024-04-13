@@ -94,7 +94,7 @@ export default class SponsorEdit extends Component {
     if (isValid) {
       console.log(data)
       //Put data to back end using the Http link
-      axios.put(`http://localhost:5000/sponsor/updatesponsor/${id}`, data).then((res) => {
+      axios.put(global.APIUrl + `/sponsor/updatesponsor/${id}`, data).then((res) => {
         if (res.data.success) {
           Swal.fire('Updated', 'Sponsor Updated Successfully', 'success')
           this.setState(
@@ -118,7 +118,7 @@ export default class SponsorEdit extends Component {
 
     const id = this.props.match.params.id;
 
-    axios.get(`http://localhost:5000/sponsor/${id}`).then((res) => {
+    axios.get(global.APIUrl + `/sponsor/${id}`).then((res) => {
       if (res.data.success) {
         this.setState({
           sponsorID: res.data.sponsor.sponsorID,
@@ -177,6 +177,7 @@ export default class SponsorEdit extends Component {
                     readOnly
                     onChange={this.handleInputChange}
                     required
+                    disabled
                   />
                   <div style={{ fontSize: 15, color: "red" }}>
                     {this.state.nameError}
@@ -243,18 +244,26 @@ export default class SponsorEdit extends Component {
                 </div>
 
 
-                <div class="col">
-                  <label style={{ marginBottom: '5px' }} >Category</label>
-                  <input type="text" class="form-control" name="category" placeholder="Enter Category"
+                <div className="col">
+                  <label style={{ marginBottom: '5px' }}>Category</label>
+                  <select
+                    className="form-control"
+                    name="category"
                     value={this.state.category}
-                    readOnly
                     onChange={this.handleInputChange}
                     required
-                  />
+                  >
+                    <option value="">Select Category</option>
+                    <option value="Silver Sponsor">Silver Sponsor</option>
+                    <option value="Gold Sponsor">Gold Sponsor</option>
+                    <option value="Platinum Sponsor">Platinum Sponsor</option>
+
+                  </select>
                   <div style={{ fontSize: 15, color: "red" }}>
                     {this.state.categoryError}
                   </div>
                 </div>
+
               </div>
 
 

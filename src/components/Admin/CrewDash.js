@@ -23,7 +23,7 @@ export default class CrewDash extends Component {
 
   retriveCrew() {
     //get server side http module to get data to client side Http request
-    axios.get("http://localhost:5000/crew").then(res => {
+    axios.get(global.APIUrl+"/crew").then(res => {
       if (res.data.success) {
         this.setState({
           crew: res.data.existingPosts
@@ -38,7 +38,7 @@ export default class CrewDash extends Component {
   //delete a material card
   onDelete = (id) => {
 
-    axios.delete(`http://localhost:5000/crew/deletecrew/${id}`).then((res) => {
+    axios.delete(global.APIUrl+`/crew/deletecrew/${id}`).then((res) => {
       Swal.fire('Deleted', 'Deleted Successfilly', 'success')
       this.retriveCrew();
     })
@@ -61,7 +61,7 @@ export default class CrewDash extends Component {
   //Search Function
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
-    axios.get("http://localhost:5000/crew").then(res => {
+    axios.get(global.APIUrl+"/crew").then(res => {
       if (res.data.success) {
 
         this.filterData(res.data.existingPosts, searchKey)

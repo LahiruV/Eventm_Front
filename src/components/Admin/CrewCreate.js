@@ -114,7 +114,7 @@ export default class CrewCreate extends Component {
     if (isValid) {
       console.log(data)
       //Post data to back end using the Http link
-      axios.post("http://localhost:5000/crew/save", data).then((res) => {
+      axios.post(global.APIUrl+"/crew/save", data).then((res) => {
         if (res.data.success) {
           Swal.fire('Added', 'Crew Added Successfilly', 'success')
           this.setState(

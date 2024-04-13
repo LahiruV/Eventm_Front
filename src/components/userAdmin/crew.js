@@ -24,7 +24,7 @@ function Crew() {
 
   useEffect(() => {
     //get server side http module to get data to client side Http request
-    axios.get("http://localhost:5000/crew").then((res) => {
+    axios.get(global.APIUrl+"/crew").then((res) => {
       if (res.data.success) {
         setData(res.data.existingPosts);
       }
@@ -38,7 +38,7 @@ function Crew() {
       crewName
     }
 
-    axios.post("http://localhost:5000/eventReq/availability",data).then((res) => {
+    axios.post(global.APIUrl+"/eventReq/availability",data).then((res) => {
       if(res.data.status === 'Date is Booked Already'){
          Swal.fire({
           title: res.data.status,

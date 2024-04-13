@@ -24,7 +24,7 @@ function Venue() {
 
     useEffect(() => {
         //get server side http module to get data to client side Http request
-        axios.get("http://localhost:5000/place").then((res) => {
+        axios.get(global.APIUrl + "/place").then((res) => {
             if (res.data.success) {
                 setData(res.data.existingPosts);
             }
@@ -38,7 +38,7 @@ function Venue() {
             venuePreference
         }
 
-        axios.post("http://localhost:5000/eventReq/availabilityVenue", data).then((res) => {
+        axios.post(global.APIUrl + "/eventReq/availabilityVenue", data).then((res) => {
             if (res.data.status === 'Date is Booked Already') {
                 Swal.fire({
                     title: res.data.status,
@@ -140,7 +140,7 @@ function Venue() {
             <div className="row" style={{ padding: "30px" }}>
                 {data?.map((place, index) => {
                     return (
-                        <div className="col-md-4 mb-4" key={index} style={{minHeight:'30%'}}>
+                        <div className="col-md-4 mb-4" key={index} style={{ minHeight: '30%' }}>
                             <div className="card">
                                 <img src={place.image} className="card-img-top" alt={place.image} />
                                 <div className="card-body">
@@ -150,7 +150,7 @@ function Venue() {
                                     <p className="card-text"><strong>Phone:</strong> {place.contact}</p>
                                     <p className="card-text"><strong>Cost:</strong> {place.cost}</p>
                                     <p className="card-text"><strong>Description:</strong> {place.description}</p>
-                                    <p className="card-text"><strong>Category:</strong> {place.category}</p>                                   
+                                    <p className="card-text"><strong>Category:</strong> {place.category}</p>
                                 </div>
                             </div>
                         </div>
