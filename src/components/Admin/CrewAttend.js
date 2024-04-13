@@ -10,11 +10,11 @@ function CrewAttend() {
 
     const [attend, setAttend] = useState([]);
     const [submit, setSubmit] = useState(true);
-    const [sponsorID, setSponsorID] = useState("")
+    const [crewID, setCrewID] = useState("")
     const [date, setDate] = useState("")    
 
     const valid = () => {
-        if ((sponsorID != "") && (date != "")) {
+        if ((crewID != "") && (date != "")) {
             setSubmit(false)
         }
         else {
@@ -24,7 +24,7 @@ function CrewAttend() {
 
     async function submited(e) {
         e.preventDefault();
-        const attend = {sponsorID, date};
+        const attend = {crewID, date};
         try {
             const response = await axios.post(global.APIUrl + "/attend/add", attend);            
             Swal.fire({
@@ -71,7 +71,7 @@ function CrewAttend() {
     useEffect(() => {
         getAttend()
         valid()
-    }, [sponsorID, date])
+    }, [crewID, date])
 
     return (
         <div class="dashboard-main-wrapper" >
@@ -91,11 +91,11 @@ function CrewAttend() {
                                         </center>
                                         <form>
                                             <div class="mb-3">
-                                                <label for="exampleFormControlInput1" class="form-label h6">Sponsor Id</label>
+                                                <label for="exampleFormControlInput1" class="form-label h6">Crew Id</label>
                                                 <input type="text" class="form-control" placeholder=""
                                                     onChange={(e) => {
-                                                        setSponsorID(e.target.value);
-                                                    }} value={sponsorID} />
+                                                        setCrewID(e.target.value);
+                                                    }} value={crewID} />
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label h6">Attended Date</label>
@@ -120,7 +120,7 @@ function CrewAttend() {
                             <MDBTable borderless className='mt-3' >
                                 <MDBTableHead>
                                     <tr className="bg-dark">
-                                        <th scope='col' className="text-white d-letter-spacing h6">Sponsor Id</th>
+                                        <th scope='col' className="text-white d-letter-spacing h6">Crew Id</th>
                                         <th scope='col' className="text-white d-letter-spacing h6">Date</th>                                       
                                     </tr>
                                 </MDBTableHead>
@@ -129,7 +129,7 @@ function CrewAttend() {
                                         <tr className="bg-light">
                                             <td>
                                                 <h6>
-                                                    {attend.sponsorID}
+                                                    {attend.crewID}
                                                 </h6>
                                             </td>
                                             <td>
