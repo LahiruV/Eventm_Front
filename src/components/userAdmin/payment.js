@@ -108,7 +108,7 @@ function Payment() {
     
                 setTimeout(() => {
                     window.location.href = "/EventBudget";
-                }, 1000);
+                }, 2000);
             } catch (error) {
                 console.log(error.message);
                 Swal.fire({
